@@ -20,5 +20,11 @@
   <%= @questionario.termino_votacao %>
 </p>
 
-<%= link_to '← Voltar', questionarios_path %> |
-<%= link_to 'Editar', edit_questionario_path(@questionario) %>
+<p>
+	<%= link_to '← Voltar', questionarios_path %> |
+	<%= link_to 'Editar', edit_questionario_path(@questionario) %>
+</p>
+
+<p>
+	<%= link_to 'Áreas →', questionario_areas_path(@questionario) %>
+</p> 

@@ -1,0 +1,30 @@
+<h1>Áreas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Coordenador</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @areas.each do |area| %>
+      <tr>
+        <td><%= area.nome %></td>
+        <td><%= area.usuario %></td>
+        <td><%= link_to 'Exibir', area %></td>
+        <td><%= link_to 'Editar', edit_area_path(area) %></td>
+        <td><%= link_to 'Deletar', area, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '← Voltar', questionario_path(@questionario) %> |
+<%= link_to 'Nova Área', new_questionario_area_path(@questionario) %>

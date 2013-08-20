@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @area.nome %>
+</p>
+
+<p>
+  <strong>Coordenador:</strong>
+  <%= @area.usuario %>
+</p>
+
+<%= link_to '← Voltar', questionario_areas_path(@area.questionario) %> |
+<%= link_to 'Editar', edit_area_path(@area) %>
