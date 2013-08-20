@@ -1,0 +1,33 @@
+<h1>CPAs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Início da Votação</th>
+      <th>Previsao de Término</th>
+      <th>Termino da Votação</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questionarios.each do |questionario| %>
+      <tr>
+        <td><%= questionario.nome %></td>
+        <td><%= questionario.inicio_votacao %></td>
+        <td><%= questionario.previsao_termino %></td>
+        <td><%= questionario.termino_votacao %></td>
+        <td><%= link_to 'Exibir', questionario %></td>
+        <td><%= link_to 'Editar', edit_questionario_path(questionario) %></td>
+        <td><%= link_to 'Deletar', questionario, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo CPA', new_questionario_path %>

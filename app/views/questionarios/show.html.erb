@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @questionario.nome %>
+</p>
+
+<p>
+  <strong>Início da Votação:</strong>
+  <%= @questionario.inicio_votacao %>
+</p>
+
+<p>
+  <strong>Previsão de Término:</strong>
+  <%= @questionario.previsao_termino %>
+</p>
+
+<p>
+  <strong>Término da Votação:</strong>
+  <%= @questionario.termino_votacao %>
+</p>
+
+<%= link_to '← Voltar', questionarios_path %> |
+<%= link_to 'Editar', edit_questionario_path(@questionario) %>

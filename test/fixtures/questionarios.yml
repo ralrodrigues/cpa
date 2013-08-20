@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nome: MyString
+  inicio_votacao: 2013-08-20
+  previsao_termino: 2013-08-20
+  termino_votacao: 2013-08-20
+
+two:
+  nome: MyString
+  inicio_votacao: 2013-08-20
+  previsao_termino: 2013-08-20
+  termino_votacao: 2013-08-20
