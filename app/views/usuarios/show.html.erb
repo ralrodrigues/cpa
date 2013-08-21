@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @usuario.nome %>
+</p>
+
+<p>
+  <strong>Senha:</strong>
+  <%= @usuario.senha %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @usuario.tipo %>
+</p>
+
+<p>
+  <strong>Faixa etaria:</strong>
+  <%= @usuario.faixa_etaria %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @usuario.area %>
+</p>
+
+<%= link_to 'Edit', edit_usuario_path(@usuario) %> |
+<%= link_to 'Back', usuarios_path %>

@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @topico.nome %>
+</p>
+
+<%= link_to '← Voltar', modelo_topicos_path(@topico.modelo) %> |
+<%= link_to 'Editar', edit_topico_path(@topico) %>
+
+<p>
+  <%= link_to 'Perguntas →', topico_perguntas_path(@topico) %>
+</p> 

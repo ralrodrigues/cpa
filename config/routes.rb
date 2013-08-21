@@ -1,8 +1,15 @@
 Cpa::Application.routes.draw do
 
   resources :questionarios do
+    resources :modelos, shallow: true do
+      resources :topicos, shallow: true do
+        resources :perguntas
+      end
+    end
+
     resources :areas, shallow: true do
       resources :professores
+      resources :taes
     end
     
     resources :cursos, shallow: true do

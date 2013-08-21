@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @tae.nome %>
+</p>
+
+<p>
+  <strong>Prontuario:</strong>
+  <%= @tae.prontuario %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @tae.email %>
+</p>
+
+<%= link_to '← Voltar', area_taes_path(@tae.usuario.area) %> |
+<%= link_to 'Editar', edit_tae_path(@tae) %>

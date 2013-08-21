@@ -5,7 +5,7 @@ class ProfessoresController < ApplicationController
   # GET /professores
   # GET /professores.json
   def index
-    @professores = @area.professores
+    @professores = Professor.joins(:usuario).where('usuarios.area_id' => @area.id)
   end
 
   # GET /professores/1
@@ -15,7 +15,8 @@ class ProfessoresController < ApplicationController
 
   # GET /professores/new
   def new
-    @professor = @area.professores.new
+    @usuario = @area.usuarios.new
+    @professor = @usuario.build_professor
   end
 
   # GET /professores/1/edit
@@ -25,7 +26,8 @@ class ProfessoresController < ApplicationController
   # POST /professores
   # POST /professores.json
   def create
-    @professor = @area.professores.new(professor_params)
+    @usuario = @area.usuarios.create(tipo: "Professor")
+    @professor = @usuario.build_professor(professor_params)
 
     respond_to do |format|
       if @professor.save
@@ -55,7 +57,7 @@ class ProfessoresController < ApplicationController
   # DELETE /professores/1
   # DELETE /professores/1.json
   def destroy
-    redirect_to_path = area_professores_path(@professor.area)
+    redirect_to_path =  area_professores_path(@professor.usuario.area)
     @professor.destroy
     respond_to do |format|
       format.html { redirect_to redirect_to_path }
@@ -75,6 +77,6 @@ class ProfessoresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def professor_params
-      params.require(:professor).permit(:nome, :prontuario, :email, :usuario_id, :area_id)
+      params.require(:professor).permit(:nome, :prontuario, :email, :usuario_id, :area_id, usuarios_attributes: [ :id, :nome, :senha, :tipo, :area_id ])
     end
 end

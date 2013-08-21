@@ -7,7 +7,13 @@
 
 <p>
   <strong>Coordenador:</strong>
-  <%= @area.usuario %>
+  <% if @area.usuario %>
+  	<% if @area.usuario.professor %>
+  		<%= @area.usuario.professor.nome %>
+  	<% elsif @area.usuario.tae %>
+			<%= @area.usuario.tae.nome %>
+  	<% end %>
+  <% end %>
 </p>
 
 <%= link_to '← Voltar', questionario_areas_path(@area.questionario) %> |
@@ -15,4 +21,8 @@
 
 <p>
   <%= link_to 'Professores →',  area_professores_path(@area) %>
+</p>
+
+<p>
+  <%= link_to 'TAEs →',  area_taes_path(@area) %>
 </p> 

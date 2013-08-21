@@ -1,0 +1,18 @@
+<%= form_for([@questionario, @modelo]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="field">
+    <%= f.label :nome %><br>
+    <%= f.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= f.label :visibilidade %><br>
+    <%= f.text_field :visibilidade %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+<% end %>

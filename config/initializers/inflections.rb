@@ -7,6 +7,8 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.plural /^(ox)$/i, '\1en'
 #   inflect.singular /^(ox)en/i, '\1'
   inflect.irregular 'professor', 'professores'
+  inflect.irregular 'tae', 'taes'
+	inflect.irregular 'pergunta', 'perguntas'
 #   inflect.uncountable %w( fish sheep )
 end
 

@@ -1,7 +1,7 @@
 class AreasController < ApplicationController
   before_action :set_area, only: [:show, :edit, :update, :destroy]
   before_action :set_questionario, only: [:index, :new, :create]
-
+  
   # GET /areas
   # GET /areas.json
   def index

@@ -1,0 +1,30 @@
+<h1>Perguntas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Enunciado</th>
+      <th>Tipo</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @perguntas.each do |pergunta| %>
+      <tr>
+        <td><%= pergunta.enunciado %></td>
+        <td><%= pergunta.tipo %></td>
+        <td><%= link_to 'Exibir', pergunta %></td>
+        <td><%= link_to 'Editar', edit_pergunta_path(pergunta) %></td>
+        <td><%= link_to 'Deletar', pergunta, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '← Voltar', topico_path(@topico) %> |
+<%= link_to 'Nova Pergunta', new_topico_pergunta_path(@topico) %>

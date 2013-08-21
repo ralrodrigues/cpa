@@ -7,9 +7,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :usuario, "Coordenador" %><br>
-    <%= f.text_field :usuario %>
-    <!-- f.collection_select :professor_id, @area.professores, :id, :nome -->
+    <%= f.label :usuario_id, "Coordenador Professor" %><br>
+    <%= f.collection_select :usuario_id, Professor.joins(:usuario).where('usuarios.area_id' => @area.id), :usuario_id, :nome, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :usuario_id, "Coordenador TAE" %><br>
+    <%= f.collection_select :usuario_id, Tae.joins(:usuario).where('usuarios.area_id' => @area.id), :usuario_id, :nome, include_blank: true %>
   </div>
 
   <div class="actions">

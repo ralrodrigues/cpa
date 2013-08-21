@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nome: MyString
+  senha: MyString
+  tipo: MyString
+  faixa_etaria: MyString
+  area_id: 
+
+two:
+  nome: MyString
+  senha: MyString
+  tipo: MyString
+  faixa_etaria: MyString
+  area_id: 

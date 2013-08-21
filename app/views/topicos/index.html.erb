@@ -1,0 +1,28 @@
+<h1>Tópicos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @topicos.each do |topico| %>
+      <tr>
+        <td><%= topico.nome %></td>
+        <td><%= link_to 'Exibir', topico %></td>
+        <td><%= link_to 'Editar', edit_topico_path(topico) %></td>
+        <td><%= link_to 'Deletar', topico, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '← Voltar', modelo_path(@modelo) %> |
+<%= link_to 'Novo Tópico', new_modelo_topico_path(@modelo) %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nome: MyString
+  visibilidade: MyString
+  questionario_id: 
+
+two:
+  nome: MyString
+  visibilidade: MyString
+  questionario_id: 
