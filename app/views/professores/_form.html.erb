@@ -1,4 +1,4 @@
-<%= form_for([@questionario, @area]) do |f| %>
+<%= form_for([@area, @professor]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="field">
@@ -7,12 +7,17 @@
   </div>
 
   <div class="field">
-    <%= f.label :usuario, "Coordenador" %><br>
-    <%= f.text_field :usuario %>
-    <!-- f.collection_select :professor_id, @area.professores, :id, :nome -->
+    <%= f.label :prontuario %><br>
+    <%= f.text_field :prontuario %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
   </div>
 
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>
