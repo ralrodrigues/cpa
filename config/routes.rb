@@ -3,6 +3,8 @@ Cpa::Application.routes.draw do
   resources :questionarios do
     resources :areas, shallow: true do
     end
+    resources :cursos, shallow: true do
+    end
   end
   
   # You can have the root of your site routed with "root"

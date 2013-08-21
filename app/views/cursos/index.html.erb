@@ -1,0 +1,44 @@
+<h1>Cursos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Sigla</th>
+      <th>Nível</th>
+      <th>Período</th>
+      <th>Semestre Atual</th>
+      <th>Semestres de Duração</th>
+      <th>Quantidade de Alunos</th>
+      <th>Observação</th>
+      <th>Área</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cursos.each do |curso| %>
+      <tr>
+        <td><%= curso.nome %></td>
+        <td><%= curso.sigla %></td>
+        <td><%= curso.nivel %></td>
+        <td><%= curso.periodo %></td>
+        <td><%= curso.semestre_atual %></td>
+        <td><%= curso.semestres_duracao %></td>
+        <td><%= curso.qtd_alunos %></td>
+        <td><%= curso.observacao %></td>
+        <td><%= curso.area.nome if curso.area %></td>
+        <td><%= link_to 'Exibir', curso %></td>
+        <td><%= link_to 'Editar', edit_curso_path(curso) %></td>
+        <td><%= link_to 'Deletar', curso, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '← Voltar', questionario_path(@questionario) %> |
+<%= link_to 'Novo Curso', new_questionario_curso_path(@questionario) %>

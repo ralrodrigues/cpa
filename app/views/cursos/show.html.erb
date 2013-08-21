@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @curso.nome %>
+</p>
+
+<p>
+  <strong>Sigla:</strong>
+  <%= @curso.sigla %>
+</p>
+
+<p>
+  <strong>Nível:</strong>
+  <%= @curso.nivel %>
+</p>
+
+<p>
+  <strong>Período:</strong>
+  <%= @curso.periodo %>
+</p>
+
+<p>
+  <strong>Semestre Atual:</strong>
+  <%= @curso.semestre_atual %>
+</p>
+
+<p>
+  <strong>Semestres de Duração:</strong>
+  <%= @curso.semestres_duracao %>
+</p>
+
+<p>
+  <strong>Quantidade de Alunos:</strong>
+  <%= @curso.qtd_alunos %>
+</p>
+
+<p>
+  <strong>Observação:</strong>
+  <%= @curso.observacao %>
+</p>
+
+<p>
+  <strong>Área:</strong>
+  <%= @curso.area.nome if @curso.area %>
+</p>
+
+<%= link_to '← Voltar', questionario_cursos_path(@curso.questionario) %> |
+<%= link_to 'Editar', edit_curso_path(@curso) %>

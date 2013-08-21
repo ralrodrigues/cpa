@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nome: MyString
+  sigla: MyString
+  nivel: MyString
+  periodo: MyString
+  semestre_atual: 1
+  semestres_duracao: 1
+  qtd_alunos: 1
+  observacao: MyString
+  questionario_id: 
+  area_id: 
+
+two:
+  nome: MyString
+  sigla: MyString
+  nivel: MyString
+  periodo: MyString
+  semestre_atual: 1
+  semestres_duracao: 1
+  qtd_alunos: 1
+  observacao: MyString
+  questionario_id: 
+  area_id: 
