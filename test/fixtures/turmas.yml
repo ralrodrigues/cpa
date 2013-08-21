@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sigla: MyString
+  disciplina_id: 
+  professor_id: 
+
+two:
+  sigla: MyString
+  disciplina_id: 
+  professor_id: 

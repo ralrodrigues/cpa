@@ -6,6 +6,8 @@ Cpa::Application.routes.draw do
     
     resources :cursos, shallow: true do
       resources :disciplinas, shallow: true do
+        resources :turmas, shallow: true do
+        end
       end
     end
   end

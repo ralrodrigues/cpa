@@ -1,0 +1,16 @@
+<%= form_for([@disciplina, @turma]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="field">
+    <%= f.label :sigla %><br>
+    <%= f.text_field :sigla %>
+  </div>
+
+  <div class="field">
+    <%= f.label :professor %><br>
+    <%= f.text_field :professor %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
