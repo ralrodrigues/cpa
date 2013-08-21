@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130820234412) do
+ActiveRecord::Schema.define(version: 20130821001849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,17 @@ ActiveRecord::Schema.define(version: 20130820234412) do
 
   add_index "cursos", ["area_id"], name: "index_cursos_on_area_id", using: :btree
   add_index "cursos", ["questionario_id"], name: "index_cursos_on_questionario_id", using: :btree
+
+  create_table "disciplinas", force: true do |t|
+    t.string   "nome"
+    t.string   "sigla"
+    t.integer  "qtd_professores"
+    t.integer  "curso_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "disciplinas", ["curso_id"], name: "index_disciplinas_on_curso_id", using: :btree
 
   create_table "questionarios", force: true do |t|
     t.string   "nome"

@@ -1,0 +1,23 @@
+<%= form_for([@curso, @disciplina]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="field">
+    <%= f.label :nome %><br>
+    <%= f.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sigla %><br>
+    <%= f.text_field :sigla %>
+  </div>
+
+  <div class="field">
+    <%= f.label :qtd_professores, "Número de Professores" %><br>
+    <%= f.number_field :qtd_professores %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

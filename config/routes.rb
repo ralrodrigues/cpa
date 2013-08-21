@@ -3,7 +3,10 @@ Cpa::Application.routes.draw do
   resources :questionarios do
     resources :areas, shallow: true do
     end
+    
     resources :cursos, shallow: true do
+      resources :disciplinas, shallow: true do
+      end
     end
   end
   

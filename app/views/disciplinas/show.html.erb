@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @disciplina.nome %>
+</p>
+
+<p>
+  <strong>Sigla:</strong>
+  <%= @disciplina.sigla %>
+</p>
+
+<p>
+  <strong>Número de Professores:</strong>
+  <%= @disciplina.qtd_professores %>
+</p>
+
+<%= link_to '← Voltar', curso_disciplinas_path(@disciplina.curso) %> |
+<%= link_to 'Editar', edit_disciplina_path(@disciplina) %>
