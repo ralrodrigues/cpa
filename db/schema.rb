@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130821045638) do
+ActiveRecord::Schema.define(version: 20130821204303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20130821045638) do
 
   add_index "areas", ["questionario_id"], name: "index_areas_on_questionario_id", using: :btree
   add_index "areas", ["usuario_id"], name: "index_areas_on_usuario_id", using: :btree
+
+  create_table "comentarios", force: true do |t|
+    t.string   "comentario"
+    t.integer  "usuario_id"
+    t.integer  "turma_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comentarios", ["turma_id"], name: "index_comentarios_on_turma_id", using: :btree
+  add_index "comentarios", ["usuario_id"], name: "index_comentarios_on_usuario_id", using: :btree
 
   create_table "cursos", force: true do |t|
     t.string   "nome"
@@ -96,6 +107,19 @@ ActiveRecord::Schema.define(version: 20130821045638) do
     t.datetime "updated_at"
   end
 
+  create_table "respostas", force: true do |t|
+    t.integer  "usuario_id"
+    t.integer  "pergunta_id"
+    t.integer  "turma_id"
+    t.string   "resposta"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "respostas", ["pergunta_id"], name: "index_respostas_on_pergunta_id", using: :btree
+  add_index "respostas", ["turma_id"], name: "index_respostas_on_turma_id", using: :btree
+  add_index "respostas", ["usuario_id"], name: "index_respostas_on_usuario_id", using: :btree
+
   create_table "taes", force: true do |t|
     t.string   "nome"
     t.string   "prontuario"
@@ -126,6 +150,16 @@ ActiveRecord::Schema.define(version: 20130821045638) do
 
   add_index "turmas", ["disciplina_id"], name: "index_turmas_on_disciplina_id", using: :btree
   add_index "turmas", ["professor_id"], name: "index_turmas_on_professor_id", using: :btree
+
+  create_table "turmas_alunos", force: true do |t|
+    t.integer  "turma_id"
+    t.integer  "usuario_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "turmas_alunos", ["turma_id"], name: "index_turmas_alunos_on_turma_id", using: :btree
+  add_index "turmas_alunos", ["usuario_id"], name: "index_turmas_alunos_on_usuario_id", using: :btree
 
   create_table "usuarios", force: true do |t|
     t.string   "nome"

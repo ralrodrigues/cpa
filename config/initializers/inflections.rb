@@ -9,7 +9,8 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'professor', 'professores'
   inflect.irregular 'tae', 'taes'
 	inflect.irregular 'pergunta', 'perguntas'
-#   inflect.uncountable %w( fish sheep )
+	inflect.irregular 'resposta', 'respostas'
+	inflect.uncountable %w( turmas_alunos )
 end
 
 # These inflection rules are supported but not enabled by default:
