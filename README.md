@@ -5,28 +5,22 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Versão do Ruby
 	ruby 2.0.0p247
 
-* System dependencies
+* Dependências do Sistema
 
-* Configuration
+* Configuração
 
-* Database creation
+* Criação do Banco de Dados
 
-* Database initialization
+* Inicialização do Banco de dados:
 	rake db:create
 	rake db:migrate
 	rake db:seed
 
-* How to run the test suite
+* Como executar a suite de testes
 
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
