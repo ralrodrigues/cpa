@@ -15,7 +15,7 @@
     <% @turmas.each do |turma| %>
       <tr>
         <td><%= turma.sigla %></td>
-        <td><%= turma.professor %></td>
+        <td><%= turma.funcionario.nome if turma.funcionario %></td>
         <td><%= link_to 'Exibir', turma %></td>
         <td><%= link_to 'Editar', edit_turma_path(turma) %></td>
         <td><%= link_to 'Deletar', turma, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>

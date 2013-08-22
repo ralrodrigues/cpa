@@ -1,6 +1,6 @@
 class Usuario < ActiveRecord::Base
-	has_one :professor
-	has_one :tae
-	has_one :area
-	belongs_to :area
+	has_one :funcionario
+	has_many :respostas
+	has_many :comentarios
+	has_one :turmas_alunos
 end

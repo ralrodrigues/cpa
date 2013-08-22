@@ -8,8 +8,7 @@ Cpa::Application.routes.draw do
     end
 
     resources :areas, shallow: true do
-      resources :professores
-      resources :taes
+      resources :funcionarios
     end
     
     resources :cursos, shallow: true do

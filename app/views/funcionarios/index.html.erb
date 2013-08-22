@@ -1,0 +1,34 @@
+<h1>Funcionários</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Prontuario</th>
+      <th>Email</th>
+      <th>Tipo</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @funcionarios.each do |funcionario| %>
+      <tr>
+        <td><%= funcionario.nome %></td>
+        <td><%= funcionario.prontuario %></td>
+        <td><%= funcionario.email %></td>
+        <td><%= funcionario.usuario.tipo if funcionario.usuario %></td>
+        <td><%= link_to 'Exibir', funcionario %></td>
+        <td><%= link_to 'Editar', edit_funcionario_path(funcionario) %></td>
+        <td><%= link_to 'Deletar', funcionario, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '← Voltar', area_path(@area) %> |
+<%= link_to 'Novo Funcionário', new_area_funcionario_path(@area) %>

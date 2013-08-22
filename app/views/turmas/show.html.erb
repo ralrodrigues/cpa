@@ -7,7 +7,7 @@
 
 <p>
   <strong>Professor:</strong>
-  <%= @turma.professor %>
+  <%= @turma.funcionario.nome if @turma.funcionario %>
 </p>
 
 <%= link_to '← Voltar', disciplina_turmas_path(@turma.disciplina) %> |

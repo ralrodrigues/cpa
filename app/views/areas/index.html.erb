@@ -15,14 +15,7 @@
     <% @areas.each do |area| %>
       <tr>
         <td><%= area.nome %></td>
-        <td>
-           <% if area.usuario %>
-            <% if area.usuario.professor %>
-              <%= area.usuario.professor.nome %>
-            <% elsif area.usuario.tae %>
-              <%= area.usuario.tae.nome %>
-            <% end %>
-          <% end %>
+        <td><%= area.funcionario.nome if area.funcionario %>
         </td>
         <td><%= link_to 'Exibir', area %></td>
         <td><%= link_to 'Editar', edit_area_path(area) %></td>

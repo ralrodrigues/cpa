@@ -11,21 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130821204303) do
+ActiveRecord::Schema.define(version: 20130822050012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "areas", force: true do |t|
     t.string   "nome"
-    t.integer  "usuario_id"
     t.integer  "questionario_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "funcionario_id"
   end
 
+  add_index "areas", ["funcionario_id"], name: "index_areas_on_funcionario_id", using: :btree
   add_index "areas", ["questionario_id"], name: "index_areas_on_questionario_id", using: :btree
-  add_index "areas", ["usuario_id"], name: "index_areas_on_usuario_id", using: :btree
 
   create_table "comentarios", force: true do |t|
     t.string   "comentario"
@@ -67,6 +67,19 @@ ActiveRecord::Schema.define(version: 20130821204303) do
 
   add_index "disciplinas", ["curso_id"], name: "index_disciplinas_on_curso_id", using: :btree
 
+  create_table "funcionarios", force: true do |t|
+    t.string   "nome"
+    t.string   "prontuario"
+    t.string   "email"
+    t.integer  "usuario_id"
+    t.integer  "area_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "funcionarios", ["area_id"], name: "index_funcionarios_on_area_id", using: :btree
+  add_index "funcionarios", ["usuario_id"], name: "index_funcionarios_on_usuario_id", using: :btree
+
   create_table "modelos", force: true do |t|
     t.string   "nome"
     t.string   "visibilidade"
@@ -86,17 +99,6 @@ ActiveRecord::Schema.define(version: 20130821204303) do
   end
 
   add_index "perguntas", ["topico_id"], name: "index_perguntas_on_topico_id", using: :btree
-
-  create_table "professores", force: true do |t|
-    t.string   "nome"
-    t.string   "prontuario"
-    t.string   "email"
-    t.integer  "usuario_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "professores", ["usuario_id"], name: "index_professores_on_usuario_id", using: :btree
 
   create_table "questionarios", force: true do |t|
     t.string   "nome"
@@ -120,17 +122,6 @@ ActiveRecord::Schema.define(version: 20130821204303) do
   add_index "respostas", ["turma_id"], name: "index_respostas_on_turma_id", using: :btree
   add_index "respostas", ["usuario_id"], name: "index_respostas_on_usuario_id", using: :btree
 
-  create_table "taes", force: true do |t|
-    t.string   "nome"
-    t.string   "prontuario"
-    t.string   "email"
-    t.integer  "usuario_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "taes", ["usuario_id"], name: "index_taes_on_usuario_id", using: :btree
-
   create_table "topicos", force: true do |t|
     t.string   "nome"
     t.integer  "modelo_id"
@@ -143,13 +134,13 @@ ActiveRecord::Schema.define(version: 20130821204303) do
   create_table "turmas", force: true do |t|
     t.string   "sigla"
     t.integer  "disciplina_id"
-    t.integer  "professor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "funcionario_id"
   end
 
   add_index "turmas", ["disciplina_id"], name: "index_turmas_on_disciplina_id", using: :btree
-  add_index "turmas", ["professor_id"], name: "index_turmas_on_professor_id", using: :btree
+  add_index "turmas", ["funcionario_id"], name: "index_turmas_on_funcionario_id", using: :btree
 
   create_table "turmas_alunos", force: true do |t|
     t.integer  "turma_id"
@@ -168,7 +159,6 @@ ActiveRecord::Schema.define(version: 20130821204303) do
     t.string   "faixa_etaria"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "area_id"
   end
 
 end

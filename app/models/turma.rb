@@ -1,4 +1,5 @@
 class Turma < ActiveRecord::Base
+  belongs_to :funcionario
   belongs_to :disciplina
-  belongs_to :professor
+  has_one :turmas_alunos
 end

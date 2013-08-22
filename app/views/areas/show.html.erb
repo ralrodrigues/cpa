@@ -7,22 +7,12 @@
 
 <p>
   <strong>Coordenador:</strong>
-  <% if @area.usuario %>
-  	<% if @area.usuario.professor %>
-  		<%= @area.usuario.professor.nome %>
-  	<% elsif @area.usuario.tae %>
-			<%= @area.usuario.tae.nome %>
-  	<% end %>
-  <% end %>
+  <%= @area.funcionario.nome if @area.funcionario %>
 </p>
 
 <%= link_to '← Voltar', questionario_areas_path(@area.questionario) %> |
 <%= link_to 'Editar', edit_area_path(@area) %>
 
 <p>
-  <%= link_to 'Professores →',  area_professores_path(@area) %>
+  <%= link_to 'Professores e TAEs →',  area_funcionarios_path(@area) %>
 </p>
-
-<p>
-  <%= link_to 'TAEs →',  area_taes_path(@area) %>
-</p> 

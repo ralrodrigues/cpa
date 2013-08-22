@@ -7,16 +7,15 @@
   </div>
 
   <div class="field">
-    <%= f.label :usuario_id, "Coordenador Professor" %><br>
-    <%= f.collection_select :usuario_id, Professor.joins(:usuario).where('usuarios.area_id' => @area.id), :usuario_id, :nome, include_blank: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :usuario_id, "Coordenador TAE" %><br>
-    <%= f.collection_select :usuario_id, Tae.joins(:usuario).where('usuarios.area_id' => @area.id), :usuario_id, :nome, include_blank: true %>
+    <%= f.label :funcionario_id, "Coordenador" %><br>
+    <!-- = collection_select(:usuario, :funcionario_id, Funcionario.all, :id, :nome) %> -->
+    <!-- %= collection_select(:funcionario, :usuaro_id, Funcionario.joins(:area).where('areas.questionario_id' => @questionario.id), :id, :nome) %> -->
+    <!-- f.collection_select(:area, :usuario_id, Funcionario.joins(:usuario).where('usuarios.area_id' => @area.id), :usuario_id, :nome) %> -->
+    <%= f.collection_select :funcionario_id, @area.funcionarios, :id, :nome %>
   </div>
 
   <div class="actions">
     <%= f.submit %>
   </div>
+  
 <% end %>

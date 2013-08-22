@@ -1,5 +1,5 @@
 class Area < ActiveRecord::Base
   belongs_to :questionario
-  has_many :usuarios
-  belongs_to :usuario
+  belongs_to :funcionario
+  has_many :funcionarios
 end

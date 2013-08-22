@@ -1,10 +1,11 @@
-class CreateTaes < ActiveRecord::Migration
+class CreateFuncionarios < ActiveRecord::Migration
   def change
-    create_table :taes do |t|
+    create_table :funcionarios do |t|
       t.string :nome
       t.string :prontuario
       t.string :email
       t.references :usuario, index: true
+      t.references :area, index: true
 
       t.timestamps
     end
