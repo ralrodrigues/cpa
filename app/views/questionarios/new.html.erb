@@ -1,5 +1,17 @@
-<h1>Nova CPA</h1>
+<h2>Novo CPA</h2>
 
-<%= render 'form' %>
+<%= form_for(@questionario) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-<%= link_to '← Voltar', questionarios_path %>
+  <p>
+    <%= f.label :nome %><br>
+    <%= f.text_field :nome %>
+  </p>
+
+  <p>
+    <%= f.submit "Cadastrar" %>
+    <%= link_to 'Cancelar', questionarios_path %>
+  </p>
+<% end %>
+
+   

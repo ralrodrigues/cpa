@@ -3,4 +3,8 @@ class Curso < ActiveRecord::Base
   belongs_to :area
   
   has_many :disciplinas
+
+  amoeba do
+    enable
+  end
 end

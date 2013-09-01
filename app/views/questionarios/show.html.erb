@@ -1,38 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Nome:</strong>
-  <%= @questionario.nome %>
+<p id="notice">
+  <%= notice %>
 </p>
 
-<p>
-  <strong>Início da Votação:</strong>
-  <%= @questionario.inicio_votacao %>
-</p>
+<h2>CPA: <small><%= @questionario.nome %></small></h2>
 
-<p>
-  <strong>Previsão de Término:</strong>
-  <%= @questionario.previsao_termino %>
-</p>
-
-<p>
-  <strong>Término da Votação:</strong>
-  <%= @questionario.termino_votacao %>
-</p>
-
-<p>
-	<%= link_to '← Voltar', questionarios_path %> |
-	<%= link_to 'Editar', edit_questionario_path(@questionario) %>
-</p>
-
-<p>
-  <%= link_to 'Áreas →', questionario_areas_path(@questionario) %>
-</p> 
-
-<p>
-  <%= link_to 'Cursos →', questionario_cursos_path(@questionario) %>
-</p> 
-
-<p>
-  <%= link_to 'Modelos →', questionario_modelos_path(@questionario) %>
-</p> 
+<% if @questionario.em_preparacao? %>
+  <%= render 'show_em_preparacao', questionario: @questionario %>
+<% elsif @questionario.em_votacao? %>
+  <%= render 'show_em_votacao',    questionario: @questionario %>
+<% elsif @questionario.encerrado? %>
+  <%= render 'show_encerrado',     questionario: @questionario %>
+<% end %>

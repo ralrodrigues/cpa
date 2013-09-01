@@ -1,0 +1,33 @@
+<strong>Status: </strong>
+Em Preparação
+
+<br>
+
+<p>
+	<h3>Retorne</h3>
+	<%= link_to '← Cpas em preparação e votação.', questionarios_path %><br>
+	<%= link_to '← Cpas encerrados.', encerrados_questionarios_path %>
+</p>
+
+<p>
+	<h3>Gerencie</h3>
+	<%= link_to '→ Áreas e Funcionários.', questionario_areas_path(@questionario) %>
+</p>
+
+<p>
+<%= link_to '→ Modelos, Tópicos e Perguntas.', questionario_modelos_path(@questionario) %>
+</p>
+
+<p>
+	<%= link_to '→ Cursos, Disciplinas e Turmas.', questionario_cursos_path(@questionario) %>
+</p>
+
+<p>
+<%= link_to 'Alterar o nome deste Cpa.', edit_questionario_path(@questionario) %>
+</p>
+
+<p>
+	<%= link_to 'Deletar este Cpa.', @questionario, method: :delete, data: { confirm: 'Você tem certeza?' } %>
+</p>
+
+<button>Iniciar Votação</button>

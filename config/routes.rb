@@ -1,6 +1,8 @@
 Cpa::Application.routes.draw do
 
   resources :questionarios do
+    get 'configuracoes', on: :collection
+    get 'encerrados',    on: :collection
     resources :modelos, shallow: true do
       resources :topicos, shallow: true do
         resources :perguntas

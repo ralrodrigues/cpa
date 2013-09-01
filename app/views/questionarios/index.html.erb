@@ -1,33 +1,36 @@
-<h1>CPAs</h1>
+<h2>CPAs</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Início da Votação</th>
-      <th>Previsao de Término</th>
-      <th>Termino da Votação</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<p>
+  Prepare os Cpas para serem votados, acompanhe os que estão em votação ou <%= link_to 'cadastre um novo', new_questionario_path %>, mas não se esqueça de <%= link_to 'confirmar se os dados do Instituto estão corrretos', configuracoes_questionarios_path %> para facilitar o seu trabalho.
+</p>
 
-  <tbody>
-    <% @questionarios.each do |questionario| %>
-      <tr>
-        <td><%= questionario.nome %></td>
-        <td><%= questionario.inicio_votacao %></td>
-        <td><%= questionario.previsao_termino %></td>
-        <td><%= questionario.termino_votacao %></td>
-        <td><%= link_to 'Exibir', questionario %></td>
-        <td><%= link_to 'Editar', edit_questionario_path(questionario) %></td>
-        <td><%= link_to 'Deletar', questionario, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<p>
+  Você ainda pode acessar os Cpas que já estão <%= link_to 'encerrados', encerrados_questionarios_path %>.
+</p>
 
-<br>
+<h3>Cpas Em Preparação</h3>
 
-<%= link_to 'Novo CPA', new_questionario_path %>
+<article>
+  <%= "<p>Não há Cpas em Preparação.</p>".html_safe if Questionario.em_preparacao(@questionarios).empty? %>    
+
+  <% Questionario.em_preparacao(@questionarios).each do |questionario| %>
+    <section>
+      <h4><%= link_to questionario.nome, questionario %></h4>
+    </section>
+  <% end %>
+</article>
+
+<h3>Cpas Em Votação</h3>
+
+<article>
+  <%= "<p>Não há Cpas em Votação.</p>".html_safe if Questionario.em_votacao(@questionarios).empty? %>    
+
+  <% Questionario.em_votacao(@questionarios).each do |questionario| %>
+    <section>
+      <h4><%= link_to questionario.nome, questionario %></h4>
+      <strong>Início: </strong><%= questionario.inicio_votacao %>
+      <strong>Previsão de Término: </strong><%= questionario.previsao_termino %>
+    </section>
+  <% end %>
+</article>
+

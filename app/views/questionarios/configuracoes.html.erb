@@ -1,0 +1,76 @@
+<h2>Configurações</h2>
+
+<p>
+  <%= link_to '← Retorne para visualizar os Cpas em preparação e votação', questionarios_path %>.
+</p>
+
+<p>
+	<h3>Visualize</h3>
+	<%= link_to '→ Áreas e Funcionários.', questionario_areas_path(@questionario) %>
+</p>
+
+<p>
+<%= link_to '→ Modelos, Tópicos e Perguntas.', questionario_modelos_path(@questionario) %>
+</p>
+
+<p>
+	<%= link_to '→ Cursos, Disciplinas e Turmas.', questionario_cursos_path(@questionario) %>
+</p>
+
+<h3>Áreas e Funcionários:</h3>
+
+<ul>
+	<% @questionario.areas.each do |area| %>
+		<li><%= link_to area.nome, area %></li>	
+
+		<ul>
+			<% area.funcionarios.each do |funcionario| %>
+				<li><%= link_to funcionario.nome, funcionario %></li>	
+			<% end %>
+		</ul>
+	<% end %>
+</ul>
+
+<hr>
+
+<h3>Cursos, Disciplinas e Turmas:</h3>
+
+<ul>
+	<% @questionario.cursos.each do |curso| %>
+		<li><%= link_to curso.nome + " - " + curso.semestre_atual.to_s + "° Semestre", curso %></li>	
+
+		<ul>
+			<% curso.disciplinas.each do |disciplina| %>
+				<li><%= link_to disciplina.nome, disciplina %></li>	
+
+				<ul>
+					<% disciplina.turmas.each do |turma| %>
+						<li><%= link_to "Turma " + turma.sigla + " - " + turma.funcionario.nome, turma %></li>
+					<% end %>
+				</ul>
+			<% end %>
+		</ul>
+	<% end %>
+</ul>
+
+<hr>
+
+<h3>Modelos, Tópicos e Perguntas:</h3>
+
+<ul>
+	<% @questionario.modelos.each do |modelo| %>
+		<li><%= link_to modelo.nome + " - " + modelo.visibilidade, modelo %></li>	
+
+		<ul>
+			<% modelo.topicos.each do |topico| %>
+				<li><%= link_to topico.nome, topico %></li>	
+
+				<ul>
+					<% topico.perguntas.each do |pergunta| %>
+						<li><%= link_to pergunta.enunciado + " - " + pergunta.tipo, pergunta %></li>
+					<% end %>
+				</ul>
+			<% end %>
+		</ul>
+	<% end %>
+</ul>

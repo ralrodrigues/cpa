@@ -36,13 +36,13 @@
 </p>
 
 <p>
-  <strong>Observação:</strong>
-  <%= @curso.observacao %>
+  <strong>Área:</strong>
+  <%= @curso.area.nome if @curso.area %>
 </p>
 
 <p>
-  <strong>Área:</strong>
-  <%= @curso.area.nome if @curso.area %>
+  <strong>Observação:</strong>
+  <%= @curso.observacao %>
 </p>
 
 <%= link_to '← Voltar', questionario_cursos_path(@curso.questionario) %> |

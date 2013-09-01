@@ -1,0 +1,34 @@
+<strong>Status: </strong>
+Encerrado
+
+<br>
+
+<strong>Início: </strong>
+<%= @questionario.inicio_votacao %>
+
+<br>
+
+<strong>Término: </strong>
+<%= @questionario.termino_votacao %>
+
+<br>
+
+
+<p>
+	<h3>Retorne</h3>
+	<%= link_to '← Cpas em preparação e votação.', questionarios_path %><br>
+	<%= link_to '← Cpas encerrados.', encerrados_questionarios_path %>
+</p>
+
+<p>
+	<h3>Visualize</h3>
+	<%= link_to '→ Áreas e Funcionários.', questionario_areas_path(@questionario) %>
+</p>
+
+<p>
+<%= link_to '→ Modelos, Tópicos e Perguntas.', questionario_modelos_path(@questionario) %>
+</p>
+
+<p>
+	<%= link_to '→ Cursos, Disciplinas e Turmas.', questionario_cursos_path(@questionario) %>
+</p>
