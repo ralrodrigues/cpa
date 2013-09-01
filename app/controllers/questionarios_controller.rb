@@ -3,11 +3,13 @@ class QuestionariosController < ApplicationController
   before_action :questionario_encerrado, only: [:edit, :update, :destroy]
   
   def iniciar_votacao
+    @questionario = Questionario.find(params[:questionario_id])
     @questionario.update_attributes(inicio_votacao: Time.now, previsao_termino: Time.now.advance(:months => 1))
     redirect_to @questionario, notice: 'A votação foi iniciada.'
   end
 
   def encerrar_votacao
+    @questionario = Questionario.find(params[:questionario_id])
     @questionario.update_attribute(:termino_votacao, Time.now)
     redirect_to @questionario, notice: 'A votação foi encerrada.'
   end

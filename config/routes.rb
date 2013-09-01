@@ -1,6 +1,7 @@
 Cpa::Application.routes.draw do
 
   resources :questionarios do
+    post :iniciar_votacao, :encerrar_votacao
     get 'configuracoes', on: :collection
     get 'encerrados',    on: :collection
     resources :modelos, shallow: true do

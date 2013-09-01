@@ -30,4 +30,8 @@ class Questionario < ActiveRecord::Base
 	def encerrado?
 		inicio_votacao && termino_votacao 			? true : false
 	end
+
+	def iniciar_votacao
+		
+	end
 end

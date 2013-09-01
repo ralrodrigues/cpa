@@ -38,4 +38,6 @@ Em Votação
 	<%= link_to 'Deletar este Cpa.', @questionario, method: :delete, data: { confirm: 'Você tem certeza?' } %>
 </p>
 
-<button>Encerrar Votação</button>
+<%= form_tag questionario_encerrar_votacao_path @questionario do %>
+  <%= submit_tag("Encerrar Votação") %>
+<% end %>
