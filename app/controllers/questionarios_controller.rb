@@ -5,6 +5,7 @@ class QuestionariosController < ApplicationController
   def iniciar_votacao
     @questionario = Questionario.find(params[:questionario_id])
     @questionario.update_attributes(inicio_votacao: Time.now, previsao_termino: Time.now.advance(:months => 1))
+    # @questionario.iniciar_votacao
     redirect_to @questionario, notice: 'A votação foi iniciada.'
   end
 

@@ -32,6 +32,43 @@ class Questionario < ActiveRecord::Base
 	end
 
 	def iniciar_votacao
-		
+		self.cursos.each do |curso|
+
+			alunos_do_curso = []
+
+			numero_do_aluno = 1
+			curso.qtd_alunos.times do
+				alunos_do_curso << Usuario.create(nome: (curso.sigla + curso.semestre_atual.to_s +  curso.periodo.first + numero_do_aluno.to_s), senha: numero_do_aluno, tipo: "Aluno")
+				numero_do_aluno = numero_do_aluno + 1
+			end
+
+
+			curso.disciplinas.each do |disciplina|
+				alunos_de_turma_count = curso.qtd_alunos / disciplina.qtd_professores
+
+				alunos_de_turma = alunos_do_curso
+				disciplina.turmas.each do |turma|
+					for i in 0..alunos_de_turma_count
+						# Turmas_alunos.create(usuario: alunos_de_turma[i].pop, turma: turma)
+						i = 0
+					end
+				end
+			end
+
+			return alunos_do_curso
+		end
 	end
 end
+
+# self.cursos.each do |curso|
+#   		letra_inicial = "a"
+#   		curso.qtd_alunos.times do
+#   			curso.disciplinas.each do |disciplina|
+#   				disciplina.qtd_professores.times do
+  					
+#   				end
+#   			end
+# 				# Usuario.create(nome: letra_inicial, senha: "123456", tipo: "Aluno")
+# 				# letra_inicial.next!
+# 			end
+# 		end

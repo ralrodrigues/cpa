@@ -11,3 +11,8 @@
 <% elsif @questionario.encerrado? %>
   <%= render 'show_encerrado',     questionario: @questionario %>
 <% end %>
+
+
+% turma 		= Turma.create(sigla: "A") %>
+% usuario  = Usuario.create(nome: "teste", tipo: "Aluno") %>
+% Turmas_alunos.create(usuario_id: usuario.id, turma_id: turma.id) %>
