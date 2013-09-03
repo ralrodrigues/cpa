@@ -46,16 +46,13 @@ class Questionario < ActiveRecord::Base
 			curso.disciplinas.each do |disciplina|
 				alunos_de_turma_count = curso.qtd_alunos / disciplina.qtd_professores
 
-				alunos_de_turma = alunos_do_curso
+				alunos_de_turma = alunos_do_curso.dup
 				disciplina.turmas.each do |turma|
-					for i in 0..alunos_de_turma_count
-						# Turmas_alunos.create(usuario: alunos_de_turma[i].pop, turma: turma)
-						i = 0
+					for i in 0..(alunos_de_turma_count - 1)
+						TurmasAlunos.create(usuario: alunos_de_turma.pop, turma: turma)
 					end
 				end
 			end
-
-			return alunos_do_curso
 		end
 	end
 end
