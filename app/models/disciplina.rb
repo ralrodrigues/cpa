@@ -1,6 +1,6 @@
 class Disciplina < ActiveRecord::Base
   belongs_to :curso
-  has_many :turmas
+  has_many :turmas, dependent: :destroy
 
   
   

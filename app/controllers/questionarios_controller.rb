@@ -16,11 +16,10 @@ class QuestionariosController < ApplicationController
   end
   
   def configuracoes
-    @questionario = Questionario.find_by_nome("Configuração")
+    @questionario = Questionario.find(1)
   end
 
-  ENCERRADOS = 'inicio_votacao is not null and termino_votacao is not null'
-
+  ENCERRADOS = 'inicio_votacao is not null and termino_votacao is not null and id != 1'
   def encerrados
     @questionarios_encerrados = Questionario.where(ENCERRADOS)
   end
