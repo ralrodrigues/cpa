@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th>Nome</th>
-      <th>Visibilidade</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,7 +14,6 @@
     <% @modelos.each do |modelo| %>
       <tr>
         <td><%= modelo.nome %></td>
-        <td><%= modelo.visibilidade %></td>
         <td><%= link_to 'Exibir', modelo %></td>
         <td><%= link_to 'Editar', edit_modelo_path(modelo) %></td>
         <td><%= link_to 'Deletar', modelo, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>

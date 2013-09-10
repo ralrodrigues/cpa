@@ -56,16 +56,3 @@ class Questionario < ActiveRecord::Base
 		end
 	end
 end
-
-# self.cursos.each do |curso|
-#   		letra_inicial = "a"
-#   		curso.qtd_alunos.times do
-#   			curso.disciplinas.each do |disciplina|
-#   				disciplina.qtd_professores.times do
-  					
-#   				end
-#   			end
-# 				# Usuario.create(nome: letra_inicial, senha: "123456", tipo: "Aluno")
-# 				# letra_inicial.next!
-# 			end
-# 		end
