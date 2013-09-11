@@ -5,7 +5,6 @@ class CreateUsuarios < ActiveRecord::Migration
       t.string :senha
       t.string :tipo
       t.string :faixa_etaria
-      t.references :area, index: true
 
       t.timestamps
     end

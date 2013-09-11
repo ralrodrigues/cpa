@@ -10,5 +10,13 @@
   <%= @turma.funcionario.nome if @turma.funcionario %>
 </p>
 
+<strong>Quantidade de Alunos: </strong>
+<%= @turma.usuarios.count %>
+<ul>
+<% @turma.usuarios.each do |usuario| %>
+	<li><%= usuario.id.to_s + " - " + usuario.nome %></li>
+<% end %>
+</ul>
+
 <%= link_to '← Voltar', disciplina_turmas_path(@turma.disciplina) %> |
 <%= link_to 'Editar', edit_turma_path(@turma) %>
