@@ -6,6 +6,7 @@ class CreateFuncionarios < ActiveRecord::Migration
       t.string :email
       t.references :usuario, index: true
       t.references :area, index: true
+      t.references :turmas, index:true
 
       t.timestamps
     end

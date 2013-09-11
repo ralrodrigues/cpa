@@ -49,7 +49,7 @@ class Questionario < ActiveRecord::Base
 				alunos_de_turma = alunos_do_curso.dup
 				disciplina.turmas.each do |turma|
 					for i in 0..(alunos_de_turma_count - 1)
-						TurmasAlunos.create(usuario: alunos_de_turma.pop, turma: turma)
+						Sala.create(usuario: alunos_de_turma.pop, turma: turma)
 					end
 				end
 			end
