@@ -3,7 +3,7 @@ class Turma < ActiveRecord::Base
   belongs_to :disciplina
 
 
-  has_many :turmas_alunos, dependent: :destroy
+  has_many :salas, dependent: :destroy
   
 
 	has_many :salas
