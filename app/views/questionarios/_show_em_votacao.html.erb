@@ -15,8 +15,8 @@ Em Votação
 
 <p>
 	<h3>Retorne</h3>
-	<%= link_to '← Cpas em preparação e votação.', questionarios_path %><br>
-	<%= link_to '← Cpas encerrados.', encerrados_questionarios_path %>
+	<%= link_to '← Cpas em Preparação e Votação.', questionarios_path %><br>
+	<%= link_to '← Cpas Encerrados.', encerrados_questionarios_path %>
 </p>
 
 <p>
@@ -25,17 +25,17 @@ Em Votação
 </p>
 
 <p>
-<%= link_to '→ Modelos, Tópicos e Perguntas.', questionario_modelos_path(@questionario) %>
-</p>
-
-<p>
 	<%= link_to '→ Cursos, Disciplinas e Turmas.', questionario_cursos_path(@questionario) %>
 </p>
 
 <p>
+<%= link_to '→ Modelos, Tópicos e Perguntas.', questionario_modelos_path(@questionario) %>
+</p>
+
+<p>
 	<h3>Gerencie</h3>
-	<%= link_to 'Alterar o nome ou previsão de término deste Cpa.', edit_questionario_path(@questionario) %><br>
-	<%= link_to 'Deletar este Cpa.', @questionario, method: :delete, data: { confirm: 'Você tem certeza?' } %>
+	<%= link_to 'Alterar o Nome ou Previsão de Término.', edit_questionario_path(@questionario) %><br>
+	<%= link_to 'Deletar.', @questionario, method: :delete, data: { confirm: 'Você tem certeza?' } %>
 </p>
 
 <%= form_tag questionario_encerrar_votacao_path @questionario do %>

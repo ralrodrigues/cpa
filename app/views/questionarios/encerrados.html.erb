@@ -1,18 +1,18 @@
 <h2>CPAs</h2>
 
 <p>
-  Acompanhe os Cpas que já estão encerrados ou <%= link_to 'retorne para visualizar os Cpas em preparação e votação', questionarios_path %>.
+  <%= link_to 'Preparação e Votação', questionarios_path %>
 </p>
 
 <h3>Cpas Encerrados</h3>
 
 <article>
-  <%= "<p>Não há Cpas Encerrados.</p>".html_safe if @questionarios_encerrados.empty? %>    
+  <%= "<p>Não há Cpas Encerrados.</p>".html_safe if @encerrados.empty? %>    
 
-  <% @questionarios_encerrados.each do |questionario| %>
+  <% @encerrados.each do |questionario| %>
     <section>
       <h4><%= link_to questionario.nome, questionario %></h4>
-      <strong>Início: </strong><%= questionario.inicio_votacao %>
+      <strong>Início: </strong><%= questionario.inicio_votacao %><br>
       <strong>Término: </strong><%= questionario.termino_votacao %>
     </section>
   <% end %>

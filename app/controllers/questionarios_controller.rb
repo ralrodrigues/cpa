@@ -1,18 +1,40 @@
+# CREATE
+#   SO CRIA COM BASE NO CONFIGURACAO
+
+# UPDATE
+#   PRE
+#     NOME
+#   VOT
+#     NOME
+#     PREVISAO_TERMINO
+
+# DESTROY
+#   PRE
+
 class QuestionariosController < ApplicationController
   before_action :set_questionario, only: [:show, :edit, :update, :destroy]
   before_action :questionario_encerrado, only: [:edit, :update, :destroy]
   
   def iniciar_votacao
-    @questionario = Questionario.find(params[:questionario_id])
-    @questionario.update_attributes(inicio_votacao: Time.now, previsao_termino: Time.now.advance(:months => 1))
-    @questionario.iniciar_votacao
-    redirect_to @questionario, notice: 'A votação foi iniciada.'
+    questionario = Questionario.find(params[:questionario_id])
+
+    if questionario.em_preparacao?
+      questionario.iniciar_votacao
+      redirect_to questionario, notice: 'A votação foi iniciada.'
+    else
+      redirect_to questionario, notice: 'A votação não foi iniciada. Somente CPAs em Preparação podem ser iniciados.'
+    end
   end
 
   def encerrar_votacao
-    @questionario = Questionario.find(params[:questionario_id])
-    @questionario.update_attribute(:termino_votacao, Time.now)
-    redirect_to @questionario, notice: 'A votação foi encerrada.'
+    questionario = Questionario.find(params[:questionario_id])
+
+    if questionario.em_votacao?
+      questionario.update_attribute(:termino_votacao, Time.now)
+      redirect_to questionario, notice: 'A votação foi encerrada.'
+    else
+      redirect_to questionario, notice: 'A votação não foi encerrada. Somente CPAs em Votação podem ser encerrados.'
+    end
   end
   
   def configuracoes
@@ -21,13 +43,15 @@ class QuestionariosController < ApplicationController
 
   ENCERRADOS = 'inicio_votacao is not null and termino_votacao is not null and id != 1'
   def encerrados
-    @questionarios_encerrados = Questionario.where(ENCERRADOS)
+    @encerrados = Questionario.where(ENCERRADOS)
   end
 
   # GET /questionarios
   # GET /questionarios.json
   def index
-    @questionarios = Questionario.where.not(ENCERRADOS)
+    questionarios = Questionario.where.not(ENCERRADOS)
+    @preparacao   = Questionario.em_preparacao(questionarios)
+    @votacao      = Questionario.em_votacao(questionarios)
   end
 
   # GET /questionarios/1

@@ -54,5 +54,6 @@ class Questionario < ActiveRecord::Base
 				end
 			end
 		end
+		self.update_attributes(inicio_votacao: Time.now, previsao_termino: Time.now.advance(:months => 1))
 	end
 end

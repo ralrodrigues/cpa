@@ -1,22 +1,22 @@
 <h2>CPAs</h2>
 
 <p>
-  Prepare os Cpas para serem votados, acompanhe os que estão em votação ou <%= link_to 'cadastre um novo', new_questionario_path %>. 
+  <%= link_to 'Novo', new_questionario_path %>
 </p>
 <p>
-  Não se esqueça de <%= link_to 'confirmar se os dados do Instituto estão corrretos', configuracoes_questionarios_path %> para facilitar o seu trabalho.
+  <%= link_to 'Configuração', configuracoes_questionarios_path %>
 </p>
 
 <p>
-  Você ainda pode acessar os Cpas que já estão <%= link_to 'encerrados', encerrados_questionarios_path %>.
+  <%= link_to 'Encerrados', encerrados_questionarios_path %>
 </p>
 
 <h3>Cpas Em Preparação</h3>
 
 <article>
-  <%= "<p>Não há Cpas em Preparação.</p>".html_safe if Questionario.em_preparacao(@questionarios).empty? %>    
+  <%= "<p>Vazio</p>".html_safe if @preparacao.empty? %>    
 
-  <% Questionario.em_preparacao(@questionarios).each do |questionario| %>
+  <% @preparacao.each do |questionario| %>
     <section>
       <h4><%= link_to questionario.nome, questionario %></h4>
     </section>
@@ -26,12 +26,12 @@
 <h3>Cpas Em Votação</h3>
 
 <article>
-  <%= "<p>Não há Cpas em Votação.</p>".html_safe if Questionario.em_votacao(@questionarios).empty? %>    
+  <%= "<p>Vazio.</p>".html_safe if @votacao.empty? %>    
 
-  <% Questionario.em_votacao(@questionarios).each do |questionario| %>
+  <% @votacao.each do |questionario| %>
     <section>
       <h4><%= link_to questionario.nome, questionario %></h4>
-      <strong>Início: </strong><%= questionario.inicio_votacao %>
+      <strong>Início: </strong><%= questionario.inicio_votacao %><br>
       <strong>Previsão de Término: </strong><%= questionario.previsao_termino %>
     </section>
   <% end %>
