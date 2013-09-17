@@ -1,0 +1,20 @@
+<h1>Graficos#graficos</h1>
+<p>Find me in app/views/graficos/graficos.html.erb</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Senha</th> 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @usuarios.each do |usuario| %>
+      <tr>
+        <td><%= usuario.nome %></td>
+        <td><%= usuario.senha %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -21,6 +21,6 @@ Things you may want to cover:
 
 * Como executar a suite de testes
 
-* Serviços (job queues, cache servers, search engines, etc.)
+* Serviços 2(job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
