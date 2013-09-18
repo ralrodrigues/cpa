@@ -15,3 +15,6 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+//= require Highcharts-3.0.5/js/highcharts
+//= require Highcharts-3.0.5/js/highcharts-more
+//= require Highcharts-3.0.5/js/modules/exporting
