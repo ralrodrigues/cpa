@@ -1,20 +1,115 @@
-<h1>Graficos#graficos</h1>
-<p>Find me in app/views/graficos/graficos.html.erb</p>
+<style type="text/css">
+  a:hover {
+    text-decoration: none;
+  }
+</style>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Senha</th> 
-    </tr>
-  </thead>
+<script type="text/javascript">
+$(function () {
+        $('#graficos').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Quanto ao Curso'
+            },
+            subtitle: {
+                text: '1. Conhecimento da grade curricular do curso.'
+            },
+            xAxis: {
+                categories: [
+                    'Péssimo',
+                    'Ruim',
+                    'Bom',
+                    'Muito Bom',
+                    'Ótimo'
+                ]
+            },
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Aproveitamento (%)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Construção Civil',
+                data: [49.9, 71.5, 106.4, 129.2]
+    
+            }, {
+                name: 'Gestão',
+                data: [83.6, 78.8, 98.5, 93.4]
+    
+            }, {
+                name: 'Informática',
+                data: [48.9, 38.8, 39.3, 41.4]
+    
+            }]
+        });
+    });
 
-  <tbody>
-    <% @usuarios.each do |usuario| %>
-      <tr>
-        <td><%= usuario.nome %></td>
-        <td><%= usuario.senha %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+</script>
+
+<!-- left-siderbar -->
+
+<% tmp = 1 %>
+
+<div class="container">
+  <div class="row">
+    <div class ="col-md-6">
+      <% Modelo.where(:questionario_id => @questionario.id).each do |modelo| %>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h4 class="panel-title"><%=modelo.nome%></h4>
+        </div>
+          <div class="panel-group" id="accordion<%=tmp.to_s%>"> 
+            <% modelo.topicos.each do |topico| %>
+              <div class="panel panel-default">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#<%=tmp.to_s%>">
+                  <div class="panel-heading">
+                    <h4 class="panel-title" style="color:grey;"><%=topico.nome%></h4>
+                  </div>
+                </a>
+                <div id="<%=tmp.to_s%>" class="panel-collapse collapse">
+                  <div class= "panel-body">
+                    <ol>
+                      <% topico.perguntas.each do |pergunta| %>
+                        <li><%=pergunta.enunciado%></li><br>      
+                      <% end %>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+              <% tmp += 1 %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class ="col-md-6">
+      <div id="graficos"></div>
+    </div>  
+  </div>
+</div>
+
+
+
+
+
+
+
+
