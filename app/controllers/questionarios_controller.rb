@@ -46,6 +46,10 @@ class QuestionariosController < ApplicationController
     @encerrados = Questionario.where(ENCERRADOS)
   end
 
+  def areas
+    
+  end
+
   # GET /questionarios
   # GET /questionarios.json
   def index
@@ -81,7 +85,7 @@ class QuestionariosController < ApplicationController
     
     respond_to do |format|
       if @questionario.save
-        format.html { redirect_to @questionario, notice: 'O CPA foi criado com sucesso.' }
+        format.html { redirect_to questionario_preparacao_areas_path(@questionario), notice: 'O CPA foi criado com sucesso.' }
         format.json { render action: 'show', status: :created, location: @questionario }
       else
         format.html { render action: 'new' }

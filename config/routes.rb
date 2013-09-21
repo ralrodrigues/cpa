@@ -22,6 +22,12 @@ Cpa::Application.routes.draw do
         end
       end
     end
+
+
+    # rotas do wizard prepracao de questionários
+    # dominio/questionarios/1/preparacao/funcionario/
+    get 'preparacao/areas'
+    get 'preparacao/funcionarios'
   end
   
   # You can have the root of your site routed with "root"
