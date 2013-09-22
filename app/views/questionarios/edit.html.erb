@@ -17,6 +17,7 @@
 
   <p>
     <%= f.submit "Atualizar" %>
-    <%= link_to 'Cancelar', @questionario %>
+    <%= link_to 'Deletar', @questionario, method: :delete, data: { confirm: 'Você tem certeza?' } %>
+    <%= link_to 'Avançar', questionario_areas_path(@questionario) %>
   </p>
 <% end %>

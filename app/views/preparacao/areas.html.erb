@@ -1,13 +1,9 @@
-<h1>Áreas</h1>
+<h2>Áreas</h2>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Nome</th>
-      <% unless @questionario.em_preparacao? %>
-        <th>Coordenador</th>
-      <% end %>
-      <th></th>
       <th></th>
       <th></th>
     </tr>
@@ -17,10 +13,6 @@
     <% @areas.each do |area| %>
       <tr>
         <td><%= area.nome %></td>
-        <% unless @questionario.em_preparacao? %>
-          <td><%= area.funcionario.nome if area.funcionario %></td>
-        <% end %>
-        <td><%= link_to 'Exibir', area %></td>
         <td><%= link_to 'Editar', edit_area_path(area) %></td>
         <td><%= link_to 'Deletar', area, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
       </tr>
@@ -30,5 +22,15 @@
 
 <br>
 
-<%= link_to '← Voltar', edit_questionario_path(@questionario) %> |
 <%= link_to 'Nova Área', new_questionario_area_path(@questionario) %>
+	
+<ul class="pager">
+
+  <li class="previous">
+  	<%= link_to '← Voltar', edit_questionario_path(@questionario) %>
+  </li>
+	
+	<li class="next">
+		<%= link_to 'Avançar →', questionario_preparacao_funcionarios_path(@questionario) %>
+	</li>
+</ul>
