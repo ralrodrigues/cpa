@@ -25,4 +25,4 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* 100% infra :-)
+* 100% infra :-) git

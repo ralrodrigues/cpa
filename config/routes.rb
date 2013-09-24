@@ -12,9 +12,9 @@ Cpa::Application.routes.draw do
       end
     end
 
-    resources :areas, shallow: true do
-      resources :funcionarios
-    end
+    resources :areas 
+    resources :funcionarios
+  
     
     resources :cursos, shallow: true do
       resources :disciplinas, shallow: true do
@@ -24,10 +24,17 @@ Cpa::Application.routes.draw do
     end
 
 
-    # rotas do wizard prepracao de questionários
-    # dominio/questionarios/1/preparacao/funcionario/
-    get 'preparacao/areas'
-    get 'preparacao/funcionarios'
+    # # rotas do wizard prepracao de questionários
+    # # dominio/questionarios/1/preparacao/funcionario/
+    # get 'preparacao/areas'
+    # # esta rota deve ter um checkbox para ligar o coordenador a area
+    # get 'preparacao/funcionarios'
+    # get 'preparacao/cursos'
+    # # esta rota deve se cadastrar as turmas
+    # get 'preparacao/disciplinas'
+    # get 'preparacao/modelos'
+    # # esta rota deve se as perguntas aos topicos
+    # get 'preparacao/topicos'
   end
   
   # You can have the root of your site routed with "root"

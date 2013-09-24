@@ -1,11 +1,13 @@
 class FuncionariosController < ApplicationController
+  before_action :set_questionario, only: [:index]
   before_action :set_funcionario, only: [:show, :edit, :update, :destroy]
-  before_action :set_area, only: [:index, :new, :create]
+  before_action :set_area, only: [:new, :create]
 
   # GET /funcionarios
   # GET /funcionarios.json
   def index
-    @funcionarios = @area.funcionarios
+
+    @areas = @questionario.areas
   end
 
   # GET /funcionarios/1
@@ -73,6 +75,10 @@ class FuncionariosController < ApplicationController
 
     def set_area
       @area = Area.find(params[:area_id])
+    end
+
+    def set_questionario
+      @questionario = Questionario.find(params[:questionario_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
