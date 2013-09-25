@@ -45,7 +45,6 @@ class Questionario < ActiveRecord::Base
 
 			curso.disciplinas.each do |disciplina|
 				alunos_de_turma_count = curso.qtd_alunos / disciplina.qtd_professores
-
 				alunos_de_turma = alunos_do_curso.dup
 				disciplina.turmas.each do |turma|
 					for i in 0..(alunos_de_turma_count - 1)

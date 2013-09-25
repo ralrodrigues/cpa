@@ -1,6 +1,6 @@
 class AreasController < ApplicationController
   before_action :set_area, only: [:show, :edit, :update, :destroy]
-  before_action :set_questionario, only: [:index, :new, :create]
+  before_action :set_questionario, only: [:index, :coordenadores, :new, :create]
   
   # GET /areas
   # GET /areas.json
@@ -29,7 +29,7 @@ class AreasController < ApplicationController
 
     respond_to do |format|
       if @area.save
-        format.html { redirect_to @area, notice: 'A Área foi criada com sucesso.' }
+        format.html { redirect_to questionario_areas_path(@area.questionario), notice: 'A Área foi criada com sucesso.' }
         format.json { render action: 'show', status: :created, location: @area }
       else
         format.html { render action: 'new' }
@@ -43,7 +43,7 @@ class AreasController < ApplicationController
   def update
     respond_to do |format|
       if @area.update(area_params)
-        format.html { redirect_to @area, notice: 'A Área foi atualizada com sucesso.' }
+        format.html { redirect_to questionario_areas_path(@area.questionario), notice: 'A Área foi atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -58,9 +58,13 @@ class AreasController < ApplicationController
     redirect_to_path = questionario_areas_path(@area.questionario)
     @area.destroy
     respond_to do |format|
-      format.html { redirect_to redirect_to_path }
+      format.html { redirect_to redirect_to_path, notice: 'A Área foi deletada com sucesso.'}
       format.json { head :no_content }
     end
+  end
+
+  def coordenadores
+    @areas = @questionario.areas
   end
 
   private

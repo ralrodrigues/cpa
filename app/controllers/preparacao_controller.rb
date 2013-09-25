@@ -1,8 +1,18 @@
 class PreparacaoController < ApplicationController
 
-	def areas
-		@questionario = Questionario.find(params[:questionario_id])
-		@areas = @questionario.areas
-	end
+	# before_action :set_questionario
+
+	# def areas
+	# 	@areas = @questionario.areas
+	# end
+
+	# def funcionarios 
+	# 	@areas = @questionario.areas
+	# end
+
+	# private
+	#     def set_questionario
+	#       @questionario = Questionario.find(params[:questionario_id])
+	#     end
 
 end
