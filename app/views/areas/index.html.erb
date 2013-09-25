@@ -1,5 +1,8 @@
 <h2>Áreas</h2>
 
+<% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -13,8 +16,8 @@
     <% @areas.each do |area| %>
       <tr>
         <td><%= area.nome %></td>
-        <td><%= link_to 'Editar', edit_questionario_area_path(@questionario,area) %></td>
-        <td><%= link_to 'Deletar', [@questionario, area], method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        <td><%= link_to 'Editar', edit_area_path(area) %></td>
+        <td><%= link_to 'Deletar', area, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -12,10 +12,12 @@ Cpa::Application.routes.draw do
       end
     end
 
-    resources :areas 
-    resources :funcionarios
-  
-    
+    resources :areas, shallow: true do
+      resources :funcionarios, except: [:index]        
+    end
+    get 'coordenadores' => 'areas#coordenadores'
+    get 'funcionarios' => 'funcionarios#index'
+
     resources :cursos, shallow: true do
       resources :disciplinas, shallow: true do
         resources :turmas, shallow: true do

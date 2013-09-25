@@ -2,5 +2,10 @@
 
 <%= render 'form' %>
 
-<%= link_to '← Voltar', area_funcionarios_path(@funcionario.area) %> |
-<%= link_to 'Exibir', @funcionario %>
+<ul class="pager">
+
+  <li class="previous">
+    <%= link_to '← Voltar', questionario_funcionarios_path(@funcionario.area.questionario) %>
+  </li>
+
+</ul>
