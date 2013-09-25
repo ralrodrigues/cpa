@@ -63,6 +63,15 @@ class CursosController < ApplicationController
     end
   end
 
+  # DELETE /cursos
+    def destroy_multiple
+      Curso.destroy(params[:cursos])
+      respond_to do |format|
+        format.html { redirect_to cursos_path }
+        format.json { head :no_content }
+      end
+    end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_curso
@@ -77,4 +86,5 @@ class CursosController < ApplicationController
     def curso_params
       params.require(:curso).permit(:nome, :sigla, :nivel, :periodo, :semestre_atual, :semestres_duracao, :qtd_alunos, :observacao, :questionario_id, :area_id)
     end
+
 end

@@ -2,5 +2,11 @@
 
 <%= render 'form' %>
 
-<%= link_to '← Voltar', questionario_areas_path(@area.questionario) %> |
-<%= link_to 'Exibir', @area %>
+<ul class="pager">
+
+  <li class="previous">
+    <%= link_to '← Voltar', questionario_areas_path(@area.questionario) %>
+  </li>
+
+</ul>
+

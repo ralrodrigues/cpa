@@ -18,6 +18,16 @@
   <p>
     <%= f.submit "Atualizar" %>
     <%= link_to 'Deletar', @questionario, method: :delete, data: { confirm: 'Você tem certeza?' } %>
-    <%= link_to 'Avançar', questionario_areas_path(@questionario) %>
   </p>
+
+  <ul class="pager">
+
+    <li class="previous disabled">
+      <a>← Voltar</a>
+    </li>
+    
+    <li class="next">
+      <%= link_to 'Avançar →', questionario_areas_path(@questionario) %>
+    </li>
+</ul>
 <% end %>

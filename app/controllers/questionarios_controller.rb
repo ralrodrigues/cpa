@@ -85,7 +85,7 @@ class QuestionariosController < ApplicationController
     
     respond_to do |format|
       if @questionario.save
-        format.html { redirect_to questionario_preparacao_areas_path(@questionario), notice: 'O CPA foi criado com sucesso.' }
+        format.html { redirect_to questionario_areas_path(@questionario), notice: 'O CPA foi criado com sucesso.' }
         format.json { render action: 'show', status: :created, location: @questionario }
       else
         format.html { render action: 'new' }
@@ -99,7 +99,7 @@ class QuestionariosController < ApplicationController
   def update
     respond_to do |format|
       if @questionario.update(questionario_params)
-        format.html { redirect_to @questionario, notice: 'O CPA foi atualizado com sucesso.' }
+        format.html { redirect_to questionario_areas_path(@questionario), notice: 'O CPA foi atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

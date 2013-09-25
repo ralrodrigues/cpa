@@ -1,0 +1,25 @@
+<%= form_for(@questionario) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+	<% @questionario.areas.each do |area| %>
+	  <table class="table table-hover">
+	    <thead>
+	      <tr>
+	        <th>Área</th>
+	        <th>Coordenador</th>
+	      </tr>
+	    </thead>
+	    <tbody> 
+	        <tr>
+	          <td><%= area.nome %></td>
+	          <td><%= options_from_collection_for_select(area.funcionarios, :id, :nome) %></td>
+	        </tr>
+	    </tbody>
+	  </table>
+	<% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+<% end %>
