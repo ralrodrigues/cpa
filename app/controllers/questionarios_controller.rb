@@ -56,6 +56,7 @@ class QuestionariosController < ApplicationController
     questionarios = Questionario.where.not(ENCERRADOS)
     @preparacao   = Questionario.em_preparacao(questionarios)
     @votacao      = Questionario.em_votacao(questionarios)
+    @questionario = Questionario.new
   end
 
   # GET /questionarios/1

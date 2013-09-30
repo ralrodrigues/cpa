@@ -1,7 +1,33 @@
-section {
+.bs-sidebar .nav > li > a {
+  display: block;
+  color: #716b7a;
+  padding: 5px auto;
+  margin: 5px 0;
+  margin-right: -10px;
+  background-color: #D6ECCE;
+  border-left: 3px solid #191;
+}
+.bs-sidebar .nav > li > a:hover,
+.bs-sidebar .nav > li > a:focus {
+  text-decoration: none;
+  background-color: #99EE99;
+}
+
+#preparacao {
 	background: #9E9;
 	padding: 10px;	
-	margin: 10px 0;
+	margin: 10px 15px;
+
+	border-radius: 4px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: #191;
+}
+
+#votacao {
+	background: #9E9;
+	padding: 10px;	
+	margin: 10px 38px;
 
 	border-radius: 4px;
 	border-left-width: 3px;
