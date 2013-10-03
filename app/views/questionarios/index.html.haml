@@ -1,0 +1,47 @@
+.row
+  .col-sm-2
+    .bs-sidebar
+      %ul.nav.nav-pills.nav-stacked   
+        %li= link_to 'Novo', new_questionario_path 
+        %li= link_to 'Configuração', configuracoes_questionarios_path 
+        %li= link_to 'Encerrados', encerrados_questionarios_path   
+    %hr.visible-xs
+  .col-sm-10
+    .col-lg-12
+      .panel.panel-success
+        .panel-heading
+          %h3.panel-title 
+            Preparação 
+            %span.badge 1
+        .panel-body 
+          = "<div class='col-lg-12'><div class='alert alert-success'><strong>Nenhum Questionário em Preparação!</strong> É necessário criar um novo questionário na clicando na opção <strong>novo</strong>.</div></div>".html_safe if @preparacao.empty?   
+          .col-lg-12 
+            - @preparacao.each do |questionario|
+              %section.col-lg-2#preparacao
+                %p.pull-right= link_to 'x', questionario, method: :delete, data: { confirm: 'Você tem certeza?', :class => "close"}
+                %h4= link_to questionario.nome, questionario_path(questionario)
+                = form_tag questionario_iniciar_votacao_path(questionario) do
+                  =submit_tag "Iniciar Votação", class: "btn btn-default form-control", data: { confirm: 'Você tem certeza?', :class => "close"}
+    .col-lg-12
+      .panel.panel-success
+        .panel-heading
+          %h3.panel-title 
+            Votação 
+            %span.badge 1
+        .panel-body 
+          = "<div class='col-lg-12'><div class='alert alert-success'><strong>Nenhum Questionário em Votação!</strong> Após a preparação do questionário, já podemos iniciar a votação.</div></div>".html_safe if @votacao.empty?      
+          .col-lg-12 
+            - @votacao.each do |questionario|
+              %section.col-lg-3#votacao
+                %h4= link_to questionario.nome, questionario
+                %p 
+                  Início: 
+                  %strong= questionario.inicio_votacao
+                %p
+                  Término: 
+                  %strong= questionario.previsao_termino
+                = form_tag questionario_encerrar_votacao_path(questionario) do
+                  =submit_tag "Encerrar Votação", class: "btn btn-default form-control", data: { confirm: 'Você tem certeza?', :class => "close"}
+              
+
+

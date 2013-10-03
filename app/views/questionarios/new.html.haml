@@ -1,0 +1,13 @@
+%h3.text-center Cadastrar Novo
+%br
+.row
+	.col-md-5
+	.col-md-2
+		= form_for(@questionario) do |f|
+			= render 'shared/error_messages', object: f.object
+			.form-group.has-success
+				= f.text_field :nome, :placeholder => "Nome", :class => "form-control"
+			= f.submit "Cadastrar", :class => "btn btn-success btn-sm form-control"
+%ul.pager
+	%li.previous= link_to '← Voltar', questionarios_path 
+	%li.next.disabled= link_to 'Avançar →', "#"
