@@ -1,0 +1,15 @@
+.row	
+	.col-md-12
+		.panel.panel-success
+			.panel-heading
+				%h3.panel-title 
+					Encerrados
+					%span.badge 1
+			.panel-body
+				= "<div class='col-lg-12'><div class='alert alert-success'><strong>Nenhum Questionário Encerrado!</strong> Após a preparação do questionário, já podemos iniciar a votação.</div></div>".html_safe if @encerrados.empty?  	
+				.col-lg-12 
+					- @encerrados.each do |questionario|
+						%section.col-lg-2#encerrado
+							%h4= link_to questionario.nome, questionario
+						
+
