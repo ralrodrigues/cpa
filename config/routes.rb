@@ -13,6 +13,7 @@ Cpa::Application.routes.draw do
     end
 
     resources :areas, shallow: true do
+      delete 'destroy_multiple', on: :collection
       resources :funcionarios, except: [:index]        
     end
     get 'coordenadores' => 'areas#coordenadores'

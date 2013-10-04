@@ -1,0 +1,32 @@
+.panel.panel-success
+  .panel-heading
+    %h3.panel-title 
+      Áreas 
+      %span.badge 1  
+      / puxar contador do banco
+  .panel-body 
+    = "<div class='col-lg-12'><div class='alert alert-success'><strong>Nenhum Questionário em Preparação!</strong> É necessário criar um novo questionário na clicando na opção <strong>novo</strong>.</div></div>".html_safe if @areas.empty?   
+    .col-lg-12 
+      = form_tag destroy_multiple_questionario_areas_path, method: :delete do
+        %table.table.table-hover
+          %thead
+            %tr
+              %th
+              %th Nome
+              %th
+          %tbody
+            - @areas.each do |area| 
+              %tr
+                %td= check_box_tag "areas[]", area.id
+                %td= link_to area.nome , edit_area_path(area)
+                %td= link_to 'Deletar', area, method: :delete, data: { confirm: 'Você tem certeza?' }
+        = submit_tag "Delete selected"
+  .panel-footer
+    <a href = "#" class="btn btn-default">Deletar</a> 
+    / fazer multiplos destroy
+    = link_to 'Nova Área', new_questionario_area_path(@questionario), :class => "btn btn-primary"
+%ul.pager
+  %li.previous
+    = link_to '← Voltar', edit_questionario_path(@questionario)
+  %li.next
+    = link_to 'Avançar →', questionario_funcionarios_path(@questionario)

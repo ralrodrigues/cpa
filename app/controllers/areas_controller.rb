@@ -63,6 +63,17 @@ class AreasController < ApplicationController
     end
   end
 
+  def destroy_multiple
+    if (params[:areas]).nil? 
+      redirect_to questionario_areas_path(params[:questionario_id]), notice: 'Nenhuma área selecionada'
+    else  
+      Area.destroy(params[:areas])
+      redirect_to questionario_areas_path(params[:questionario_id]), notice: 'Áreas Deletadas com Sucesso' 
+    end
+
+    # render text: params.inspect
+  end
+
   def coordenadores
     @areas = @questionario.areas
   end
