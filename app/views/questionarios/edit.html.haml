@@ -3,20 +3,10 @@
   %small= @questionario.nome
 %br
 .row
-  .col-md-5
-  .col-md-2
-    = form_for(@questionario) do |f|
-      = render 'shared/error_messages', object: f.object
-      .form-group.has-success
-        = f.text_field :nome, :placeholder => "Nome", :class => "form-control"
-      .form-group.has-success
-        = if @questionario.em_votacao?
-          = f.label :previsao_termino, "Previsão de Término"
-          = select_date Date.today, prefix: :start_date
-      = f.submit "Atualizar", :class => "btn btn-success btn-sm form-control" 
+  .col-md-offset-4.col-md-4
+    = render 'form', :button => "Atualizar"
 %ul.pager
   %li.previous= link_to '← Voltar', questionario_path(@questionario)
-  %li.next= link_to 'Avançar →', questionario_areas_path(@questionario)
-
+  
   
 

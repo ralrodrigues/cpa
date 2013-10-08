@@ -1,5 +1,4 @@
 Cpa::Application.routes.draw do
-
   
   resources :questionarios do
     resources :graficos
@@ -14,10 +13,11 @@ Cpa::Application.routes.draw do
 
     resources :areas, shallow: true do
       delete 'destroy_multiple', on: :collection
-      resources :funcionarios, except: [:index]        
+      resources :funcionarios, shallow: true do 
+        delete 'destroy_multiple', on: :collection
+      end          
     end
     get 'coordenadores' => 'areas#coordenadores'
-    get 'funcionarios' => 'funcionarios#index'
 
     resources :cursos, shallow: true do
       resources :disciplinas, shallow: true do

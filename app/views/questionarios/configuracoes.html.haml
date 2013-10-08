@@ -1,0 +1,33 @@
+.row
+  .col-lg-12
+    .panel.panel-success
+      .panel-heading
+        %h3.panel-title
+          %strong 
+            Questionário :	 
+            %small= @questionario.nome 
+      .panel-body
+        .row  
+          %section.col-lg-3.config
+            %small 
+              %strong Configurar
+            %h4= link_to 'Áreas e Funcionários', questionario_areas_path(@questionario)
+          .col-lg-1
+          %section.col-lg-3.config
+            %small 
+              %strong Configurar
+            %h4= link_to 'Cursos, Disciplinas e Turmas', questionario_cursos_path(@questionario)
+          .col-lg-1
+          %section.col-lg-3.config
+            %small 
+              %strong Configurar
+            %h4= link_to 'Modelos, Tópicos e Perguntas', questionario_modelos_path(@questionario)
+      .panel-footer
+        .row
+          .col-sm-12.btn-group.text-left
+            %p 
+              %strong OBS:
+              Este é um questionário modelo, que reflete todos os dados da Instituição, a partir dele são criados os novos questionários
+%ul.pager
+  %li.previous
+    = link_to '← Voltar', questionarios_path

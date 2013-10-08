@@ -87,10 +87,10 @@ class QuestionariosController < ApplicationController
     
     respond_to do |format|
       if @questionario.save
-        format.html { redirect_to questionario_areas_path(@questionario), notice: 'O CPA foi criado com sucesso.' }
+        format.html { redirect_to questionario_path(@questionario), notice: 'O Questionário : ' +@questionario.nome+', foi criado com sucesso.' }
         format.json { render action: 'show', status: :created, location: @questionario }
       else
-        format.html { render action: 'new' }
+        format.html { render action: 'new', notice: 'Ocorreu um erro, tente novamente.' }
         format.json { render json: @questionario.errors, status: :unprocessable_entity }
       end
     end
@@ -101,10 +101,10 @@ class QuestionariosController < ApplicationController
   def update
     respond_to do |format|
       if @questionario.update(questionario_params)
-        format.html { redirect_to questionario_areas_path(@questionario), notice: 'O CPA foi atualizado com sucesso.' }
+        format.html { redirect_to questionario_path(@questionario), notice: 'O Questionário foi atualizado com sucesso.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { render action: 'edit', notice: 'Ocorreu um erro, tente novamente.' }
         format.json { render json: @questionario.errors, status: :unprocessable_entity }
       end
     end
@@ -115,7 +115,7 @@ class QuestionariosController < ApplicationController
   def destroy
     @questionario.destroy
     respond_to do |format|
-      format.html { redirect_to questionarios_url }
+      format.html { redirect_to questionarios_url, notice: 'O Questionário foi deletado com sucesso' }
       format.json { head :no_content }
     end
   end

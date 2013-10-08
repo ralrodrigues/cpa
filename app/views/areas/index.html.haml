@@ -2,31 +2,36 @@
   .panel-heading
     %h3.panel-title 
       Áreas 
-      %span.badge 1  
+      %span.badge= @areas.count  
       / puxar contador do banco
   .panel-body 
-    = "<div class='col-lg-12'><div class='alert alert-success'><strong>Nenhum Questionário em Preparação!</strong> É necessário criar um novo questionário na clicando na opção <strong>novo</strong>.</div></div>".html_safe if @areas.empty?   
-    .col-lg-12 
+    = "<div class='col-lg-12'><div class='alert alert-success'><strong>Não existem Áreas cadastradas!</strong> É necessário criar cadastrar uma nova área clicando no botão <strong>Nova Área</strong>.</div></div>".html_safe if @areas.empty?   
+    .col-lg-12
       = form_tag destroy_multiple_questionario_areas_path, method: :delete do
         %table.table.table-hover
           %thead
             %tr
-              %th
+              %th{:style => "width: 5px;"}
               %th Nome
-              %th
+              %th Coordenador
+              %th{:style => "width: 5px;"}
+              %th{:style => "width: 5px;"}
+              %th{:style => "width: 5px;"}
           %tbody
             - @areas.each do |area| 
               %tr
-                %td= check_box_tag "areas[]", area.id
-                %td= link_to area.nome , edit_area_path(area)
-                %td= link_to 'Deletar', area, method: :delete, data: { confirm: 'Você tem certeza?' }
-        = submit_tag "Delete selected"
-  .panel-footer
-    <a href = "#" class="btn btn-default">Deletar</a> 
-    / fazer multiplos destroy
-    = link_to 'Nova Área', new_questionario_area_path(@questionario), :class => "btn btn-primary"
+                %td= check_box_tag "areas[]", area.id 
+                %td= area.nome
+                %td Buscar nome do orientador
+                %td= link_to "Editar", edit_area_path(area), :class => "btn btn-default"
+                %td= link_to 'Deletar', area, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => "btn btn-default"
+                %td
+                  .btn.btn-default= link_to "Funcionários →", area_funcionarios_path(area)
+        .well.btn-group.col-sm-12
+          .pull-right
+            = submit_tag "Deletar", :class => "btn btn-default"
+            = link_to 'Nova Área', new_questionario_area_path(@questionario), :class => "btn btn-primary"
 %ul.pager
   %li.previous
-    = link_to '← Voltar', edit_questionario_path(@questionario)
-  %li.next
-    = link_to 'Avançar →', questionario_funcionarios_path(@questionario)
+    = link_to '← Voltar', questionario_path(@questionario)
+

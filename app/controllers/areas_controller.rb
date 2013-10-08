@@ -62,7 +62,18 @@ class AreasController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  # DELETE /areas/1
+  # DELETE /areas/1.json
+  def destroy
+    redirect_to_path = questionario_areas_path(@area.questionario)
+    @area.destroy
+    respond_to do |format|
+      format.html { redirect_to redirect_to_path }
+      format.json { head :no_content }
+    end
+  end
+  
   def destroy_multiple
     if (params[:areas]).nil? 
       redirect_to questionario_areas_path(params[:questionario_id]), notice: 'Nenhuma área selecionada'
