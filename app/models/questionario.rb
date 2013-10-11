@@ -1,4 +1,4 @@
-class Questionario < ActiveRecord::Base
+	class Questionario < ActiveRecord::Base
 	has_many :areas, dependent: :destroy
 	has_many :cursos, dependent: :destroy
 	has_many :modelos, dependent: :destroy

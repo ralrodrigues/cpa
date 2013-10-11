@@ -29,7 +29,7 @@
                 %td= link_to '', edit_area_path(area), :class => "glyphicon glyphicon-edit"
                 %td= link_to '', area, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => "glyphicon glyphicon-trash"
                 %td
-                  = link_to 'Funcionários→', area_funcionarios_path(area), :id => "option"
+                  = link_to 'Funcionários', area_funcionarios_path(area), :id => "option"
         .well.btn-group.col-sm-12
           .pull-right
             = submit_tag "Deletar", :class => "btn btn-default"

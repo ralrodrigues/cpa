@@ -29,10 +29,10 @@ class ModelosController < ApplicationController
 
     respond_to do |format|
       if @modelo.save
-        format.html { redirect_to @modelo, notice: 'O Modelo foi criado com sucesso.' }
+        format.html { redirect_to questionario_modelos_path(@modelo.questionario), notice: 'O Modelo foi criado com sucesso.' }
         format.json { render action: 'show', status: :created, location: @modelo }
       else
-        format.html { render action: 'new' }
+        format.html { render action: 'new', notice: 'O Modelo não foi criado com sucesso.' }
         format.json { render json: @modelo.errors, status: :unprocessable_entity }
       end
     end
@@ -43,10 +43,10 @@ class ModelosController < ApplicationController
   def update
     respond_to do |format|
       if @modelo.update(modelo_params)
-        format.html { redirect_to @modelo, notice: 'O Modelo foi atualizado com sucesso.' }
+        format.html { redirect_to questionario_modelos_path(@modelo.questionario), notice: 'O Modelo foi atualizado com sucesso.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { render action: 'edit', notice: 'O Modelo foi atualizado com sucesso.' }
         format.json { render json: @modelo.errors, status: :unprocessable_entity }
       end
     end
@@ -61,6 +61,17 @@ class ModelosController < ApplicationController
       format.html { redirect_to redirect_to_path }
       format.json { head :no_content }
     end
+  end
+
+  def destroy_multiple
+    if (params[:modelos]).nil? 
+      redirect_to questionario_modelos_path(params[:questionario_id]), notice: 'Nenhum modelo selecionado'
+    else  
+      Disciplina.destroy(params[:modelos])
+      redirect_to questionario_modelos_path(params[:questionario_id]), notice: 'Modelos deletados com sucesso' 
+    end
+
+    # render text: params.inspect
   end
 
   private
