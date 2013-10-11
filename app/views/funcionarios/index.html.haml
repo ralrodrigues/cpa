@@ -27,8 +27,8 @@
                 %td= funcionario.prontuario
                 %td= funcionario.email
                 %td= funcionario.usuario.tipo
-                %td= link_to "Editar", edit_funcionario_path(funcionario), :class => "btn btn-default"
-                %td= link_to 'Deletar', funcionario, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => "btn btn-default"
+                %td= link_to '', edit_funcionario_path(funcionario), :class => "glyphicon glyphicon-edit"
+                %td= link_to '', funcionario, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => "glyphicon glyphicon-trash"
         .well.btn-group.col-sm-12
           .pull-right
             = submit_tag "Deletar", :class => "btn btn-default"

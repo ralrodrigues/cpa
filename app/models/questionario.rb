@@ -42,7 +42,6 @@ class Questionario < ActiveRecord::Base
 				numero_do_aluno = numero_do_aluno + 1
 			end
 
-
 			curso.disciplinas.each do |disciplina|
 				alunos_de_turma_count = curso.qtd_alunos / disciplina.qtd_professores
 				alunos_de_turma = alunos_do_curso.dup

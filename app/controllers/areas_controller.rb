@@ -69,7 +69,7 @@ class AreasController < ApplicationController
     redirect_to_path = questionario_areas_path(@area.questionario)
     @area.destroy
     respond_to do |format|
-      format.html { redirect_to redirect_to_path }
+      format.html { redirect_to redirect_to_path, notice: 'Área Deletada com Sucesso' }
       format.json { head :no_content }
     end
   end
@@ -81,8 +81,6 @@ class AreasController < ApplicationController
       Area.destroy(params[:areas])
       redirect_to questionario_areas_path(params[:questionario_id]), notice: 'Áreas Deletadas com Sucesso' 
     end
-
-    # render text: params.inspect
   end
 
   def coordenadores

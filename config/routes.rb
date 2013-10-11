@@ -20,7 +20,10 @@ Cpa::Application.routes.draw do
     get 'coordenadores' => 'areas#coordenadores'
 
     resources :cursos, shallow: true do
+      delete 'destroy_multiple', on: :collection
+      post 'duplicate'
       resources :disciplinas, shallow: true do
+        delete 'destroy_multiple', on: :collection
         resources :turmas, shallow: true do
         end
       end

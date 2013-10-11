@@ -1,8 +1,8 @@
-%h3.text-center Nova Funcionário
+%h3.text-center Nova Disciplina
 %br
 .row 
   .col-md-offset-4.col-md-4
     = render 'form', :button => "Cadastrar"
 %ul.pager
   %li.previous
-    = link_to '← Voltar', area_funcionarios_path(@area) 
+    = link_to '← Voltar', curso_disciplinas_path(@disciplina.curso) 

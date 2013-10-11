@@ -29,7 +29,7 @@ class DisciplinasController < ApplicationController
 
     respond_to do |format|
       if @disciplina.save
-        format.html { redirect_to @disciplina, notice: 'A Disciplina foi criada com sucesso.' }
+        format.html { redirect_to curso_disciplinas_path(@disciplina.curso), notice: 'A Disciplina foi criada com sucesso.' }
         format.json { render action: 'show', status: :created, location: @disciplina }
       else
         format.html { render action: 'new' }
@@ -43,11 +43,11 @@ class DisciplinasController < ApplicationController
   def update
     respond_to do |format|
       if @disciplina.update(disciplina_params)
-        format.html { redirect_to @disciplina, notice: 'A Disciplina foi atualizada com sucesso.' }
+        format.html { redirect_to curso_disciplinas_path(@disciplina.curso), notice: 'A Disciplina foi atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @disciplina.errors, status: :unprocessable_entity }
+        format.json { render js on: @disciplina.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,9 +58,20 @@ class DisciplinasController < ApplicationController
     redirect_to_path = curso_disciplinas_path(@disciplina.curso)
     @disciplina.destroy
     respond_to do |format|
-      format.html { redirect_to redirect_to_path }
+      format.html { redirect_to redirect_to_path, notice: 'Disciplina deletada com sucesso'  }
       format.json { head :no_content }
     end
+  end
+
+  def destroy_multiple
+    if (params[:disciplinas]).nil? 
+      redirect_to curso_disciplinas_path(params[:curso_id]), notice: 'Nenhuma disciplina selecionada'
+    else  
+      Disciplina.destroy(params[:disciplinas])
+      redirect_to curso_disciplinas_path(params[:curso_id]), notice: 'Disciplinas deletadas com sucesso' 
+    end
+
+    # render text: params.inspect
   end
 
   private

@@ -1,8 +1,8 @@
 %h3.text-center Nova Área
 %br
 .row 
-  .col-md-offset-4.col-md-4.form-horinzontal
-    = form_for([@questionario, @area]) do |f| 
+  .col-md-offset-4.col-md-4
+    = form_for([@questionario, @area], html: { class: 'form-horizontal' }) do |f| 
       = render 'shared/error_messages', object: f.object
       .form-group
         =f.label :nome, :class => "col-sm-3 control-label"

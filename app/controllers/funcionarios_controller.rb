@@ -41,6 +41,7 @@ class FuncionariosController < ApplicationController
   # PATCH/PUT /funcionarios/1
   # PATCH/PUT /funcionarios/1.json
   def update
+    # render text: params.inspect
     respond_to do |format|
       if @funcionario.update(funcionario_params)
         @funcionario.usuario.update_attributes(tipo: params[:funcionario][:usuarios][:tipo])
