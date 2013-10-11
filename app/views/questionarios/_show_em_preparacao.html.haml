@@ -1,0 +1,23 @@
+.panel-body
+  .row  
+    %section.col-lg-3.config
+      %small 
+        %strong Configurar
+      %h4= link_to 'Áreas e Funcionários', questionario_areas_path(@questionario)
+    .col-lg-1
+    %section.col-lg-3.config
+      %small 
+        %strong Configurar
+      %h4= link_to 'Cursos, Disciplinas e Turmas', questionario_cursos_path(@questionario)
+    .col-lg-1
+    %section.col-lg-3.config
+      %small 
+        %strong Configurar
+      %h4= link_to 'Modelos, Tópicos e Perguntas', questionario_modelar_index_path(@questionario)
+.panel-footer
+  .row
+    .col-sm-12.btn-group.text-right
+      = form_tag questionario_iniciar_votacao_path @questionario do 
+        = link_to 'Deletar', @questionario, method: :delete, data: { confirm: 'Você tem certeza?'}, :class => "btn btn-default"
+        = link_to 'Alterar Nome', edit_questionario_path(@questionario), :class => "btn btn-default"
+        =submit_tag "Iniciar Votação", class: "btn btn-primary", data: { confirm: 'Você tem certeza?', :class => "close"}

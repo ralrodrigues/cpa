@@ -1,0 +1,52 @@
+.panel.panel-success
+  .panel-heading
+    %h3.panel-title 
+      Cursos
+      %span.badge= @cursos.count 
+  .panel-body 
+    = "<div class='col-lg-12'><div class='alert alert-success'><strong>Não existem Cursos cadastrados!</strong> É necessário cadastrar uma novo curso clicando no botão <strong>Novo Curso</strong>.</div></div>".html_safe if @cursos.empty?   
+    .col-lg-12
+      = form_tag destroy_multiple_questionario_cursos_path, method: :delete do
+        %table.table.table-hover
+          %thead
+            %tr
+              %th{:style => "width: 5px;"}
+              %th Nome
+              %th Sigla
+              %th Nível
+              %th Período
+              %th Semestre
+              %th Qtd. Alunos
+              %th Área
+              %th{:style => "width: 5px;"}
+              %th{:style => "width: 5px;"}
+              %th{:style => "width: 5px;"}
+              %th{:style => "width: 5px;"}  
+              %th{:style => "width: 5px;"} 
+          %tbody
+            - @cursos.each do |curso| 
+              %tr
+                %td= check_box_tag "cursos[]", curso.id 
+                %td= curso.nome
+                %td= curso.sigla
+                %td= curso.nivel
+                %td= curso.periodo.to_s
+                %td= curso.semestre_atual
+                %td= curso.qtd_alunos
+                -if curso.area
+                  %td= curso.area.nome
+                -else
+                  %td.warning Sem Área
+                %td= link_to '', curso_curso_duplicate_path(curso), method: :post, :class => "glyphicon glyphicon-plus-sign"
+                %td= link_to '', curso_path(curso), :class => "glyphicon glyphicon-eye-open"
+                %td= link_to '', edit_curso_path(curso), :class => "glyphicon glyphicon-edit"
+                %td= link_to '', curso, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => "glyphicon glyphicon-trash"
+                %td= link_to "Disciplinas", curso_disciplinas_path(curso), :id => "option"
+        .well.btn-group.col-sm-12
+          .pull-right
+            = submit_tag "Deletar", :class => "btn btn-default"
+            = link_to 'Novo Curso', new_questionario_curso_path(@questionario), :class => "btn btn-primary" 
+%ul.pager
+  %li.previous
+    = link_to '← Voltar', questionario_path(@questionario) 
+

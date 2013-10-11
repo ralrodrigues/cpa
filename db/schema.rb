@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130911042034) do
+ActiveRecord::Schema.define(version: 20131008233755) do
 
   create_table "areas", force: true do |t|
     t.string   "nome"
-    t.integer  "usuario_id"
     t.integer  "questionario_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "funcionario_id"
   end
 
+  add_index "areas", ["funcionario_id"], name: "index_areas_on_funcionario_id", using: :btree
   add_index "areas", ["questionario_id"], name: "index_areas_on_questionario_id", using: :btree
-  add_index "areas", ["usuario_id"], name: "index_areas_on_usuario_id", using: :btree
 
   create_table "comentarios", force: true do |t|
     t.string   "comentario"

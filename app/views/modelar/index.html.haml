@@ -1,0 +1,31 @@
+.panel.panel-success
+  .panel-heading
+    %h3.panel-title 
+      Configurar Questionário : 
+      %small
+        = @questionario.nome
+  .panel-body       
+    .row 
+      %section.col-lg-3.config
+        %small 
+          %strong Configurar Questionário
+        %h4= link_to "Docente", docente_questionario_modelar_index_path(@questionario)
+      .col-lg-1
+      %section.col-lg-3.config
+        %small 
+          %strong Configurar Questionário
+        %h4= link_to "Discente", discente_questionario_modelar_index_path(@questionario)
+      .col-lg-1
+      %section.col-lg-3.config
+        %small 
+          %strong Configurar Questionário
+        %h4= link_to "TAE", tae_questionario_modelar_index_path(@questionario)
+
+
+
+
+
+
+
+
+

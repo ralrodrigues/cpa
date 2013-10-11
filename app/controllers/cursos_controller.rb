@@ -29,7 +29,7 @@ class CursosController < ApplicationController
 
     respond_to do |format|
       if @curso.save
-        format.html { redirect_to @curso, notice: 'O Curso foi criado com sucesso.' }
+        format.html { redirect_to questionario_cursos_path(@curso.questionario), notice: 'O Curso foi criado com sucesso.' }
         format.json { render action: 'show', status: :created, location: @curso }
       else
         format.html { render action: 'new' }
@@ -43,7 +43,7 @@ class CursosController < ApplicationController
   def update
     respond_to do |format|
       if @curso.update(curso_params)
-        format.html { redirect_to @curso, notice: 'O Curso foi atualizado com sucesso.' }
+        format.html { redirect_to questionario_cursos_path(@curso.questionario), notice: 'O Curso foi atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -58,19 +58,26 @@ class CursosController < ApplicationController
     redirect_to_path = questionario_cursos_path(@curso.questionario)
     @curso.destroy
     respond_to do |format|
-      format.html { redirect_to redirect_to_path }
+      format.html { redirect_to redirect_to_path, notice: 'Curso Deletado com Sucesso' }
       format.json { head :no_content }
     end
   end
 
-  # DELETE /cursos
-    def destroy_multiple
+  def destroy_multiple
+    if (params[:cursos]).nil? 
+      redirect_to questionario_cursos_path(params[:questionario_id]), notice: 'Nenhum Curso selecionado'
+    else  
       Curso.destroy(params[:cursos])
-      respond_to do |format|
-        format.html { redirect_to cursos_path }
-        format.json { head :no_content }
-      end
+      redirect_to questionario_cursos_path(params[:questionario_id]), notice: 'Cursos Deletados com Sucesso' 
     end
+  end
+
+  def duplicate
+    @curso = Curso.find(params[:curso_id])
+    cursoDuplicado = @curso.amoeba_dup
+    cursoDuplicado.save
+    redirect_to questionario_cursos_path(@curso.questionario), notice: 'Curso Duplicado com Sucesso' 
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

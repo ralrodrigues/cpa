@@ -1,0 +1,16 @@
+%p
+  %strong Sigla:
+  = @turma.sigla 
+%p
+  %strong Professor:
+  = @turma.funcionario.nome if @turma.funcionario 
+
+%strong Quantidade de Alunos: 
+= @turma.usuarios.count
+%ul
+  - @turma.usuarios.each do |usuario| 
+    %li= usuario.id.to_s + " - " + usuario.nome
+%ul.pager
+  %li.previous
+    = link_to '← Voltar', disciplina_turmas_path(@turma.disciplina) 
+
