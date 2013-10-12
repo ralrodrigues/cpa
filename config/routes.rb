@@ -1,25 +1,38 @@
 Cpa::Application.routes.draw do
-
   
   resources :questionarios do
+    
     resources :graficos
+    
+    resources :modelar, shallow: true do
+      get 'docente', on: :collection
+      get 'discente', on: :collection
+      get 'tae', on: :collection
+    end  
+    
     post :iniciar_votacao, :encerrar_votacao
     get 'configuracoes', on: :collection
     get 'encerrados',    on: :collection
     resources :modelos, shallow: true do
+      delete 'destroy_multiple', on: :collection
       resources :topicos, shallow: true do
         resources :perguntas
       end
     end
 
     resources :areas, shallow: true do
-      resources :funcionarios, except: [:index]        
+      delete 'destroy_multiple', on: :collection
+      resources :funcionarios, shallow: true do 
+        delete 'destroy_multiple', on: :collection
+      end          
     end
     get 'coordenadores' => 'areas#coordenadores'
-    get 'funcionarios' => 'funcionarios#index'
 
     resources :cursos, shallow: true do
+      delete 'destroy_multiple', on: :collection
+      post 'duplicate'
       resources :disciplinas, shallow: true do
+        delete 'destroy_multiple', on: :collection
         resources :turmas, shallow: true do
         end
       end

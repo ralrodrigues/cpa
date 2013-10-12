@@ -1,0 +1,38 @@
+.panel.panel-success
+  .panel-heading
+    %h3.panel-title 
+      Funcionários de
+      =@area.nome 
+      %span.badge= @funcionarios.count  
+      / puxar contador do banco
+  .panel-body 
+    = "<div class='col-lg-12'><div class='alert alert-success'><strong>Não existem Funcionários cadastrados!</strong> É necessário cadastrar uma novo funcionário clicando no botão <strong>Novo Funcionário</strong>.</div></div>".html_safe if @funcionarios.empty?   
+    .col-lg-12
+      = form_tag destroy_multiple_area_funcionarios_path, method: :delete do
+        %table.table.table-hover
+          %thead
+            %tr
+              %th{:style => "width: 5px;"}
+              %th Nome
+              %th Prontuário
+              %th E-mail
+              %th Tipo
+              %th{:style => "width: 5px;"}
+              %th{:style => "width: 5px;"}  
+          %tbody
+            - @funcionarios.each do |funcionario| 
+              %tr
+                %td= check_box_tag "funcionarios[]", funcionario.id 
+                %td= funcionario.nome
+                %td= funcionario.prontuario
+                %td= funcionario.email
+                %td= funcionario.usuario.tipo
+                %td= link_to '', edit_funcionario_path(funcionario), :class => "glyphicon glyphicon-edit"
+                %td= link_to '', funcionario, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => "glyphicon glyphicon-trash"
+        .well.btn-group.col-sm-12
+          .pull-right
+            = submit_tag "Deletar", :class => "btn btn-default"
+            = link_to 'Novo Funcionário', new_area_funcionario_path(@area), :class => "btn btn-primary"
+%ul.pager
+  %li.previous
+    = link_to '← Voltar', questionario_areas_path(@area.questionario) 

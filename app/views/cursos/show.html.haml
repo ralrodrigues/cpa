@@ -1,0 +1,35 @@
+%p
+  %strong 
+    Nome:
+    = @curso.nome
+%p
+  %strong
+    Sigla:
+    = @curso.sigla 
+%p
+  %strong
+    Nível:
+    = @curso.nivel
+%p
+  %strong 
+    Período:
+    = @curso.periodo
+%p
+  %strong 
+    Semestre Atual:
+    = @curso.semestre_atual
+%p
+  %strong Semestres de Duração:
+  = @curso.semestres_duracao
+%p
+  %strong Quantidade de Alunos:
+  = @curso.qtd_alunos
+%p
+  %strong Área:
+  = @curso.area.nome if @curso.area 
+%p
+  %strong Observação:
+  = @curso.observacao
+%ul.pager
+  %li.previous
+    = link_to '← Voltar', questionario_cursos_path(@curso.questionario) 

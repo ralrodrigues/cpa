@@ -1,0 +1,8 @@
+%h3.text-center Editar Turma
+%br
+.row 
+  .col-md-offset-4.col-md-4
+    = render 'form', :button => "Atualizar" 
+%ul.pager
+  %li.previous
+    = link_to '← Voltar', disciplina_turmas_path(@turma.disciplina)

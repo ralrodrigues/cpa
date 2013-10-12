@@ -1,0 +1,33 @@
+.panel-body
+  .row
+    %section.col-lg-3.config
+      %small 
+        %strong Visualisar
+      %h4= link_to 'Áreas e Funcionários', questionario_areas_path(@questionario)
+    .col-lg-1
+    %section.col-lg-3.config
+      %small 
+        %strong Visualisar
+      %h4= link_to 'Cursos, Disciplinas e Turmas', questionario_cursos_path(@questionario)
+    .col-lg-1
+    %section.col-lg-3.config
+      %small 
+        %strong Visualisar
+      %h4= link_to 'Modelos, Tópicos e Perguntas', questionario_modelos_path(@questionario)
+.panel-footer	
+  .row
+    .col-sm-6.text-left
+      %p
+        %strong Início :
+        = questionario.inicio_votacao
+        |
+        %strong Término:
+        = @questionario.termino_votacao
+    .col-sm-6.btn-group.text-right
+      %form
+        = link_to 'Deletar', @questionario, method: :delete, data: { confirm: 'Você tem certeza?'}, :class => "btn btn-default"
+        = link_to 'Gráficos', questionario_graficos_path(@questionario), :class => "btn btn-primary"
+
+
+
+
