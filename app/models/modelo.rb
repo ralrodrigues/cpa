@@ -5,3 +5,5 @@ class Modelo < ActiveRecord::Base
   amoeba do
     enable
   end
+
+end
