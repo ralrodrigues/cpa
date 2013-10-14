@@ -8,10 +8,10 @@
             %small= @questionario.nome 
       - if @questionario.em_preparacao?
         = render 'show_em_preparacao', questionario: @questionario 
-      - if @questionario.em_votacao? 
-        =render 'show_em_votacao',    questionario: @questionario 
+      - if @questionario.em_votacao?
+        = render 'show_em_votacao',    questionario: @questionario 
       - if @questionario.encerrado?
-        =render 'show_encerrado',     questionario: @questionario 
+        = render 'show_encerrado',     questionario: @questionario
 %ul.pager
   %li.previous= link_to '← Voltar', questionarios_path
 	

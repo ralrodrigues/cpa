@@ -15,6 +15,7 @@
   	questionarios.select { |questionario| questionario.inicio_votacao && questionario.termino_votacao.nil? }
   end
 
+
   def Questionario.encerrados(questionarios)
   	questionarios.select { |questionario| questionario.inicio_votacao && questionario.termino_votacao }
   end
@@ -28,7 +29,7 @@
 	end
 
 	def encerrado?
-		inicio_votacao && termino_votacao 			? true : false
+		inicio_votacao && termino_votacao ? true : false
 	end
 
 	def iniciar_votacao

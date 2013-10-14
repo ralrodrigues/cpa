@@ -57,7 +57,7 @@ class FuncionariosController < ApplicationController
   # DELETE /funcionarios/1
   # DELETE /funcionarios/1.json
   def destroy
-    redirect_to_path = questionario_funcionarios_path(@funcionario.area.questionario)
+    redirect_to_path = area_funcionarios_path(@funcionario.area)
     @funcionario.destroy
     respond_to do |format|
       format.html { redirect_to redirect_to_path,  notice: 'O Funcionário foi deletado com sucesso.' }

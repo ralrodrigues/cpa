@@ -11,7 +11,7 @@
       .form-group
         =f.label :funcionario_id, "Coordenador", :class => "col-sm-3 control-label"
         .col-sm-9 
-          = f.collection_select :funcionario_id, @area.funcionarios, :id, :nome, include_blank: 'Selecione Coordenador', html: {class: 'form-control'}
+          = f.collection_select :funcionario_id, @area.funcionarios, :id, :nome, :prompt => 'Selecione Coordenador', html: {class: 'form-control'}
         .col-sm-offset-3.col-sm-9
           = f.submit "Atualizar", :class => "btn btn-success"
 %ul.pager

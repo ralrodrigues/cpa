@@ -1,0 +1,38 @@
+.panel-group#accordionModelo
+  -modelos.each do |modelo|
+    .panel.panel-success
+      .panel-heading
+        %h4.panel-title
+          - id = modelo.id.to_i * 10000
+          %a.accordion-toggle{:href => "#"+"#{id}", :data => {:toggle => "collapse", :parent => "#accordionModelo"}}
+            =modelo.nome
+      .panel-collapse.collapse.in{:id => "#{id}"}
+        .panel-body
+          .panel-group#accordionTopico
+            /contador de topicos
+            - countTopico = 1
+            -modelo.topicos.each do |topico|
+              .panel.panel-success
+                .panel-heading
+                  %h4.panel-title
+                    %a.accordion-toggle{:href => '#'+"#{topico.id}", :data => {:toggle => "collapse", :parent => "#accordionTopico"}}
+                      =countTopico.to_s + ". "+ topico.nome
+                      -countTopico += 1
+                .panel-collapse.collapse{:id => "#{topico.id}"}
+                  .panel-body
+                    %table.table.table-hover
+                      %thead
+                        %tr
+                          %th Perguntas
+                          %th{:style => "width: 10%;"} Tipo
+                      %tbody
+                        /contador de perguntas
+                        - countPerguntas = 1
+                        -topico.perguntas.each do |pergunta|
+                          %tr
+                            %td= countPerguntas.to_s + ". "+pergunta.enunciado.to_s
+                            - if pergunta.tipo == 'boolean'
+                              %td V/F
+                            -else
+                              %td 0/10  
+                            - countPerguntas += 1

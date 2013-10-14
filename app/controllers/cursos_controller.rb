@@ -1,6 +1,6 @@
 class CursosController < ApplicationController
   before_action :set_curso, only: [:show, :edit, :update, :destroy]
-  before_action :set_questionario, only: [:index, :new, :create]
+  before_action :set_questionario, only: [:index, :new, :create, :votacao]
 
   # GET /cursos
   # GET /cursos.json
@@ -78,7 +78,10 @@ class CursosController < ApplicationController
     cursoDuplicado.save
     redirect_to questionario_cursos_path(@curso.questionario), notice: 'Curso Duplicado com Sucesso' 
   end
-
+  
+  def votacao
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_curso

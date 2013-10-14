@@ -1,0 +1,72 @@
+.panel-group#accordionCurso
+  -@questionario.cursos.each do |curso|
+    .panel.panel-success
+      .panel-heading
+        %h4.panel-title
+          - id = curso.id.to_i * 10000
+          %a.accordion-toggle{:href => "#"+"#{id}", :data => {:toggle => "collapse", :parent => "#accordionCurso"}}
+            %strong 
+              Curso :   
+            =curso.nome
+            |
+            %strong 
+              Semestre :   
+            = curso.semestre_atual
+            |
+            %strong 
+              Período :   
+            = curso.periodo.to_s
+      .panel-collapse.collapse{:id => "#{id}"}
+        .panel-body
+          .panel-group#accordionDisciplina
+            -curso.disciplinas.each do |disciplina|
+              .panel.panel-success
+                .panel-heading
+                  %h4.panel-title
+                    %a.accordion-toggle{:href => '#'+"#{disciplina.id}", :data => {:toggle => "collapse", :parent => "#accordionDisciplina"}}
+                      = disciplina.nome
+                .panel-collapse.collapse{:id => "#{disciplina.id}"}
+                  .panel-body
+                    %table.table.table-hover
+                      %thead
+                        %tr
+                          %th{:style => "width: 5%;"} Sigla
+                          %th Professor
+                      %tbody
+                        - disciplina.turmas.each do |turma|
+                          %tr
+                            %td= turma.sigla
+                            -if turma.funcionario
+                              %td= turma.funcionario.nome
+                            -else
+                              %td.warning Sem Professor
+                  .panel-footer.btn-group.col-sm-12
+                    %p
+                      %strong 
+                        Sigla :
+                      = disciplina.sigla
+                      |
+                      %strong 
+                        Qtd. Professor :
+                      disciplina.qtd_professores
+        .panel-footer.btn-group.col-sm-12
+          %p
+            %strong 
+              Sigla :
+            = curso.sigla
+            |
+            %strong 
+              Nível :
+            = curso.nivel
+            |
+            %strong 
+              Qtd. Alunos :    
+            = curso.qtd_alunos
+            |
+            %strong 
+              Area :
+            =curso.area.nome
+
+%ul.pager
+  %li.previous
+    = link_to '← Voltar', questionario_path(@questionario)

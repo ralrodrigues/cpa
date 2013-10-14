@@ -1,6 +1,7 @@
 .panel.panel-success
   .panel-heading
     %h3.panel-title 
+      = link_to "", questionario_path(@disciplina.curso.questionario), :class => "glyphicon glyphicon-home pull-right"
       Turmas da Disciplina
       =@disciplina.nome
       %span.badge= @turmas.count 
