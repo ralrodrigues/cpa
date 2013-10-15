@@ -1,6 +1,6 @@
 class ModelosController < ApplicationController
   before_action :set_modelo, only: [:show, :edit, :update, :destroy]
-  before_action :set_questionario, only: [:index, :new, :create]
+  before_action :set_questionario, only: [:index, :new, :create, :docente, :discente, :tae]
 
   # GET /modelos
   # GET /modelos.json
@@ -63,18 +63,22 @@ class ModelosController < ApplicationController
     end
   end
 
-  def destroy_multiple
-    if (params[:modelos]).nil? 
-      redirect_to questionario_modelos_path(params[:questionario_id]), notice: 'Nenhum modelo selecionado'
-    else  
-      Disciplina.destroy(params[:modelos])
-      redirect_to questionario_modelos_path(params[:questionario_id]), notice: 'Modelos deletados com sucesso' 
-    end
-
-    # render text: params.inspect
+  def docente
+    @docentes = Modelo.where(nome: 'Global Docente', questionario_id: @questionario)
+    @docentes += Modelo.where(nome: 'Turma Docente', questionario_id: @questionario)
   end
 
-  private
+  def discente
+    @discentes = Modelo.where(nome: 'Global Discente', questionario_id: @questionario)
+    @discentes += Modelo.where(nome: 'Turma Dicente', questionario_id: @questionario)
+  end
+
+  def tae
+    @taes = Modelo.where(nome: 'Global TAE', questionario_id: @questionario)
+  end
+  
+  private   
+
     # Use callbacks to share common setup or constraints between actions.
     def set_modelo
       @modelo = Modelo.find(params[:id])
@@ -89,3 +93,5 @@ class ModelosController < ApplicationController
       params.require(:modelo).permit(:nome, :visibilidade, :questionario_id)
     end
 end
+
+

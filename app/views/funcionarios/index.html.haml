@@ -1,6 +1,7 @@
 .panel.panel-success
   .panel-heading
     %h3.panel-title 
+      = link_to "", questionario_path(@area.questionario), :class => "glyphicon glyphicon-home pull-right"
       Funcionários de
       =@area.nome 
       %span.badge= @funcionarios.count  

@@ -1,0 +1,37 @@
+.panel-group#accordionArea
+  -@questionario.areas.each do |area|
+    .panel.panel-success
+      .panel-heading
+        %h4.panel-title
+          - id = area.id.to_i * 10000
+          %a.accordion-toggle{:href => "#"+"#{id}", :data => {:toggle => "collapse", :parent => "#accordionArea"}}
+            =area.nome
+      .panel-collapse.collapse{:id => "#{id}"}
+        .panel-body
+          %table.table.table-hover
+            %thead
+              %tr
+                %th Nome
+                %th Prontuário
+                %th E-mail
+                %th Tipo
+            %tbody
+              - countFuncionarios = 1
+              - area.funcionarios.each do |funcionario| 
+                %tr
+                  %td= countFuncionarios.to_s + ". "+funcionario.nome.to_s
+                  %td= funcionario.prontuario
+                  %td= funcionario.email
+                  %td= funcionario.usuario.tipo
+                  - countFuncionarios += 1
+        .panel-footer
+          %p
+            %strong 
+              Coordenador :
+            - if area.funcionario
+              = area.funcionario.nome
+            - else
+              Sem Coordenador  
+%ul.pager
+  %li.previous
+    = link_to '← Voltar', questionario_path(@questionario)

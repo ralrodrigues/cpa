@@ -14,7 +14,7 @@
             %h3.panel-title 
               <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#em_preparacao">Preparação </a>
               %span.badge= @preparacao.count
-          .panel-collapse.collapse#em_preparacao
+          .panel-collapse.collapse.in#em_preparacao
             .panel-body 
               = "<div class='col-lg-12'><div class='alert alert-success'><strong>Nenhum Questionário em Preparação!</strong> É necessário criar um novo questionário na clicando na opção <strong>novo</strong>.</div></div>".html_safe if @preparacao.empty?   
               .col-lg-12 

@@ -4,23 +4,21 @@ Cpa::Application.routes.draw do
     
     resources :graficos
     
-    resources :modelar, shallow: true do
-      get 'docente', on: :collection
-      get 'discente', on: :collection
-      get 'tae', on: :collection
-    end  
-    
     post :iniciar_votacao, :encerrar_votacao
     get 'configuracoes', on: :collection
     get 'encerrados',    on: :collection
     resources :modelos, shallow: true do
-      delete 'destroy_multiple', on: :collection
+      get 'docente', on: :collection
+      get 'discente', on: :collection
+      get 'tae', on: :collection    
       resources :topicos, shallow: true do
-        resources :perguntas
+        resources :perguntas, shallow: true do
+        end  
       end
     end
 
     resources :areas, shallow: true do
+      get 'votacao', on: :collection
       delete 'destroy_multiple', on: :collection
       resources :funcionarios, shallow: true do 
         delete 'destroy_multiple', on: :collection
@@ -29,6 +27,7 @@ Cpa::Application.routes.draw do
     get 'coordenadores' => 'areas#coordenadores'
 
     resources :cursos, shallow: true do
+      get 'votacao', on: :collection
       delete 'destroy_multiple', on: :collection
       post 'duplicate'
       resources :disciplinas, shallow: true do

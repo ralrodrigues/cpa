@@ -1,14 +1,9 @@
 = form_for([@disciplina, @turma], html: { class: 'form-horizontal' }) do |f| 
   = render 'shared/error_messages', object: f.object
   .form-group
-    = f.label :sigla, :class => "col-sm-3 control-label"
-    .col-sm-9
-      = f.text_field :sigla, :class => "form-control"
-  .form-group
-    = f.label :funcionario_id, "Professor", :class => "col-sm-3 control-label"
-    .col-sm-9  
-      %select.col-sm-5.cform-control
-        %option Deu Pau
+    =f.label :professor_id, "Professor", :class => "col-sm-3 control-label"
+    .col-sm-9 
+      = f.collection_select :professor_id, find_funcionarios, :id, :nome, :prompt => 'Selecione Professor', html: {class: 'form-control'}
   .form-group
     .col-sm-offset-3.col-sm-9  
       = f.submit button, :class => "btn btn-success"

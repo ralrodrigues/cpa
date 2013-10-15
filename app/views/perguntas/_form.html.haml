@@ -1,0 +1,13 @@
+= form_for([@topico, @pergunta], html: { class: 'form-horizontal' }) do |f| 
+  = render 'shared/error_messages', object: f.object
+  .form-group
+    = f.label :enunciado, :class => "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :enunciado, :class => "form-control"
+  .form-group
+    = f.label :tipo, :class => "col-sm-3 control-label"
+    .col-sm-9
+      = f.select :tipo, (["integer", "boolean"]), :prompt => "Selecione um Tipo", :class => "form-control"
+  .form-group
+    .col-sm-offset-3.col-sm-9  
+      = f.submit button, :class => "btn btn-success"
