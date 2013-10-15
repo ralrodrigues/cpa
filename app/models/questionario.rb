@@ -1,4 +1,4 @@
-m	class Questionario < ActiveRecord::Base
+class Questionario < ActiveRecord::Base
 	has_many :areas, dependent: :destroy
 	has_many :cursos, dependent: :destroy
 	has_many :modelos, dependent: :destroy
@@ -54,5 +54,8 @@ m	class Questionario < ActiveRecord::Base
 			end
 		end
 		self.update_attributes(inicio_votacao: Time.now, previsao_termino: Time.now.advance(:months => 1))
+    
+    # Iniciar preencher tabela repostas para montar o questionario de cada pessoa
+
 	end
 end

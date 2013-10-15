@@ -13,22 +13,18 @@
           %tr
             %th{:style => "width: 5px;"}
             %th{:style => "width: 5%;"} Sigla
-            %th Professor
-            %th{:style => "width: 5px;"}  
-            %th{:style => "width: 5px;"}  
+            %th Professor  
             %th{:style => "width: 5px;"}  
         %tbody
           - @turmas.each do |turma|
             %tr
               %td= check_box_tag "disciplinas[]", turma.id 
               %td= turma.sigla
-              -if turma.funcionario
-                %td= turma.funcionario.nome
+              -if turma.professor_id
+                %td= find_funcionario(turma.professor_id) 
               -else
                 %td.warning Sem Professor
-              %td= link_to '', turma_path(turma), :class => "glyphicon glyphicon-eye-open"
               %td= link_to '', edit_turma_path(turma), :class => "glyphicon glyphicon-edit"
-              %td= link_to '', turma, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => "glyphicon glyphicon-trash"
 %ul.pager
   %li.previous
     = link_to '← Voltar', curso_disciplinas_path(@disciplina.curso)
