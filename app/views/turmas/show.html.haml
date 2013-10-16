@@ -9,7 +9,7 @@
 = @turma.usuarios.count
 %ul
   - @turma.usuarios.each do |usuario| 
-    %li= usuario.id.to_s + " - " + usuario.nome+ " - " + @turma
+    %li= usuario.id.to_s + " - " + usuario.nome
 %ul.pager
   %li.previous
     = link_to '← Voltar', votacao_questionario_cursos_path(@turma.disciplina.curso.questionario) 
