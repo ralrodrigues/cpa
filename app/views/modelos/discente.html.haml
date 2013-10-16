@@ -1,8 +1,8 @@
 - if @questionario.em_preparacao?
   = render 'questionario', :modelos => @discentes 
-- if @questionario.em_votacao?
+- elsif @questionario.em_votacao?
   = render 'questionario_votacao', :modelos => @discentes   
-- if @questionario.encerrado?
+- elsif @questionario.encerrado?
   = render 'questionario_votacao', :modelos => @discentes   
 %ul.pager
   %li.previous
