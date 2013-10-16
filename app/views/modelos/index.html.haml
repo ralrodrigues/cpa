@@ -1,32 +1,25 @@
 .panel.panel-success
   .panel-heading
     %h3.panel-title 
-      Modelos
-      %span.badge= @modelos.count 
+      Questionário : 
+      %small
+        = @questionario.nome
   .panel-body
-    = "<div class='col-lg-12'><div class='alert alert-success'><strong>Não existem Modelos cadastrados!</strong> É necessário cadastrar uma novo modelo clicando no botão <strong>Novo Modelo</strong>.</div></div>".html_safe if @modelos.empty?   
-    .col-lg-12
-      = form_tag destroy_multiple_questionario_modelos_path, method: :delete do
-        %table.table.table-hover
-          %thead
-            %tr
-              %th{:style => "width: 5px;"}
-              %th Nome
-              %th{:style => "width: 5px;"}  
-              %th{:style => "width: 5px;"}  
-              %th{:style => "width: 5px;"} 
-          %tbody
-            - @modelos.each do |modelo|
-              %tr
-                %td= check_box_tag "modelos[]", modelo.id 
-                %td= modelo.nome
-                %td= link_to '', edit_modelo_path(modelo), :class => "glyphicon glyphicon-edit"
-                %td= link_to '', modelo, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => "glyphicon glyphicon-trash"
-                %td= link_to "Tópicos", modelo_topicos_path(modelo), :id => "option"
-        .well.btn-group.col-sm-12
-          .pull-right
-            = submit_tag "Deletar", :class => "btn btn-default"
-            = link_to 'Novo Modelo', new_questionario_modelo_path(@questionario), :class => "btn btn-primary" 
+    .row
+      %section.col-lg-3.config
+        %small
+          %strong Questões :
+        %h4= link_to 'Docente',docente_questionario_modelos_path(@questionario)
+      .col-lg-1
+      %section.col-lg-3.config
+        %small
+          %strong Questões :
+        %h4= link_to 'Discente',discente_questionario_modelos_path(@questionario)
+      .col-lg-1
+      %section.col-lg-3.config
+        %small
+          %strong Questões :
+        %h4= link_to 'TAE',tae_questionario_modelos_path(@questionario)
 %ul.pager
   %li.previous
-    = link_to '← Voltar',  questionario_path(@questionario)
+    = link_to '← Voltar', questionario_path(@questionario)

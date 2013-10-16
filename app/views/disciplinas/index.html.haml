@@ -1,10 +1,13 @@
 .panel.panel-success
   .panel-heading
     %h3.panel-title 
+      = link_to "", questionario_path(@curso.questionario_id), :class => "glyphicon glyphicon-home pull-right"
       Disciplinas de 
       =@curso.nome 
-      Período
-      =@curso.periodo  
+      %small
+        %strong
+          Período
+        =@curso.periodo  
       %span.badge= @disciplinas.count 
   .panel-body
     = "<div class='col-lg-12'><div class='alert alert-success'><strong>Não existem Disciplinas cadastradas!</strong> É necessário cadastrar uma nova disciplina clicando no botão <strong>Nova Disciplina</strong>.</div></div>".html_safe if @disciplinas.empty?   

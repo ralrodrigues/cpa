@@ -29,7 +29,7 @@ class TopicosController < ApplicationController
 
     respond_to do |format|
       if @topico.save
-        format.html { redirect_to @topico, notice: 'O Tópico foi criado com sucesso.' }
+        format.html { redirect_to set_path, notice: 'Tópico criado com sucesso.' }
         format.json { render action: 'show', status: :created, location: @topico }
       else
         format.html { render action: 'new' }
@@ -43,7 +43,7 @@ class TopicosController < ApplicationController
   def update
     respond_to do |format|
       if @topico.update(topico_params)
-        format.html { redirect_to @topico, notice: 'O Tópico foi atualizado com sucesso.' }
+        format.html { redirect_to set_path, notice: 'Tópico atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -55,16 +55,28 @@ class TopicosController < ApplicationController
   # DELETE /topicos/1
   # DELETE /topicos/1.json
   def destroy
-    redirect_to_path = modelo_topicos_path(@topico.modelo)
     @topico.destroy
     respond_to do |format|
-      format.html { redirect_to redirect_to_path }
+      format.html { redirect_to set_path, notice: 'Tópico deletado com sucesso.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    
+    def set_path
+      redirect_to_path = ''
+      if @topico.modelo.nome.to_s == "Global Docente" || @topico.modelo.nome.to_s == "Turma Docente"
+        return redirect_to_path = docente_questionario_modelos_path(@topico.modelo.questionario.id)      
+      elsif @topico.modelo.nome.to_s == "Global Discente" || @topico.modelo.nome.to_s == "Turma Dicente"
+        return redirect_to_path = discente_questionario_modelos_path(@topico.modelo.questionario.id)    
+      elsif @topico.modelo.nome.to_s == "Global TAE"
+        return redirect_to_path = tae_questionario_modelos_path(@topico.modelo.questionario.id)
+      end
+    end
+    helper_method :set_path
+
     def set_topico
       @topico = Topico.find(params[:id])
     end

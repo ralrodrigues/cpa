@@ -1,0 +1,9 @@
+= form_for([@modelo, @topico], html: { class: 'form-horizontal' }) do |f| 
+  = render 'shared/error_messages', object: f.object
+  .form-group
+    = f.label :nome, :class => "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :nome, :class => "form-control"
+  .form-group
+    .col-sm-offset-3.col-sm-9  
+      = f.submit button, :class => "btn btn-success"

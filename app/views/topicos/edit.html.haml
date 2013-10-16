@@ -1,0 +1,10 @@
+%h3.text-center Editar Tópico
+%br
+.row 
+  .col-md-offset-4.col-md-4
+    = render 'form', :button => "Atualizar" 
+%ul.pager
+  %li.previous
+    = link_to '← Voltar', set_path
+
+

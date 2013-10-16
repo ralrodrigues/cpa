@@ -1,6 +1,6 @@
 class AreasController < ApplicationController
   before_action :set_area, only: [:show, :edit, :update, :destroy]
-  before_action :set_questionario, only: [:index, :coordenadores, :new, :create]
+  before_action :set_questionario, only: [:index, :coordenadores, :new, :create, :votacao]
   
   # GET /areas
   # GET /areas.json
@@ -85,6 +85,9 @@ class AreasController < ApplicationController
 
   def coordenadores
     @areas = @questionario.areas
+  end
+
+  def votacao
   end
 
   private

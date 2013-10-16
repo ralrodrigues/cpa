@@ -1,6 +1,7 @@
 class TurmasController < ApplicationController
   before_action :set_turma, only: [:show, :edit, :update, :destroy]
   before_action :set_disciplina, only: [:index, :new, :create]
+  before_action :set_funcionario, only:[:index, :edit]
 
   # GET /turmas
   # GET /turmas.json
@@ -43,7 +44,7 @@ class TurmasController < ApplicationController
   def update
     respond_to do |format|
       if @turma.update(turma_params)
-        format.html { redirect_to @turma, notice: 'A Turma foi atualizada com sucesso.' }
+        format.html { redirect_to disciplina_turmas_path(@turma.disciplina), notice: 'A Turma foi atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -62,9 +63,30 @@ class TurmasController < ApplicationController
       format.json { head :no_content }
     end
   end
-       
+    
+  def find_funcionarios
+    return @funcionarios = Funcionario.includes(:usuario, :area).where("usuarios.tipo" => "Docente", "areas.questionario_id" => @turma.disciplina.curso.questionario)
+  end     
+  helper_method :find_funcionarios 
+
+  def find_funcionario(turma)
+    @funcionarios = Funcionario.select("nome").where(:id => turma)
+    @funcionarios.each do |funcionario|
+      return funcionario.nome
+    end
+    return "Professor não encontrado"
+  end     
+  helper_method :find_funcionario
+
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def set_funcionario
+      if params[:funcionario_id]
+        @funcionario = Funcionario.find(params[:funcionario_id])
+      end
+    end
+
     def set_turma
       @turma = Turma.find(params[:id])
     end

@@ -1,4 +1,4 @@
-	class Questionario < ActiveRecord::Base
+class Questionario < ActiveRecord::Base
 	has_many :areas, dependent: :destroy
 	has_many :cursos, dependent: :destroy
 	has_many :modelos, dependent: :destroy
@@ -15,6 +15,7 @@
   	questionarios.select { |questionario| questionario.inicio_votacao && questionario.termino_votacao.nil? }
   end
 
+
   def Questionario.encerrados(questionarios)
   	questionarios.select { |questionario| questionario.inicio_votacao && questionario.termino_votacao }
   end
@@ -28,7 +29,7 @@
 	end
 
 	def encerrado?
-		inicio_votacao && termino_votacao 			? true : false
+		inicio_votacao && termino_votacao ? true : false
 	end
 
 	def iniciar_votacao
@@ -53,5 +54,8 @@
 			end
 		end
 		self.update_attributes(inicio_votacao: Time.now, previsao_termino: Time.now.advance(:months => 1))
+    
+    # Iniciar preencher tabela repostas para montar o questionario de cada pessoa
+
 	end
 end
