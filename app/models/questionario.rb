@@ -33,29 +33,42 @@ class Questionario < ActiveRecord::Base
 	end
 
 	def iniciar_votacao
-		self.cursos.each do |curso|
+		# self.cursos.each do |curso|
 
-			alunos_do_curso = []
+		# 	alunos_do_curso = []
 
-			numero_do_aluno = 1
-			curso.qtd_alunos.times do
-				alunos_do_curso << Usuario.create(nome: (curso.sigla + curso.semestre_atual.to_s +  curso.periodo.first + numero_do_aluno.to_s), senha: numero_do_aluno, tipo: "Aluno")
-				numero_do_aluno = numero_do_aluno + 1
-			end
+		# 	numero_do_aluno = 1
+		# 	curso.qtd_alunos.times do
+		# 		alunos_do_curso << Usuario.create(nome: (curso.sigla + curso.semestre_atual.to_s +  curso.periodo.first + numero_do_aluno.to_s), senha: numero_do_aluno, tipo: "Aluno")
+		# 		numero_do_aluno = numero_do_aluno + 1
+		# 	end
 
-			curso.disciplinas.each do |disciplina|
-				alunos_de_turma_count = curso.qtd_alunos / disciplina.qtd_professores
-				alunos_de_turma = alunos_do_curso.dup
-				disciplina.turmas.each do |turma|
-					for i in 0..(alunos_de_turma_count - 1)
-						Sala.create(usuario: alunos_de_turma.pop, turma: turma)
-					end
-				end
-			end
-		end
-		self.update_attributes(inicio_votacao: Time.now, previsao_termino: Time.now.advance(:months => 1))
+		# 	curso.disciplinas.each do |disciplina|
+		# 		alunos_de_turma_count = curso.qtd_alunos / disciplina.qtd_professores
+		# 		alunos_de_turma = alunos_do_curso.dup
+		# 		disciplina.turmas.each do |turma|
+		# 			for i in 0..(alunos_de_turma_count - 1)
+		# 				Sala.create(usuario: alunos_de_turma.pop, turma: turma)
+		# 			end
+		# 		end
+		# 	end
+		# end
+		
+		questionario = self.id.to_s 
+		docentes = Funcionario.includes(:usuario, :area).where("usuarios.tipo" => "Docente", "areas.questionario_id" => self)
+		docentes.each do |docente|
+            perguntas = Pergunta.find_by_sql("SELECT * FROM perguntas, topicos, modelos WHERE perguntas.topico_id = topicos.id AND topicos.modelo_id = modelos.id AND modelos.nome LIKE 'Global Docente' AND modelos.questionario_id = "+ questionario +";")
+            perguntas.each do |pergunta|
+            	Resposta.create(usuario: docente.usuario, pergunta: pergunta)
+            end
+        end
+        # render text: self.cursos.methods.inspect
+		# self.update_attributes(inicio_votacao: Time.now, previsao_termino: Time.now.advance(:months => 1))
+        
+        
+
+
     
-    # Iniciar preencher tabela repostas para montar o questionario de cada pessoa
 
 	end
 end

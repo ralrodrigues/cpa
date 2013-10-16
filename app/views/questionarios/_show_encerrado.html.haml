@@ -18,14 +18,13 @@
   .row
     .col-sm-6.text-left
       %p
-        %strong Início :
+        %strong Iniciou :
         = questionario.inicio_votacao
         |
-        %strong Término:
+        %strong Terminou:
         = @questionario.termino_votacao
     .col-sm-6.btn-group.text-right
       %form
-        = link_to 'Deletar', @questionario, method: :delete, data: { confirm: 'Você tem certeza?'}, :class => "btn btn-default"
         = link_to 'Gráficos', questionario_graficos_path(@questionario), :class => "btn btn-primary"
 
 

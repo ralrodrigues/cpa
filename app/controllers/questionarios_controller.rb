@@ -15,7 +15,15 @@ class QuestionariosController < ApplicationController
   before_action :set_questionario, only: [:show, :edit, :update, :destroy]
   before_action :questionario_encerrado, only: [:edit, :update, :destroy]
   
+  def teste
+    # docente = Funcionario.includes(:usuario, :area).where("usuarios.tipo" => "Docente", "areas.questionario_id" => @questionario).to_a
+    # perguntas = Pergunta.find_by_sql("SELECT * FROM perguntas, topicos, modelos WHERE perguntas.topico_id = topicos.id AND topicos.modelo_id = modelos.id AND modelos.nome LIKE 'Global Docente' AND modelos.questionario_id = "+@questionario.id.to_s+";")
+
+  end
+  helper_method :teste
+
   def iniciar_votacao
+    
     questionario = Questionario.find(params[:questionario_id])
 
     if questionario.em_preparacao?
@@ -24,6 +32,7 @@ class QuestionariosController < ApplicationController
     else
       redirect_to questionario, notice: 'A votação não foi iniciada. Somente CPAs em Preparação podem ser iniciados.'
     end
+
   end
 
   def encerrar_votacao

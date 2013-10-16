@@ -1,7 +1,7 @@
 class TurmasController < ApplicationController
   before_action :set_turma, only: [:show, :edit, :update, :destroy]
   before_action :set_disciplina, only: [:index, :new, :create]
-  before_action :set_funcionario, only:[:index, :edit]
+  before_action :set_professor, only:[:index, :edit]
 
   # GET /turmas
   # GET /turmas.json
@@ -81,9 +81,9 @@ class TurmasController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
 
-    def set_funcionario
-      if params[:funcionario_id]
-        @funcionario = Funcionario.find(params[:funcionario_id])
+    def set_professor
+      if params[:professor_id]
+        @funcionario = Funcionario.find(params[:professor_id])
       end
     end
 
@@ -97,6 +97,6 @@ class TurmasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def turma_params
-      params.require(:turma).permit(:sigla, :disciplina_id, :funcionario_id)
+      params.require(:turma).permit(:sigla, :disciplina_id, :professor_id)
     end
 end
