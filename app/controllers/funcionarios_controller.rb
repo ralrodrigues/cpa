@@ -26,7 +26,7 @@ class FuncionariosController < ApplicationController
   # POST /funcionarios.json
   def create
     @funcionario = @area.funcionarios.new(funcionario_params)
-    @funcionario.build_usuario(tipo: params[:funcionario][:usuarios][:tipo]).save
+    @funcionario.build_usuario(tipo: params[:funcionario][:usuarios][:tipo], nome: @funcionario.apelido).save
     respond_to do |format|
       if @funcionario.save
         format.html { redirect_to area_funcionarios_path(@area), notice: 'O Funcionário foi criado com sucesso.' }
@@ -44,7 +44,7 @@ class FuncionariosController < ApplicationController
     # render text: params.inspect
     respond_to do |format|
       if @funcionario.update(funcionario_params)
-        @funcionario.usuario.update_attributes(tipo: params[:funcionario][:usuarios][:tipo])
+        @funcionario.usuario.update_attributes(tipo: params[:funcionario][:usuarios][:tipo], nome: @funcionario.apelido)
         format.html { redirect_to area_funcionarios_path(@funcionario.area), notice: 'O Funcionário foi atualizado com sucesso.' }
         format.json { head :no_content }
       else
@@ -88,6 +88,6 @@ class FuncionariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def funcionario_params
-      params.require(:funcionario).permit(:nome, :prontuario, :email, :usuario_id, :area_id )
+      params.require(:funcionario).permit(:nome, :prontuario, :apelido, :email, :usuario_id, :area_id )
     end
 end

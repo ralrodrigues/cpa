@@ -15,6 +15,7 @@
             %tr
               %th{:style => "width: 5px;"}
               %th Nome
+              %th Apelido
               %th Prontuário
               %th E-mail
               %th Tipo
@@ -25,6 +26,10 @@
               %tr
                 %td= check_box_tag "funcionarios[]", funcionario.id 
                 %td= funcionario.nome
+                -if funcionario.apelido.to_s != ""
+                  %td= funcionario.apelido.to_s
+                -else
+                  %td.warning Sem Apelido
                 %td= funcionario.prontuario
                 %td= funcionario.email
                 %td= funcionario.usuario.tipo
