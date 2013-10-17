@@ -26,6 +26,7 @@ class Disciplina < ActiveRecord::Base
   	only_integer: true,
   	greater_than_or_equal_to: 1,
     less_than_or_equal_to: 15, 
+    only_integer: true,
     message: "deve ser entre de 1 e 15 semestres"
   } 
   

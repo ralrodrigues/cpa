@@ -42,6 +42,7 @@ class Curso < ActiveRecord::Base
   	only_integer: true,
   	greater_than_or_equal_to: 1,
     less_than_or_equal_to: 100,
+    only_integer: true,
     message: "deve ser entre 1 e 100 alunos"
   } 
 
@@ -49,6 +50,7 @@ class Curso < ActiveRecord::Base
   	only_integer: true,
   	greater_than_or_equal_to: 1,
     less_than_or_equal_to: 12,
+    only_integer: true,
     message: "deve ser entre de 1 e 12 semestres"
   }
 
@@ -56,6 +58,7 @@ class Curso < ActiveRecord::Base
   	only_integer: true,
   	greater_than_or_equal_to: 1,
     less_than_or_equal_to: :semestres_duracao, 
+    only_integer: true,
     message: "deve ser entre 1 e o valor do Semestres de Duração"
 
   } 

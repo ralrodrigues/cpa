@@ -6,7 +6,7 @@ class Modelo < ActiveRecord::Base
     enable
   end
   
-  validates :questioanrio_id, :presence =>{message: "precisa ser escolhido"}, allow_nil: true   
+  validates :questionario_id, :presence =>{message: "precisa ser escolhido"}, allow_nil: true   
   validates :nome, presence: true, if: :global_docente?, if: :global_discente?, if: :turma_docente?, if: :turma_dicente?, if: :global_tae?
  
   def global_docente?
