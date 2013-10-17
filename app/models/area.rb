@@ -7,8 +7,8 @@ class Area < ActiveRecord::Base
     enable
   end
 
-  # validates :questionario_id, :presence =>{message: "precisa ser selecionado"}
-
+  validates :questionario_id, :funcionario_id, :presence =>{message: "precisa ser selecionado"}, allow_nil: true   
+  
   validates :nome, length: {
     minimum: 5,
     maximum: 255,
