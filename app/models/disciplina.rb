@@ -4,8 +4,10 @@ class Disciplina < ActiveRecord::Base
  
   amoeba do
     enable
-  end
-  
+  end  
+
+  validates :curso_id, :presence =>{message: "precisa ser selecionado"}, allow_nil: true   
+
   validates :nome, length: {
     minimum: 5,
     maximum: 255,
@@ -22,10 +24,30 @@ class Disciplina < ActiveRecord::Base
 
   validates :qtd_professores, numericality: { 
   	only_integer: true,
-  	greater_than: 0, message: "deve ter mais de %{count} professor",
-    less_than: 15, message: "deve ter menos %{count} professores"
+  	greater_than_or_equal_to: 1,
+    less_than_or_equal_to: 15, 
+    message: "deve ser entre de 1 e 15 semestres"
   } 
-
+  
+  def create_turmas
+    begin
+      if self.turmas.count != 0
+        turmas = Turma.where(disciplina: self)
+        turmas.each{|turma| turma.destroy}
+      end
+      sigla = "A"
+      self.qtd_professores.times do
+        if self.qtd_professores == 1
+          Turma.create(sigla: "A/B", disciplina: self)
+        else
+          Turma.create(sigla: sigla, disciplina: self)
+          sigla = sigla.next
+        end
+      end 
+    rescue => ex
+      logger.error ex.message
+    end 
+  end
 
 end
 

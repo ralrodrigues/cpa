@@ -6,10 +6,6 @@ Cpa::Application.routes.draw do
 
     post :iniciar_votacao, :encerrar_votacao
     
-    member do
-      get 'votar'
-    end
-    
     get 'configuracoes', on: :collection
     get 'encerrados',    on: :collection
     
