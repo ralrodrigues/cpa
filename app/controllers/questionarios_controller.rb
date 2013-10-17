@@ -23,16 +23,13 @@ class QuestionariosController < ApplicationController
   helper_method :teste
 
   def iniciar_votacao
-    
     questionario = Questionario.find(params[:questionario_id])
-
     if questionario.em_preparacao?
       questionario.iniciar_votacao
-      redirect_to questionario, notice: 'A votação foi iniciada.'
+      redirect_to questionario, notice: 'A votação foi iniciada com sucesso.'
     else
       redirect_to questionario, notice: 'A votação não foi iniciada. Somente CPAs em Preparação podem ser iniciados.'
     end
-
   end
 
   def encerrar_votacao
@@ -40,7 +37,7 @@ class QuestionariosController < ApplicationController
 
     if questionario.em_votacao?
       questionario.update_attribute(:termino_votacao, Time.now)
-      redirect_to questionario, notice: 'A votação foi encerrada.'
+      redirect_to questionario, notice: 'A votação foi encerrada com sucesso.'
     else
       redirect_to questionario, notice: 'A votação não foi encerrada. Somente CPAs em Votação podem ser encerrados.'
     end
@@ -130,7 +127,7 @@ class QuestionariosController < ApplicationController
     def set_questionario
       @questionario = Questionario.find(params[:id])
     end
-
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def questionario_params
       params.require(:questionario).permit(:nome, :inicio_votacao, :previsao_termino, :termino_votacao)

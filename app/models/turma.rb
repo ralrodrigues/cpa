@@ -9,4 +9,6 @@ class Turma < ActiveRecord::Base
 	has_many :salas
 	has_many :usuarios, through: :salas
 
+	
+
 end

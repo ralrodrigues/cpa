@@ -29,6 +29,7 @@ class DisciplinasController < ApplicationController
 
     respond_to do |format|
       if @disciplina.save  
+        # colocar regra de negocio no modelo
         sigla = "A"
         @disciplina.qtd_professores.times do
           if @disciplina.qtd_professores == 1

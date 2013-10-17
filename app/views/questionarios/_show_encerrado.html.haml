@@ -16,16 +16,23 @@
       %h4= link_to 'Questionário', questionario_modelos_path(@questionario)
 .panel-footer	
   .row
-    .col-sm-6.text-left
-      %p
-        %strong Iniciou :
-        = questionario.inicio_votacao
-        |
-        %strong Terminou:
-        = @questionario.termino_votacao
-    .col-sm-6.btn-group.text-right
-      %form
-        = link_to 'Gráficos', questionario_graficos_path(@questionario), :class => "btn btn-primary"
+    - if @questionario.id != 1
+      .col-sm-6.text-left
+        %p
+          %strong Iniciou :
+          = questionario.inicio_votacao
+          |
+          %strong Terminou:
+          = @questionario.termino_votacao
+      .col-sm-6.btn-group.text-right
+        %form
+          = link_to 'Gráficos', questionario_graficos_path(@questionario), :class => "btn btn-primary"
+    -else
+      .col-sm-12.btn-group.text-left
+        %p 
+          %strong OBS:
+          Este é um questionário modelo, que reflete todos os dados da Instituição, a partir dele são criados os novos questionários
+
 
 
 

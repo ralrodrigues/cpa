@@ -32,6 +32,7 @@
                 %td= disciplina.qtd_professores
                 %td= link_to '', edit_disciplina_path(disciplina), :class => "glyphicon glyphicon-edit"
                 %td= link_to '', disciplina, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => "glyphicon glyphicon-trash"
+                
                 %td= link_to "Professor", disciplina_turmas_path(disciplina), :id => "option"
         .well.btn-group.col-sm-12
           .pull-right

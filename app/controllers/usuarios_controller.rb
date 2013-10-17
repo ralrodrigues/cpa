@@ -1,10 +1,10 @@
 class UsuariosController < ApplicationController
-  before_action :set_usuario, only: [:show, :edit, :update, :destroy]
+  before_action :set_usuario, only: [:index, :show, :edit, :update, :destroy]
+  before_action :set_questionario, only: [:index, :new]
 
   # GET /usuarios
   # GET /usuarios.json
   def index
-    @usuarios = Usuario.all
   end
 
   # GET /usuarios/1
@@ -66,6 +66,10 @@ class UsuariosController < ApplicationController
     def set_usuario
       @usuario = Usuario.find(params[:id])
     end
+    
+    def set_questionario
+      @questionario = Questionario.where(:id => @usuario.respostas.perguntas.topicos.modelos.questionario_id)
+    end 
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def usuario_params

@@ -23,7 +23,7 @@
                     %p.pull-right= link_to 'x', questionario, method: :delete, data: { confirm: 'Você tem certeza?', :class => "close"}
                     %h4= link_to questionario.nome, questionario_path(questionario)
                     = form_tag questionario_iniciar_votacao_path(questionario) do
-                      =submit_tag "Iniciar Votação", class: "btn btn-default form-control", data: { confirm: 'Você tem certeza?', :class => "close"}
+                      =submit_tag "Iniciar Votação", class: "btn btn-default form-control", id: "iniciarVotacao"
         .panel.panel-success
           .panel-heading
             %h3.panel-title 
@@ -56,5 +56,16 @@
                 - @encerrados.each do |questionario|
                   %section.col-lg-2.preparacao
                     %h4= link_to questionario.nome, questionario
+.modal.fade#iniciando{"data-backdrop" => "static"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h4.modal-title Iniciando Votação...
+      .modal-body
+        %h5 Este processo pode demorar alguns minutos, aguarde.
+        %br
+        .progress.progress-striped.active
+          .progress-bar.progress-bar-success{role: "progressbar", "aria-valuenow" =>"45", "aria-valuemin" => "0", "aria-valuemax" => "100", style: "width: 100%;"}
+            %span.sr-only 100% Complete
 
 

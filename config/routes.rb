@@ -1,18 +1,27 @@
 Cpa::Application.routes.draw do
-  
+    
   resources :questionarios do
     
     resources :graficos
-    
+
     post :iniciar_votacao, :encerrar_votacao
+    
+    member do
+      get 'votar'
+    end
+    
     get 'configuracoes', on: :collection
     get 'encerrados',    on: :collection
+    
     resources :modelos, shallow: true do
       get 'docente', on: :collection
       get 'discente', on: :collection
       get 'tae', on: :collection    
       resources :topicos, shallow: true do
         resources :perguntas, shallow: true do
+          resources :respostas, shallow: true do
+            resources :usuarios
+          end
         end  
       end
     end
