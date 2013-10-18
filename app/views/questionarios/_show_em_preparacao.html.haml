@@ -20,7 +20,7 @@
       = form_tag questionario_iniciar_votacao_path @questionario do 
         = link_to 'Deletar', @questionario, method: :delete, data: { confirm: 'Você tem certeza?'}, :class => "btn btn-default"
         = link_to 'Alterar Nome', edit_questionario_path(@questionario), :class => "btn btn-default"
-        =submit_tag "Iniciar Votação", class: "btn btn-primary", id: "iniciarVotacao"
+        =submit_tag "Iniciar Votação", class: "btn btn-primary iniciarVotacao"
 
 .modal.fade#iniciando{"data-backdrop" => "static"}
   .modal-dialog
