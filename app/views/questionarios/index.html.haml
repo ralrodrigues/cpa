@@ -20,8 +20,8 @@
               .col-lg-12 
                 - @preparacao.each do |questionario|
                   %section.col-lg-2.preparacao
-                    %p.pull-right= link_to 'x', questionario, method: :delete, data: { confirm: 'Você tem certeza?', :class => "close"}
-                    %h4= link_to questionario.nome, questionario_path(questionario)
+                    %p.pull-right= link_to '', questionario, method: :delete, data: { confirm: 'Você tem certeza?'}, :class => "glyphicon glyphicon-remove"
+                    %h4.text-center= link_to questionario.nome, questionario_path(questionario)
                     = form_tag questionario_iniciar_votacao_path(questionario) do
                       =submit_tag "Iniciar Votação", class: "btn btn-default form-control", id: "iniciarVotacao"
         .panel.panel-success
@@ -35,7 +35,7 @@
               .col-lg-12 
                 - @votacao.each do |questionario|
                   %section.col-lg-3.votacao
-                    %h4= link_to questionario.nome, questionario
+                    %h4.text-center= link_to questionario.nome, questionario
                     %p 
                       Início: 
                       %strong= questionario.inicio_votacao
@@ -55,7 +55,7 @@
               .col-lg-12 
                 - @encerrados.each do |questionario|
                   %section.col-lg-2.preparacao
-                    %h4= link_to questionario.nome, questionario
+                    %h4.text-center= link_to questionario.nome, questionario
 .modal.fade#iniciando{"data-backdrop" => "static"}
   .modal-dialog
     .modal-content

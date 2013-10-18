@@ -7,26 +7,27 @@ class Modelo < ActiveRecord::Base
   end
   
   validates :questionario_id, :presence =>{message: "precisa ser escolhido"}, allow_nil: true   
-  validates :nome, presence: true, if: :global_docente?, if: :global_discente?, if: :turma_docente?, if: :turma_dicente?, if: :global_tae?
+  
+  # validates :nome, presence: true, if: :global_docente?, if: :global_discente?, if: :turma_docente?, if: :turma_dicente?, if: :global_tae?
  
-  def global_docente?
-    nome == "Global Docente"
-  end
+  # def global_docente?
+  #   nome == "Global Docente"
+  # end
 
-  def global_discente?
-    nome == "Global Discente"
-  end
+  # def global_discente?
+  #   nome == "Global Discente"
+  # end
 
-  def turma_dicente?
-    nome == "Turma Dicente"
-  end
+  # def turma_dicente?
+  #   nome == "Turma Dicente"
+  # end
   
-  def turma_docente?
-    nome == "Turma Docente"
-  end
+  # def turma_docente?
+  #   nome == "Turma Docente"
+  # end
   
-  def global_tae?
-    nome == "Global TAE"
-  end
+  # def global_tae?
+  #   nome == "Global TAE"
+  # end
 
 end

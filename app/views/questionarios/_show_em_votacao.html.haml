@@ -23,9 +23,9 @@
         |
         %strong Previsão de Término:
         = @questionario.previsao_termino 
-        = link_to "votar", votar_questionario_path(@questionario), class: "btn btn-info form-control"
     .col-sm-6.btn-group.text-right
       = form_tag questionario_encerrar_votacao_path @questionario do 
+        = link_to "Alterar Data de Término", edit_questionario_path(@questionario), class: "btn btn-default"
         = submit_tag"Encerrar Votação", class: "btn btn-primary", data: { confirm: 'Você tem certeza?', :class => "close"}
 
 

@@ -1,14 +1,15 @@
 = form_for @questionario, html: { class: 'form-horizontal' } do |f|
   = render 'shared/error_messages', object: f.object
-  .form-group
-    = f.label :nome, :class => "col-sm-3 control-label"
-    .col-sm-9
-      = f.text_field :nome, :class => "form-control"
+  - if @questionario.em_preparacao?
+    .form-group
+      = f.label :nome, :class => "col-sm-3 control-label"
+      .col-sm-9
+        = f.text_field :nome, :class => "form-control", :required => true
   - if @questionario.em_votacao?
     .form-group
       = f.label :previsao_termino, "Término", :class => "col-sm-3 control-label"
       .col-sm-9
-        = select_date Date.today, prefix: :start_date
+        = select_date Date.today, prefix: :start_date, :class => 'datepicker'
   .form-group
     .col-sm-offset-3.col-sm-9  
       = f.submit button, :class => "btn btn-success"
