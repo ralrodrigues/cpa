@@ -1,6 +1,11 @@
 class Pergunta < ActiveRecord::Base
   belongs_to :topico
+  
   has_many :respostas
+  has_many :usuarios, through: :respostas
+
+  has_many :respostas
+  has_many :turmas, through: :respostas
 
   amoeba do
     enable

@@ -6,7 +6,15 @@ class Turma < ActiveRecord::Base
   
   has_many :salas
   has_many :usuarios, through: :salas
+
+  has_many :respostas
+  has_many :perguntas, through: :respostas
  
+  amoeba do
+    enable
+    nullify :professor_id
+  end
+
   validates :disciplina_id, :professor_id, :presence =>{message: "precisa ser selecionado"}, allow_nil: true   
 
   validates :sigla, length: { 

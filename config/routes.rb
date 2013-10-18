@@ -1,5 +1,6 @@
 Cpa::Application.routes.draw do
     
+  resources :usuarios
   resources :questionarios do
     
     resources :graficos
@@ -15,9 +16,7 @@ Cpa::Application.routes.draw do
       get 'tae', on: :collection    
       resources :topicos, shallow: true do
         resources :perguntas, shallow: true do
-          resources :respostas, shallow: true do
-            resources :usuarios
-          end
+          resources :respostas
         end  
       end
     end

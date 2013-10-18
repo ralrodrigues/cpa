@@ -6,6 +6,10 @@ class Funcionario < ActiveRecord::Base
 
   accepts_nested_attributes_for :usuario
   
+  amoeba do
+    exclude_field :turma
+  end
+
   validates :apelido, format:{ with: /\A[a-z]+\z/,
     message: "Somente letras minusculas"}, allow_nil: true   
   

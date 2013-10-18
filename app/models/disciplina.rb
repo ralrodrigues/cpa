@@ -36,10 +36,10 @@ class Disciplina < ActiveRecord::Base
         turmas = Turma.where(disciplina: self)
         turmas.each{|turma| turma.destroy}
       end
-      sigla = "A"
+      sigla = "a"
       self.qtd_professores.times do
         if self.qtd_professores == 1
-          Turma.create(sigla: "A/B", disciplina: self)
+          Turma.create(sigla: "a/b", disciplina: self)
         else
           Turma.create(sigla: sigla, disciplina: self)
           sigla = sigla.next

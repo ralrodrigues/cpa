@@ -6,7 +6,7 @@ class Area < ActiveRecord::Base
   amoeba do
     enable
   end
-
+  
   validates :questionario_id, :funcionario_id, :presence =>{message: "precisa ser selecionado"}, allow_nil: true   
   
   validates :nome, length: {

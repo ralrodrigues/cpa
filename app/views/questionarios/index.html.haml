@@ -20,7 +20,9 @@
               .col-lg-12 
                 - @preparacao.each do |questionario|
                   %section.col-lg-2.preparacao
-                    %p.pull-right= link_to '', questionario, method: :delete, data: { confirm: 'Você tem certeza?'}, :class => "glyphicon glyphicon-remove"
+                    %p.pull-right
+                      %small
+                        = link_to '', questionario, method: :delete, data: { confirm: 'Você tem certeza?'}, :class => "glyphicon glyphicon-remove"
                     %h4.text-center= link_to questionario.nome, questionario_path(questionario)
                     = form_tag questionario_iniciar_votacao_path(questionario) do
                       =submit_tag "Iniciar Votação", class: "btn btn-default form-control", id: "iniciarVotacao"
