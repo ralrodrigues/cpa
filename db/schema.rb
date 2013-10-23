@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20131008233755) do
 
   create_table "funcionarios", force: true do |t|
     t.string   "nome"
+    t.string   "apelido"
     t.string   "prontuario"
     t.string   "email"
     t.integer  "usuario_id"

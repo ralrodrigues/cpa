@@ -1,9 +1,11 @@
 - if @questionario.em_preparacao?
-  = render 'questionario', :modelos => @discentes 
+  = render 'questionario', :modelos => @discentes
+- elsif @questionario.id == 1
+  = render 'questionario', :modelos => @discentes
 - elsif @questionario.em_votacao?
-  = render 'questionario_votacao', :modelos => @discentes   
+  = render 'questionario_votacao', :modelos => @discentes
 - elsif @questionario.encerrado?
-  = render 'questionario_votacao', :modelos => @discentes   
+  = render 'questionario_votacao', :modelos => @discentes
 %ul.pager
   %li.previous
     = link_to '← Voltar', questionario_modelos_path(@questionario)

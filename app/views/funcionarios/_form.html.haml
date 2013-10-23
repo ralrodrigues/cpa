@@ -3,16 +3,28 @@
   .form-group
     = f.label :nome, :class => "col-sm-3 control-label"
     .col-sm-9
-      = f.text_field :nome, :class => "form-control"
+      = f.text_field :nome, :class => "form-control", :required => true
+  .form-group
+    = f.label :apelido, :class => "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :apelido, :class => "form-control", :required => true, :title => "Somente letras em minúsculo"
+  .form-group
+    = f.label :prontuario,"Prontuário", :class => "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :prontuario, :class => "form-control", :required => true
   .form-group
     = f.label :email, :class => "col-sm-3 control-label"
     .col-sm-9
-      = f.text_field :email, :class => "form-control"
+      = f.text_field :email, :class => "form-control", :type => "email", :required => true
   .form-group
     = f.fields_for :usuarios do |builder|
       = builder.label :tipo, :class => "col-sm-3 control-label"
       .col-sm-9      
-        =builder.select :tipo, ([["Docente"], ["TAE"]]), :class => "col-sm-5 control-label"
+        -if button == "Cadastrar"
+          -label = "Selecione um Tipo"
+        -else
+          -label = @funcionario.usuario.tipo.to_s
+        =builder.select :tipo, ([["Docente"], ["TAE"]]), {:prompt => label } , :class => "col-sm-9 form-control", :required => true
   .form-group
     .col-sm-offset-3.col-sm-9  
       = f.submit button, :class => "btn btn-success"

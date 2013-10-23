@@ -3,7 +3,7 @@
   .form-group
     =f.label :professor_id, "Professor", :class => "col-sm-3 control-label"
     .col-sm-9 
-      = f.collection_select :professor_id, find_funcionarios, :id, :nome, :prompt => 'Selecione Professor', html: {class: 'form-control'}
+      = f.collection_select :professor_id, find_funcionarios, :id, :nome, {:prompt => 'Selecione um Professor' } , :class => "col-sm-5 form-control", :required => true
   .form-group
     .col-sm-offset-3.col-sm-9  
       = f.submit button, :class => "btn btn-success"

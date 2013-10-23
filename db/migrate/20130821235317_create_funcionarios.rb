@@ -2,6 +2,7 @@ class CreateFuncionarios < ActiveRecord::Migration
   def change
     create_table :funcionarios do |t|
       t.string :nome
+      t.string :apelido
       t.string :prontuario
       t.string :email
       t.references :usuario, index: true

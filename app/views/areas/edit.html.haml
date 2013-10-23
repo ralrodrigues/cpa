@@ -1,17 +1,21 @@
 %h3.text-center Editar Área
 %br
 .row 
-  .col-md-offset-4.col-md-4
+  .col-md-offset-3.col-md-6
     = form_for([@questionario, @area], html: { class: 'form-horizontal' }) do |f| 
       = render 'shared/error_messages', object: f.object
       .form-group
         =f.label :nome, :class => "col-sm-3 control-label"
         .col-sm-9
-          = f.text_field :nome, :class => "form-control success"
+          = f.text_field :nome, :class => "form-control success", :required => true
       .form-group
         =f.label :funcionario_id, "Coordenador", :class => "col-sm-3 control-label"
         .col-sm-9 
-          = f.collection_select :funcionario_id, @area.funcionarios, :id, :nome, :prompt => 'Selecione Coordenador', html: {class: 'form-control'}
+          - if @area.funcionarios.count == 0
+            = f.text_field :funcionario_id, :class => "form-control success", :required => true, :placeholder => "Cadastre novos Funcionários", :disabled => true
+          -else
+            = f.collection_select :funcionario_id, @area.funcionarios, :id, :nome,{:prompt => 'Selecione uma Coordenador' }, :class => "col-sm-5 form-control", :required => true
+      .form-group  
         .col-sm-offset-3.col-sm-9
           = f.submit "Atualizar", :class => "btn btn-success"
 %ul.pager

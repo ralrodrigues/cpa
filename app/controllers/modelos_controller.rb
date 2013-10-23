@@ -90,7 +90,7 @@ class ModelosController < ApplicationController
     
     # Never trust parameters from the scary internet, only allow the white list through.
     def modelo_params
-      params.require(:modelo).permit(:nome, :visibilidade, :questionario_id)
+      params.require(:modelo).permit(:nome, :questionario_id)
     end
 end
 

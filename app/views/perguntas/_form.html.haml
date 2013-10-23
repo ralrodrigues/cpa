@@ -3,11 +3,15 @@
   .form-group
     = f.label :enunciado, :class => "col-sm-3 control-label"
     .col-sm-9
-      = f.text_field :enunciado, :class => "form-control"
+      = f.text_field :enunciado, :class => "form-control", :required => true
   .form-group
     = f.label :tipo, :class => "col-sm-3 control-label"
     .col-sm-9
-      = f.select :tipo, (["integer", "boolean"]), :prompt => "Selecione um Tipo", :class => "form-control"
+      -if button == "Cadastrar"
+        -label = "Selecione um Tipo"
+      -else
+        -label = @pergunta.tipo.to_s  
+      = f.select :tipo, ([["0/10", "interge r"],["V/F", "boolean"]]), {:prompt => label } , :class => "col-sm-9 form-control", :required => true
   .form-group
     .col-sm-offset-3.col-sm-9  
       = f.submit button, :class => "btn btn-success"

@@ -1,0 +1,29 @@
+/ - @perguntas.each do |pergunta|
+/   = pergunta.enunciado.to_s
+/   |
+/   =pergunta.topico.nome
+/   | 
+/   =pergunta.topico.modelo.nome
+/   %br
+
+-global = true
+-turma = false
+-disciplina = ""
+-@usuario.respostas.each do |resposta|
+  - if global
+    %h3 Avaliação Global
+    -global = false
+    -turma = true
+  -if resposta.turma_id.nil?
+    =resposta.pergunta.enunciado.to_s
+    %br
+  -else
+    - if turma
+      %h3 Avaliação turma
+      -turma = false
+    - if disciplina != resposta.turma.disciplina.nome
+      %h4= resposta.turma.disciplina.nome
+      -disciplina = resposta.turma.disciplina.nome
+    =resposta.pergunta.enunciado.to_s
+    %br
+    

@@ -3,39 +3,39 @@
   .form-group
     = f.label :nome, :class => "col-sm-5 control-label"
     .col-sm-7
-      = f.text_field :nome, :class => "form-control"
+      = f.text_field :nome, :class => "form-control", :required => true
   .form-group
     = f.label :sigla, :class => "col-sm-5 control-label"
     .col-sm-7
-      = f.text_field :sigla, :class => "form-control"
+      = f.text_field :sigla, :class => "form-control", :required => true
   .form-group
     = f.label :nivel, "Nível", :class => "col-sm-5 control-label"
     .col-sm-7
-      =f.select :nivel, ([["Superior"], ["Técnico"], ["Integrado"]]),:prompt => "Selecione um Nível" , :class => "col-sm-5 control-label"
+      =f.select :nivel, ([["Superior"], ["Técnico"], ["Integrado"]]),{:prompt => 'Selecione um Nível' } , :class => "col-sm-5 form-control", :required => true
   .form-group
     = f.label :periodo, "Período", :class => "col-sm-5 control-label"
     .col-sm-7
-      =f.select :periodo, ([["Noturno"], ["Vespertino"], ["Matutino"]]),:prompt => "Selecione um Período" , :class => "col-sm-5 control-label"
+      =f.select :periodo, ([["Noturno"], ["Vespertino"], ["Matutino"]]),{:prompt => 'Selecione um Período' } , :class => "col-sm-5 form-control", :required => true
   .form-group
     = f.label :semestre_atual, "Semestre Atual", :class => "col-sm-5 control-label"
     .col-sm-7
-      =f.number_field :semestre_atual, :class => "col-sm-5 form-control"
+      =f.number_field :semestre_atual, :class => "col-sm-5 form-control", :required => true, :pattern => "\d*"
   .form-group
     = f.label :semestre_duracao, "Semestres de Duração", :class => "col-sm-5 control-label"
     .col-sm-7
-      =f.number_field :semestres_duracao, :class => "col-sm-5 form-control"
+      =f.number_field :semestres_duracao, :class => "col-sm-5 form-control", :required => true, :pattern => "\d*"
   .form-group
     = f.label :qtd_alunos, "Qtd. de Alunos", :class => "col-sm-5 control-label"
     .col-sm-7
-      =f.number_field :qtd_alunos, :class => "col-sm-5 form-control"    
+      =f.number_field :qtd_alunos, :class => "col-sm-5 form-control", :required => true, :pattern => "\d*"
   .form-group
     = f.label :area, "Área", :class => "col-sm-5 control-label"
     .col-sm-7
-      =f.collection_select :area_id, @curso.questionario.areas, :id, :nome,:prompt => "Não Existem Áreas Cadastradas" , :class => "col-sm-5 control-label"    
+      =f.collection_select :area_id, @curso.questionario.areas, :id, :nome,{:prompt => 'Selecione uma Área' } , :class => "col-sm-5 form-control", :required => true
   .form-group
     = f.label :observacao, "Observação", :class => "col-sm-5 control-label"
     .col-sm-7
-      =f.text_area :observacao, :class => "col-sm-5 form-control"     
+      =f.text_area :observacao, :class => "col-sm-5 form-control", :required => false
   .form-group
     .col-sm-offset-5.col-sm-7  
       = f.submit button, :class => "btn btn-success"

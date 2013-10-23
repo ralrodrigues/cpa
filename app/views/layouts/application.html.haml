@@ -12,7 +12,7 @@
 		.container
 			= render 'layouts/header'
 			.row
-				.col-sm-offset-2.col-sm-5.text-center{:style => "z-index:1;", :data =>{ :spy =>"affix"}}
+				.col-sm-offset-2.col-sm-6.text-center{:style => "z-index:1;", :data =>{ :spy =>"affix"}}
 					- if notice 
 						%p.alert.alert-info= notice 
 			= yield 

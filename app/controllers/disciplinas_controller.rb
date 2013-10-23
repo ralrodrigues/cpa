@@ -29,15 +29,7 @@ class DisciplinasController < ApplicationController
 
     respond_to do |format|
       if @disciplina.save  
-        sigla = "A"
-        @disciplina.qtd_professores.times do
-          if @disciplina.qtd_professores == 1
-            Turma.create(sigla: "A/B", disciplina_id: @disciplina.id, professor_id: 123)
-          else
-            Turma.create(sigla: sigla, disciplina_id: @disciplina.id, professor_id: 123)
-            sigla = sigla.next
-          end
-        end  
+        @disciplina.create_turmas
         format.html { redirect_to curso_disciplinas_path(@disciplina.curso), notice: 'A Disciplina foi criada com sucesso.' }
         format.json { render action: 'show', status: :created, location: @disciplina }
       else
@@ -52,19 +44,7 @@ class DisciplinasController < ApplicationController
   def update
     respond_to do |format|
       if @disciplina.update(disciplina_params)
-         
-        turmas = Turma.where(disciplina: @disciplina)
-        turmas.each{|turma| turma.destroy}
-            
-        sigla = "A"
-        @disciplina.qtd_professores.times do
-          if @disciplina.qtd_professores == 1
-            Turma.create(sigla: "A/B", disciplina_id: @disciplina.id, professor_id: 123)
-          else
-            Turma.create(sigla: sigla, disciplina_id: @disciplina.id, professor_id: 123)
-            sigla = sigla.next
-          end
-      end
+        @disciplina.create_turmas         
         format.html { redirect_to curso_disciplinas_path(@disciplina.curso), notice: 'A Disciplina foi atualizada com sucesso.' }
         format.json { head :no_content }
       else
