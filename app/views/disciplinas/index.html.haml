@@ -8,6 +8,9 @@
         %strong
           Período
         =@curso.periodo  
+        %strong
+          Semestre
+        =@curso.semestre_atual
       %span.badge= @disciplinas.count 
   .panel-body
     = "<div class='col-lg-12'><div class='alert alert-success'><strong>Não existem Disciplinas cadastradas!</strong> É necessário cadastrar uma nova disciplina clicando no botão <strong>Nova Disciplina</strong>.</div></div>".html_safe if @disciplinas.empty?   

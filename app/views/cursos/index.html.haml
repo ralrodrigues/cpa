@@ -14,9 +14,9 @@
               %th{:style => "width: 5px;"}
               %th Nome
               %th Sigla
-              %th Nível
-              %th Período
               %th Semestre
+              %th Período
+              %th Nível
               %th Qtd. Alunos
               %th Área
               %th{:style => "width: 5px;"}
@@ -30,9 +30,9 @@
                 %td= check_box_tag "cursos[]", curso.id 
                 %td= curso.nome
                 %td= curso.sigla
-                %td= curso.nivel
+                %td.text-center= curso.semestre_atual
                 %td= curso.periodo.to_s
-                %td= curso.semestre_atual
+                %td= curso.nivel
                 %td= curso.qtd_alunos
                 -if curso.area
                   %td= curso.area.nome

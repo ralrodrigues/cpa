@@ -5,7 +5,7 @@ class CursosController < ApplicationController
   # GET /cursos
   # GET /cursos.json
   def index
-    @cursos = @questionario.cursos
+    @cursos = @questionario.cursos.sort
   end
 
   # GET /cursos/1
