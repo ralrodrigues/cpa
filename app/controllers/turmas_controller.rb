@@ -6,7 +6,7 @@ class TurmasController < ApplicationController
   # GET /turmas
   # GET /turmas.json
   def index
-    @turmas = @disciplina.turmas
+    @turmas = @disciplina.turmas.sort
   end
 
   # GET /turmas/1
@@ -65,7 +65,7 @@ class TurmasController < ApplicationController
   end
     
   def find_funcionarios
-    return @funcionarios = Funcionario.includes(:usuario, :area).where("usuarios.tipo" => "Docente", "areas.questionario_id" => @turma.disciplina.curso.questionario)
+    return @funcionarios = Funcionario.includes(:usuario, :area).where("usuarios.tipo" => "Docente", "areas.questionario_id" => @turma.disciplina.curso.questionario).order("usuarios.nome ASC")
   end     
   helper_method :find_funcionarios 
 

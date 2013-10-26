@@ -5,7 +5,6 @@
 $(document).ready ->
 
   $('.iniciarVotacao').click ->
-    $("#iniciando").modal "hide"
     $("#iniciando").modal "show"
 
   

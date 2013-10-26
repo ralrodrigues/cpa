@@ -8,6 +8,8 @@ class Funcionario < ActiveRecord::Base
   
   amoeba do
     exclude_field :turma
+    include_field :usuario
+    enable
   end
 
   validates :apelido, format:{ with: /\A[a-z]+\z/,
