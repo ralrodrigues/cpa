@@ -48,7 +48,7 @@ class Questionario < ActiveRecord::Base
 				curso.qtd_alunos.times do
 					alunos_do_curso << Usuario.create(nome: (curso.sigla + curso.semestre_atual.to_s +  curso.periodo.first + numero_do_aluno.to_s), senha: numero_do_aluno, tipo: "Discente")
 					numero_do_aluno = numero_do_aluno + 1
-		        # Carregando Modelo global para Discentes
+		      # Carregando Modelo global para Discentes
 		      modelos = Modelo.includes(:questionario).where("questionarios.id" => self, "modelos.nome" => "Global Discente")
 		      modelos.each do |modelo|
 			      modelo.topicos.each do |topico|
