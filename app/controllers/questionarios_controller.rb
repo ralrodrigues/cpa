@@ -12,6 +12,8 @@
 #   PRE
 
 class QuestionariosController < ApplicationController
+  before_action :signed_in_usuario, only: [:index]
+
   before_action :set_questionario, only: [:show, :edit, :update, :destroy]
   before_action :questionario_encerrado, only: [:edit, :update, :destroy]
   
