@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20131008233755) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "areas", force: true do |t|
     t.string   "nome"
     t.integer  "questionario_id"
@@ -156,6 +159,7 @@ ActiveRecord::Schema.define(version: 20131008233755) do
     t.string   "senha"
     t.string   "tipo"
     t.string   "faixa_etaria"
+    t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

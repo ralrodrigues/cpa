@@ -1,0 +1,14 @@
+%h1 Login
+
+= form_for(:session, url: sessions_path) do |f|
+
+	.form-group
+		= f.label :nome
+		= f.text_field :nome, class: 'form-control'
+
+	.form-group
+		= f.label :senha
+		= f.password_field :senha, class: 'form-control'
+
+	.form-group
+		= f.submit "Logar", class: "btn btn-large btn-success"

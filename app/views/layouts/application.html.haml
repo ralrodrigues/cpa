@@ -1,4 +1,4 @@
-!!!
+<!DOCTYPE html>
 %html
 	%head
 		%title= content_for?(:title) ? yield(:title) : "CPA"
@@ -18,3 +18,8 @@
 			= yield 
 			= render 'layouts/footer'
 
+			- if logado?
+				= current_usuario.nome
+				= link_to "Sair", logout_path, method: "delete"
+			- else
+				= link_to "Login", login_path

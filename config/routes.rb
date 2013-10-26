@@ -1,5 +1,15 @@
 Cpa::Application.routes.draw do
-    
+  
+  root  'questionarios#index'  
+
+  # Sessions Routes
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/login',  to: 'sessions#new',         via: 'get'
+  match '/logout', to: 'sessions#destroy',     via: 'delete'
+
+  # Perguntas e Respostas do Usuário
+  match '/avaliacao', to: 'avaliacoes#index', via: 'get'
+
   resources :usuarios
   resources :questionarios do
     
