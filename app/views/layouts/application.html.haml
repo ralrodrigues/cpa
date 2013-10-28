@@ -17,9 +17,3 @@
 						%p.alert.alert-info= notice 
 			= yield 
 			= render 'layouts/footer'
-            
-            - if logado?
-            	= current_usuario.nome
-            	= link_to "Sair", logout_path, method: "delete"
-            - else
-            	= link_to "Login", login_path 

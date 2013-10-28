@@ -1,4 +1,6 @@
 class TurmasController < ApplicationController
+  before_action :signed_in_usuario
+  
   before_action :set_turma, only: [:show, :edit, :update, :destroy]
   before_action :set_disciplina, only: [:index, :new, :create]
   before_action :set_professor, only:[:index, :edit]

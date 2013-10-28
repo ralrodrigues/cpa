@@ -41,59 +41,9 @@ class Questionario < ActiveRecord::Base
 	
 	def iniciar_votacao
 		begin
-			self.cursos.each do |curso|
-				alunos_do_curso = []
-				numero_do_aluno = 1
-				# Criando alunos do curso
-				curso.qtd_alunos.times do
-					alunos_do_curso << Usuario.create(nome: (curso.sigla + curso.semestre_atual.to_s +  curso.periodo.first + numero_do_aluno.to_s), senha: numero_do_aluno, tipo: "Discente")
-					numero_do_aluno = numero_do_aluno + 1
-		      # Carregando Modelo global para Discentes
-		      modelos = Modelo.includes(:questionario).where("questionarios.id" => self, "modelos.nome" => "Global Discente")
-		      modelos.each do |modelo|
-			      modelo.topicos.each do |topico|
-		          topico.perguntas.each do |pergunta|
-		          	Resposta.create(usuario: alunos_do_curso.last, pergunta: pergunta)
-		          end	
-		        end
-	        end
-				end
-		          
-		    #Colocando os alunos nas turmas
-				curso.disciplinas.each do |disciplina|
-					alunos_de_turma_count = curso.qtd_alunos / disciplina.qtd_professores
-					alunos_de_turma = alunos_do_curso.dup
-					disciplina.turmas.each do |turma|
-						for i in 0..(alunos_de_turma_count - 1)
-							aluno = alunos_de_turma.pop
-							Sala.create(usuario: aluno, turma: turma)
-							# Carregando Modelo turmas para os discentes
-							modelos = Modelo.includes(:questionario).where("questionarios.id" => self, "modelos.nome" => "Turma Dicente")
-			        modelos.each do |modelo|
-				        modelo.topicos.each do |topico|
-			            topico.perguntas.each do |pergunta|
-			            	Resposta.create(usuario: aluno, pergunta: pergunta, turma: turma)
-			            end	
-			          end
-		          end
-						end
-						# Carregando Modelo turmas para Docentes
-						modelos = Modelo.includes(:questionario).where("questionarios.id" => self, "modelos.nome" => "Turma Docente")
-				    modelos.each do |modelo|
-			        modelo.topicos.each do |topico|
-		            topico.perguntas.each do |pergunta|
-		            	professor_id = 1	
-		            	professores = Funcionario.where(:id => turma.professor_id)
-									professores.each do |professor|
-									   professor_id = professor.usuario_id
-									end
-		            	Resposta.create(usuario_id: professor_id, pergunta: pergunta, turma: turma)
-		            end	
-		          end
-	          end
-					end
-				end
-			end
+			
+			criar_alunos_turmas
+						
 			# Carregando Modelo global para Docentes
 			docentes = Funcionario.includes(:usuario, :area).where("usuarios.tipo" => "Docente", "areas.questionario_id" => self)
 			docentes.each do |docente|
@@ -106,6 +56,7 @@ class Questionario < ActiveRecord::Base
 	          end
 	        end
 	    end
+		  
 		  # Carregando Modelo global para TAES 
 	    taes = Funcionario.includes(:usuario, :area).where("usuarios.tipo" => "TAE", "areas.questionario_id" => self)
 		  taes.each do |tae|
@@ -128,6 +79,62 @@ class Questionario < ActiveRecord::Base
     rescue => ex
       logger.error ex.message
     end 
+	end
+
+	def criar_alunos_turmas
+  	self.cursos.each do |curso|
+			alunos_do_curso = []
+			numero_do_aluno = 1
+			# Criando alunos do curso
+			curso.qtd_alunos.times do
+				require 'securerandom'
+				alunos_do_curso << Usuario.create(nome: (curso.questionario_id.to_s + curso.sigla + curso.semestre_atual.to_s +  curso.periodo.first + numero_do_aluno.to_s), senha: SecureRandom.hex(6), tipo: "Discente")
+				numero_do_aluno = numero_do_aluno + 1
+	      # Carregando Modelo global para Discentes
+	      modelos = Modelo.includes(:questionario).where("questionarios.id" => self, "modelos.nome" => "Global Discente")
+	      modelos.each do |modelo|
+		      modelo.topicos.each do |topico|
+	          topico.perguntas.each do |pergunta|
+	          	Resposta.create(usuario: alunos_do_curso.last, pergunta: pergunta)
+	          end	
+	        end
+        end
+			end    
+	    #Colocando os alunos nas turmas
+			curso.disciplinas.each do |disciplina|
+				alunos_de_turma_count = curso.qtd_alunos / disciplina.qtd_professores
+				alunos_de_turma = alunos_do_curso.dup
+				disciplina.turmas.each do |turma|
+					for i in 0..(alunos_de_turma_count - 1)
+						aluno = alunos_de_turma.pop
+						Sala.create(usuario: aluno, turma: turma)
+						# Carregando Modelo turmas para os discentes
+						modelos = Modelo.includes(:questionario).where("questionarios.id" => self, "modelos.nome" => "Turma Dicente")
+		        modelos.each do |modelo|
+			        modelo.topicos.each do |topico|
+		            topico.perguntas.each do |pergunta|
+		            	Resposta.create(usuario: aluno, pergunta: pergunta, turma: turma)
+		            end	
+		          end
+	          end
+					end
+					# Carregando Modelo turmas para Docentes
+					modelos = Modelo.includes(:questionario).where("questionarios.id" => self, "modelos.nome" => "Turma Docente")
+			    modelos.each do |modelo|
+		        modelo.topicos.each do |topico|
+	            topico.perguntas.each do |pergunta|
+	            	professor_id = 1	
+	            	professores = Funcionario.where(:id => turma.professor_id)
+								professores.each do |professor|
+								   professor_id = professor.usuario_id
+								end
+	            	Resposta.create(usuario_id: professor_id, pergunta: pergunta, turma: turma)
+	            end	
+	          end
+          end
+				end
+			end
+		end
 	end
 
 end

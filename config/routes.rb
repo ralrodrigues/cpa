@@ -7,10 +7,12 @@ Cpa::Application.routes.draw do
   match '/login', to: 'sessions#new', via: 'get'
   match '/logout', to: 'sessions#destroy', via: 'delete'
 
-  # Perguntas e Respostas do Usuário
-  match '/avaliacao', to: 'avaliacao#index', via: 'get'
-
-  resources :usuarios
+  resources :usuarios, shallow: true do
+    # Perguntas e Respostas do Usuário
+    resources :respostas, shallow: true do
+      put 'update_multiple', on: :collection
+    end
+  end
   resources :questionarios do
     
     resources :graficos
@@ -25,9 +27,7 @@ Cpa::Application.routes.draw do
       get 'discente', on: :collection
       get 'tae', on: :collection    
       resources :topicos, shallow: true do
-        resources :perguntas, shallow: true do
-          resources :respostas
-        end  
+        resources :perguntas
       end
     end
 

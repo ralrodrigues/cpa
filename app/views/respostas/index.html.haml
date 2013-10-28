@@ -1,1 +1,79 @@
-=votar('ADS5N1')
+- global = true
+- disciplina = "" 
+- topico=""
+
+- interger = [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10]]
+- date = [["12 a 15 anos", "12 a 15 anos"], ["16 a 18 anos", "16 a 18 anos"], ["19 a 25 anos", "19 a 25 anos"], ["26 a 30 anos", "26 a 30 anos"], ["31 a 40 anos", "31 a 40 anos"], ["mais de 40 anos", "mais de 40 anos"]]
+- boolean = [["Sim", "Sim"], ["Não", "Não"]]
+
+
+- tipo = []
+
+%table.table
+  %thead
+    %tr
+      %th{:style => "width:13%;"}
+      %th
+  %tbody
+  = form_tag update_multiple_usuario_respostas_path, method: :put, :class => 'form-horizontal'  do
+    - respostas = @usuario.respostas.sort_by{|e| e[:id]}
+    - respostas.each do |resposta|
+      
+      - if global
+        %tr.text-center.success
+          %td{:colspan => '2', :style => 'color:grey;'}
+            %h3 AVALIAÇÃO GLOBAL
+        -global = false
+      
+      -if resposta.turma_id.nil?
+        - if topico != resposta.pergunta.topico.nome
+          %tr.active
+            %td{:colspan => '2'}
+              %h4= resposta.pergunta.topico.nome
+          -topico = resposta.pergunta.topico.nome 
+      -else
+        - if disciplina != resposta.turma.disciplina.nome
+          %tr.text-center.success
+            %td{:colspan => '2'}
+              %h3
+                = resposta.turma.disciplina.nome
+                %br
+                %small
+                  Turma 
+                  = resposta.turma.sigla.upcase
+                  | Prof.
+                  = professor = find_funcionario(resposta.turma.professor_id)
+          -disciplina = resposta.turma.disciplina.nome
+        - if topico != resposta.pergunta.topico.nome
+          %tr.active
+            %td{:colspan => '2'}
+              %h4= resposta.pergunta.topico.nome
+          -topico = resposta.pergunta.topico.nome
+      %tr
+        -if resposta.pergunta.tipo == 'boolean'
+          - tipo = boolean
+        -if resposta.pergunta.tipo == 'interger' || resposta.pergunta.tipo == 'integer'
+          - tipo = interger
+        -if resposta.pergunta.tipo == 'date'
+          - tipo = date
+
+        -if resposta.resposta.nil?
+          %td= select_tag "respostas[]", options_for_select(tipo),:prompt =>'-----------', :id => "#{resposta.id}", :class => "form-control"
+        -else
+          %td
+            %button.form-control.btn{:disabled => true}= resposta.resposta.to_s
+        %td= label_tag 'respostas', resposta.pergunta.enunciado.to_s , :class => 'control-label'
+    
+    
+    %nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+      .navbar-header
+        %button.navbar-toggle{:type => 'button', :data =>{ :toggle => 'collapse', :target => '.navbar-ex1-collapse'}} 
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        .navbar-brand IFSP - Caraguatatuba
+
+      .collapse.navbar-collapse.navbar-ex1-collapse
+        .pull-right
+          = submit_tag "Enviar Respostas", :style => "margin-top:5%;", :class => "btn btn-success"

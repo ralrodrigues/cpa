@@ -7,7 +7,11 @@ class SessionsController < ApplicationController
     usuario = Usuario.find_by(nome: params[:session][:nome])
     if usuario #&& usuario.authenticate(params[:session][:senha])
       login usuario
-      redirect_back_or usuario
+      if usuario.tipo != 'Administrador'
+        redirect_to usuario_respostas_path(usuario), alert: "Carregando Questionário"
+      else 
+        redirect_to root_path, alert: "Carregando Painel de Controle"
+      end
     else
       flash.now[:error] = 'Usuário/Senha Inválidos'
       render 'new'

@@ -1,14 +1,15 @@
-%h1 Login
+.row
+  
+  .col-md-offset-4.col-md-4.well
+    %h3.text-center Login
+    = form_for(:session, url: sessions_path) do |f|
+      %br
+      .form-group
+        = f.text_field :nome, class: 'form-control', placeholder:'Usuário'
+  
+      .form-group
+        = f.password_field :senha, class: 'form-control', placeholder:'Senha'
 
-= form_for(:session, url: sessions_path) do |f|
-
-	.form-group
-		= f.label :nome
-		= f.text_field :nome, class: 'form-control'
-
-	.form-group
-		= f.label :senha
-		= f.password_field :senha, class: 'form-control'
-
-	.form-group
-		= f.submit "Logar", class: "btn btn-large btn-success"
+      .form-groupd
+        = f.submit "Acessar", class: "btn btn-large btn-success form-control"
+      %br

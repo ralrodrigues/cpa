@@ -1,4 +1,6 @@
 class UsuariosController < ApplicationController
+  before_action :signed_in_usuario
+  
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
   before_action :set_pergunta, only: [:show]
   # GET /usuarios
@@ -69,7 +71,7 @@ class UsuariosController < ApplicationController
     end
     
     def set_pergunta  
-      @perguntas = Pergunta.where(id: 2) 
+      @perguntas = Pergunta.where(id: 2557) 
       @usuario.respostas.each do |reposta|
         @perguntas+=Pergunta.where(id: reposta.pergunta_id)
       end

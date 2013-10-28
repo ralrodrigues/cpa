@@ -1,4 +1,6 @@
 class AreasController < ApplicationController
+  before_action :signed_in_usuario
+  
   before_action :set_area, only: [:show, :edit, :update, :destroy]
   before_action :set_questionario, only: [:index, :coordenadores, :new, :create, :votacao]
   
