@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       if usuario.tipo != 'Administrador'
         redirect_to usuario_respostas_path(usuario), alert: "Carregando Questionário"
       else 
-        redirect_to root_path, alert: "Carregando Painel de Controle"
+        redirect_to questionarios_path, alert: "Carregando Painel de Controle"
       end
     else
       flash.now[:error] = 'Usuário/Senha Inválidos'

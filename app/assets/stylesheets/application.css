@@ -14,3 +14,16 @@
  *= require_tree .
  *= require cpa
  */
+
+body{
+	background:#E7EFD1;
+}
+
+.container {
+	background:white;
+	border-left: solid 10px #dae4c0; 
+	border-right: solid 10px #dae4c0; 
+	border-bottom: solid 10px #dae4c0; 
+	border-top: none; 
+	padding: 0 10px 10px 10px;
+}

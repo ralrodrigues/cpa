@@ -1,6 +1,6 @@
 Cpa::Application.routes.draw do
 
-  root 'questionarios#index'
+  root 'home#index'
 
   # Sessions Routes
   resources :sessions, only: [:new, :create, :destroy]

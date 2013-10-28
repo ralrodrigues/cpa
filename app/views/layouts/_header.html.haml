@@ -11,9 +11,9 @@
       = link_to "Sair", logout_path, method: "delete"
       )
     - else
-      = link_to "Login", login_path 
+      = link_to "Login", login_path, :class => "btn btn-success btn-sm" 
   %h1#cpa
-    = link_to "CPA", questionarios_path
+    = link_to "CPA", root_path
     %small Campus Caraguatatuba	
   %hr
 
