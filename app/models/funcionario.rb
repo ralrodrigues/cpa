@@ -12,8 +12,8 @@ class Funcionario < ActiveRecord::Base
     enable
   end
 
-  validates :apelido, format:{ with: /\A[a-z]+\z/,
-    message: "Somente letras minusculas"}, allow_nil: true   
+  validates :apelido, format:{ with: /\A[A-Z]+\z/,
+    message: "Somente letras maiusculas"}, allow_nil: true   
   
   validates :nome, :prontuario, :email, length: {
     minimum: 5,

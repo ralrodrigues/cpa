@@ -42,33 +42,12 @@ class Questionario < ActiveRecord::Base
 	def iniciar_votacao
 		begin
 			
-			criar_alunos_turmas
-						
-			# Carregando Modelo global para Docentes
-			docentes = Funcionario.includes(:usuario, :area).where("usuarios.tipo" => "Docente", "areas.questionario_id" => self)
-			docentes.each do |docente|
-		    modelos = Modelo.includes(:questionario).where("questionarios.id" => self, "modelos.nome" => "Global Docente")
-	        modelos.each do |modelo|
-		        modelo.topicos.each do |topico|
-	            topico.perguntas.each do |pergunta|
-	            	Resposta.create(usuario: docente.usuario, pergunta: pergunta)
-	            end	
-	          end
-	        end
-	    end
-		  
-		  # Carregando Modelo global para TAES 
-	    taes = Funcionario.includes(:usuario, :area).where("usuarios.tipo" => "TAE", "areas.questionario_id" => self)
-		  taes.each do |tae|
-	      modelos = Modelo.includes(:questionario).where("questionarios.id" => self, "modelos.nome" => "Global TAE")
-	      modelos.each do |modelo|
-		      modelo.topicos.each do |topico|
-		        topico.perguntas.each do |pergunta|
-		        	Resposta.create(usuario: tae.usuario, pergunta: pergunta)
-		        end	
-	        end
-	      end
-	    end
+      criar_docente
+
+      criar_taes
+			
+			criar_alunos_turmas 
+
 		  # render text: self.cursos.methods.inspect
 			
       #Definir Senhas
@@ -118,6 +97,7 @@ class Questionario < ActiveRecord::Base
 		          end
 	          end
 					end
+					
 					# Carregando Modelo turmas para Docentes
 					modelos = Modelo.includes(:questionario).where("questionarios.id" => self, "modelos.nome" => "Turma Docente")
 			    modelos.each do |modelo|
@@ -137,4 +117,43 @@ class Questionario < ActiveRecord::Base
 		end
 	end
 
+	def criar_taes
+		# Carregando Modelo global para TAES 
+		taes_do_questionario = []
+		for i in 1..200 
+			require 'securerandom'
+			taes_do_questionario << Usuario.create(nome: (self.id.to_s + "1TAE" + i.to_s), senha: SecureRandom.hex(6), tipo: "TAE")
+      # Carregando Modelo global para Discentes
+      modelos = Modelo.includes(:questionario).where("questionarios.id" => self, "modelos.nome" => "Global TAE")
+      modelos.each do |modelo|
+	      modelo.topicos.each do |topico|
+          topico.perguntas.each do |pergunta|
+          	Resposta.create(usuario: taes_do_questionario.last, pergunta: pergunta)
+          end	
+        end
+      end
+		end 
+	end
+   
+  def criar_docente
+    professores_do_questionario = []
+		professores = Funcionario.includes(:area).where("areas.questionario_id" => self)
+		professores.each do |professor|
+      require 'securerandom'
+      # Mudar nome do professor de id para apelido
+		  professores_do_questionario << Usuario.create(nome: (professor.apelido.to_s + self.id.to_s), senha: SecureRandom.hex(6), tipo: "Docente")
+	    professor.usuario = professores_do_questionario.last
+	    professor.save
+	    # Carregando Modelo global para Docentes
+	    modelos = Modelo.includes(:questionario).where("questionarios.id" => self, "modelos.nome" => "Global Docente")
+      modelos.each do |modelo|
+        modelo.topicos.each do |topico|
+          topico.perguntas.each do |pergunta|
+          	Resposta.create(usuario: professores_do_questionario.last, pergunta: pergunta)
+          end	
+        end
+      end
+    end
+  end
+  
 end

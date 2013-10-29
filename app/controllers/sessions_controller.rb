@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    usuario = Usuario.find_by(nome: params[:session][:nome])
+    usuario = Usuario.find_by(nome: params[:session][:nome].upcase)
     if usuario #&& usuario.authenticate(params[:session][:senha])
       login usuario
       if usuario.tipo != 'Administrador'

@@ -12,7 +12,7 @@
 #   PRE
 
 class QuestionariosController < ApplicationController
-  before_action :signed_in_usuario, only: [:index]
+  before_action :signed_in_usuario
 
   before_action :set_questionario, only: [:show, :edit, :update, :destroy]
   before_action :questionario_encerrado, only: [:edit, :update, :destroy]
@@ -38,7 +38,7 @@ class QuestionariosController < ApplicationController
     questionario = Questionario.find(params[:questionario_id])
 
     if questionario.em_votacao?
-      questionario.update_attribute(:termino_votacao, Time.now)
+      questionario.update_attribute(:termino_votacao, Time.now)      
       redirect_to questionario, notice: 'A votação foi encerrada com sucesso.'
     else
       redirect_to questionario, notice: 'A votação não foi encerrada. Somente CPAs em Votação podem ser encerrados.'
