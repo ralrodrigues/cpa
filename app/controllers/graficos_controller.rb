@@ -1,6 +1,7 @@
 class GraficosController < ApplicationController
-  
- before_action :set_questionario, only: [:index]
+  before_action :signed_in_usuario
+  before_action :is_administrador?
+  before_action :set_questionario, only: [:index]
 
   def index
   	if @questionario.encerrado?

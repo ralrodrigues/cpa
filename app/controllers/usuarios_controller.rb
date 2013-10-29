@@ -1,5 +1,6 @@
 class UsuariosController < ApplicationController
   before_action :signed_in_usuario
+  before_action :is_administrador?
   
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
   before_action :set_pergunta, only: [:show]

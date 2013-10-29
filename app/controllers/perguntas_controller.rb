@@ -1,5 +1,6 @@
 class PerguntasController < ApplicationController
   before_action :signed_in_usuario
+  before_action :is_administrador?
 
   before_action :set_pergunta, only: [:show, :edit, :update, :destroy]
   before_action :set_topico, only: [:index, :new, :create]

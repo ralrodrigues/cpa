@@ -12,6 +12,7 @@
 #   PRE
 
 class QuestionariosController < ApplicationController
+  before_action :signed_in_usuario
   before_action :is_administrador?
 
   before_action :set_questionario, only: [:show, :edit, :update, :destroy]
