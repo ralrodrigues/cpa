@@ -32,7 +32,7 @@
                 %td= check_box_tag "disciplinas[]", disciplina.id 
                 %td= disciplina.sigla
                 %td= disciplina.nome
-                %td= disciplina.qtd_professores
+                %td= disciplina.qtd_professores 
                 %td= link_to '', edit_disciplina_path(disciplina), :class => "glyphicon glyphicon-edit"
                 %td= link_to '', disciplina, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => "glyphicon glyphicon-trash"
                 

@@ -1,8 +1,22 @@
 Cpa::Application.routes.draw do
-    
-  resources :usuarios
+
+  root 'home#index'
+  get 'equipe' => 'home#equipe'
+
+  # Sessions Routes
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/login', to: 'sessions#new', via: 'get'
+  match '/logout', to: 'sessions#destroy', via: 'delete'
+
   resources :questionarios do
     
+    resources :usuarios, shallow: true do
+      # Perguntas e Respostas do Usuário
+      resources :respostas, shallow: true do
+        put 'update_multiple', on: :collection
+      end
+    end
+
     resources :graficos
 
     post :iniciar_votacao, :encerrar_votacao
@@ -15,9 +29,7 @@ Cpa::Application.routes.draw do
       get 'discente', on: :collection
       get 'tae', on: :collection    
       resources :topicos, shallow: true do
-        resources :perguntas, shallow: true do
-          resources :respostas
-        end  
+        resources :perguntas
       end
     end
 

@@ -5,6 +5,8 @@ class CreateUsuarios < ActiveRecord::Migration
       t.string :senha
       t.string :tipo
       t.string :faixa_etaria
+      t.string :questionario_id 
+      t.string :remember_token
 
       t.timestamps
     end

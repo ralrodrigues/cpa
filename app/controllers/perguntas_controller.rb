@@ -1,16 +1,19 @@
 class PerguntasController < ApplicationController
+  before_action :signed_in_usuario
+
   before_action :set_pergunta, only: [:show, :edit, :update, :destroy]
   before_action :set_topico, only: [:index, :new, :create]
 
   # GET /perguntas
   # GET /perguntas.json
   def index
-    @perguntas = @topico.perguntas
+    # @usuarios = @topico.perguntas.usuarios
   end
 
   # GET /perguntas/1
   # GET /perguntas/1.json
   def show
+    @usuarios = 
   end
 
   # GET /perguntas/new

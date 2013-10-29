@@ -18,7 +18,7 @@ class Pergunta < ActiveRecord::Base
   # end
 
   validates :enunciado, :tipo, length: {
-    minimum: 5,
+    minimum: 3,
     maximum: 255,
     too_short: "deve ter pelo menos %{count} caracteres",
     too_long: "deve ter no máximo %{count} caracteres"
