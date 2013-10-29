@@ -1,20 +1,22 @@
 Cpa::Application.routes.draw do
 
   root 'home#index'
+  get 'equipe' => 'home#equipe'
 
   # Sessions Routes
   resources :sessions, only: [:new, :create, :destroy]
   match '/login', to: 'sessions#new', via: 'get'
   match '/logout', to: 'sessions#destroy', via: 'delete'
 
-  resources :usuarios, shallow: true do
-    # Perguntas e Respostas do Usuário
-    resources :respostas, shallow: true do
-      put 'update_multiple', on: :collection
-    end
-  end
   resources :questionarios do
     
+    resources :usuarios, shallow: true do
+      # Perguntas e Respostas do Usuário
+      resources :respostas, shallow: true do
+        put 'update_multiple', on: :collection
+      end
+    end
+
     resources :graficos
 
     post :iniciar_votacao, :encerrar_votacao

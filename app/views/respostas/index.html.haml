@@ -36,6 +36,11 @@
           %tr.text-center.success
             %td{:colspan => '2'}
               %h3
+                %small
+                  = resposta.turma.disciplina.curso.sigla
+                  |
+                  = resposta.turma.disciplina.curso.periodo.to_s
+                %br
                 = resposta.turma.disciplina.nome
                 %br
                 %small

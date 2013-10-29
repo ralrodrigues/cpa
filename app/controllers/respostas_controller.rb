@@ -41,24 +41,23 @@ class RespostasController < ApplicationController
   # PATCH/PUT /respostas/1
   # PATCH/PUT /respostas/1.json
   def update
-    # render text: params.inspect
-    respond_to do |format|
-      @resposta = Resposta.find(params[:resposta])
-      if @resposta.update(resposta_params)
-        format.html { }
-        format.json { head :no_content }
-      else
-        format.html { }
-        format.json { render json: @resposta.errors, status: :unprocessable_entity }
-      end
-    end
+    # # render text: params.inspect
+    # respond_to do |format|
+    #   @resposta = Resposta.find(params[:resposta])
+    #   if @resposta.update(resposta_params)
+    #     format.html { }
+    #     format.json { head :no_content }
+    #   else
+    #     format.html { }
+    #     format.json { render json: @resposta.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   def update_multiple
     begin
       
       respostas_rp = params[:respostas]
-      # render text: respostas_rp.inspect
       respostas_id = @usuario.respostas.sort_by{|e| -e[:id]}
       
       respostas_id.each do |resposta|

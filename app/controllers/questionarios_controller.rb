@@ -36,9 +36,13 @@ class QuestionariosController < ApplicationController
 
   def encerrar_votacao
     questionario = Questionario.find(params[:questionario_id])
-
     if questionario.em_votacao?
-      questionario.update_attribute(:termino_votacao, Time.now)      
+      usuarios = Usuario.where(:questionario_id => questionario.id.to_s)
+      usuarios.each do |usuario|
+        usuario.senha = nil
+        usuario.save
+      end
+      questionario.update_attribute(:termino_votacao, Time.now)        
       redirect_to questionario, notice: 'A votação foi encerrada com sucesso.'
     else
       redirect_to questionario, notice: 'A votação não foi encerrada. Somente CPAs em Votação podem ser encerrados.'

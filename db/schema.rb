@@ -159,6 +159,7 @@ ActiveRecord::Schema.define(version: 20131008233755) do
     t.string   "senha"
     t.string   "tipo"
     t.string   "faixa_etaria"
+    t.string   "questionario_id"
     t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"

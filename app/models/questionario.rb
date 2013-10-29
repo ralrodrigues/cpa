@@ -67,7 +67,7 @@ class Questionario < ActiveRecord::Base
 			# Criando alunos do curso
 			curso.qtd_alunos.times do
 				require 'securerandom'
-				alunos_do_curso << Usuario.create(nome: (curso.questionario_id.to_s + curso.sigla + curso.semestre_atual.to_s +  curso.periodo.first + numero_do_aluno.to_s), senha: SecureRandom.hex(6), tipo: "Discente")
+				alunos_do_curso << Usuario.create(nome: (curso.questionario_id.to_s + curso.sigla + curso.semestre_atual.to_s +  curso.periodo.first + numero_do_aluno.to_s), senha: SecureRandom.hex(6), tipo: "Discente", questionario_id: self.id.to_s)
 				numero_do_aluno = numero_do_aluno + 1
 	      # Carregando Modelo global para Discentes
 	      modelos = Modelo.includes(:questionario).where("questionarios.id" => self, "modelos.nome" => "Global Discente")
@@ -122,7 +122,7 @@ class Questionario < ActiveRecord::Base
 		taes_do_questionario = []
 		for i in 1..200 
 			require 'securerandom'
-			taes_do_questionario << Usuario.create(nome: (self.id.to_s + "1TAE" + i.to_s), senha: SecureRandom.hex(6), tipo: "TAE")
+			taes_do_questionario << Usuario.create(nome: (self.id.to_s + "TAE" + i.to_s), senha: SecureRandom.hex(6), tipo: "TAE", questionario_id: self.id.to_s)
       # Carregando Modelo global para Discentes
       modelos = Modelo.includes(:questionario).where("questionarios.id" => self, "modelos.nome" => "Global TAE")
       modelos.each do |modelo|
@@ -141,7 +141,7 @@ class Questionario < ActiveRecord::Base
 		professores.each do |professor|
       require 'securerandom'
       # Mudar nome do professor de id para apelido
-		  professores_do_questionario << Usuario.create(nome: (professor.apelido.to_s + self.id.to_s), senha: SecureRandom.hex(6), tipo: "Docente")
+		  professores_do_questionario << Usuario.create(nome: (self.id.to_s + professor.apelido.to_s), senha: SecureRandom.hex(6), tipo: "Docente", questionario_id: self.id.to_s)
 	    professor.usuario = professores_do_questionario.last
 	    professor.save
 	    # Carregando Modelo global para Docentes

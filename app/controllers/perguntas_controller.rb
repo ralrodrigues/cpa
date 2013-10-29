@@ -7,12 +7,13 @@ class PerguntasController < ApplicationController
   # GET /perguntas
   # GET /perguntas.json
   def index
-    @perguntas = @topico.perguntas
+    # @usuarios = @topico.perguntas.usuarios
   end
 
   # GET /perguntas/1
   # GET /perguntas/1.json
   def show
+    @usuarios = 
   end
 
   # GET /perguntas/new

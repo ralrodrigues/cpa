@@ -45,7 +45,7 @@
                       Término: 
                       %strong= questionario.previsao_termino
                     = form_tag questionario_encerrar_votacao_path(questionario) do
-                      =submit_tag "Encerrar Votação", class: "btn btn-default form-control", data: { confirm: 'Você tem certeza?', :class => "close"}
+                      =submit_tag "Encerrar Votação", class: "btn btn-default form-control iniciarVotacao", data: { confirm: 'Você tem certeza?', :class => "close"}
         .panel.panel-success
           .panel-heading
             %h3.panel-title
@@ -62,12 +62,13 @@
   .modal-dialog
     .modal-content
       .modal-header
-        %h4.modal-title Iniciando Votação...
+        %h4.modal-title Sistema Trabalhando Aguarde...
       .modal-body
         %h5 Este processo pode demorar alguns minutos, aguarde.
         %br
         .progress.progress-striped.active
           .progress-bar.progress-bar-success{role: "progressbar", "aria-valuenow" =>"45", "aria-valuemin" => "0", "aria-valuemax" => "100", style: "width: 100%;"}
             %span.sr-only 100% Complete
+
 
 
