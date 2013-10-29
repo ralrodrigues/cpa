@@ -32,9 +32,8 @@ module SessionsHelper
   end
   
   def is_administrador? 
-    unless logado? && current_usuario.tipo != "Administrador"
-      store_location
-      redirect_to login_url, notice: "Acesso Restrito."
+    unless current_usuario.tipo == "Administrador"
+      redirect_to login_path, notice: "Acesso Restrito"
     end
   end
 
