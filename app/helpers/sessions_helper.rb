@@ -30,6 +30,13 @@ module SessionsHelper
       redirect_to login_url, notice: "Você precisa estar logado para acessar está página."
     end
   end
+  
+  def is_administrador? 
+    unless logado? && current_usuario.tipo != "Administrador"
+      store_location
+      redirect_to login_url, notice: "Acesso Restrito."
+    end
+  end
 
   def logout
     self.current_usuario = nil
