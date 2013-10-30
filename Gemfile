@@ -46,3 +46,4 @@ end
 
 gem 'amoeba'
 gem 'haml'
+gem 'rails_12factor', group: :production
