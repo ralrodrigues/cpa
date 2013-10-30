@@ -13,8 +13,7 @@ class PerguntasController < ApplicationController
 
   # GET /perguntas/1
   # GET /perguntas/1.json
-  def show
-    @usuarios = 
+  def show 
   end
 
   # GET /perguntas/new
