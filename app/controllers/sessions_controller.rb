@@ -22,8 +22,8 @@ class SessionsController < ApplicationController
     nome_de_usuario = params[:session][:nome] 
     senha = params[:session][:senha] 
 
-    if nome_de_usuario != nil || senha != nil
-      redirect_to login_path, notice: "Usuário/Senha Inválidos"
+    if nome_de_usuario == nil || senha == nil
+      redirect_to login_path, notice: "Preencha Corretamente"
     else
       usuario = Usuario.find_by(nome: nome_de_usuario.upcase, senha: senha)
       if usuario
