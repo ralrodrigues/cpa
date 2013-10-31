@@ -5,10 +5,10 @@
     = form_for(:session, url: sessions_path) do |f|
       %br
       .form-group
-        = f.text_field :nome, class: 'form-control', placeholder:'Usuário'
+        = f.text_field :nome, class: 'form-control', placeholder:'Usuário', required: "true"
   
       .form-group
-        = f.password_field :senha, class: 'form-control', placeholder:'Senha'
+        = f.password_field :senha, class: 'form-control', placeholder:'Senha', required: "true"
 
       .form-groupd
         = f.submit "Acessar", class: "btn btn-large btn-success form-control"
