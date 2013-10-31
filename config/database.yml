@@ -58,4 +58,4 @@ production:
   database: cpa_production
   pool: 5
   username: cpa
-  password: 100%postgres
+  password: root
