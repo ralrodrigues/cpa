@@ -52,10 +52,11 @@ development:
 #   username: cpa
 #   password:
 
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: cpa_production
-  pool: 5
-  username: postgres
-  password: 100%postgres
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: cpa_production
+#   pool: 5
+#   username: postgres
+#   password: root
+
