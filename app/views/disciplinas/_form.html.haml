@@ -11,7 +11,7 @@
   .form-group
     = f.label :qtd_professores, "Qtd. Professor", :class => "col-sm-4 control-label"
     .col-sm-8
-      = f.number_field :qtd_professores, :class => "form-control", :required => true, :pattern => "\d*"
+      = f.number_field :qtd_professores, :class => "form-control", :required => true
   .form-group
     .col-sm-offset-4.col-sm-8  
       = f.submit button, :class => "btn btn-success"
