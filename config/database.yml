@@ -57,5 +57,5 @@ production:
   encoding: unicode
   database: cpa_production
   pool: 5
-  username: cpa
+  username: postgres
   password: 100%postgres
